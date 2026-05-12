@@ -1,7 +1,7 @@
 {
 	"name": "equation-editor",
 	"version": "0.1.0",
-	"description": "A WordPress plugin scaffold for equation editing.",
+	"description": "A WordPress equation editor block and inline equation formatter.",
 	"author": "Ethan Lin",
 	"license": "GPL-3.0-or-later",
 	"private": true,

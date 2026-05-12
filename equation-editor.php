@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Equation Editor
- * Description: Adds a scaffold for Equation Editor block and inline equation authoring.
+ * Description: Adds a WYSIWYG equation block and inline equation formatting to the block editor.
  * Author: Ethan Lin
  * Author URI: https://profiles.wordpress.org/eslin87/
  * Text Domain:  equation-editor
