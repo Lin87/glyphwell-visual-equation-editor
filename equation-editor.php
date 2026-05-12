@@ -2,10 +2,14 @@
 /**
  * Plugin Name: Equation Editor
  * Description: Adds a scaffold for Equation Editor block and inline equation authoring.
+ * Author: Ethan Lin
+ * Author URI: https://profiles.wordpress.org/eslin87/
+ * Text Domain:  equation-editor
+ * Domain Path: /languages
  * Version: 0.1.0
  * Requires at least: 6.3
  * Requires PHP: 8.0
- * License: GPL-2.0-or-later
+ * License: GPL-3.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  *
  * @package EquationEditor

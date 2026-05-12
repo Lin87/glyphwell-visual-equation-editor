@@ -2,7 +2,8 @@
 	"name": "equation-editor",
 	"version": "0.1.0",
 	"description": "A WordPress plugin scaffold for equation editing.",
-	"license": "GPL-2.0-or-later",
+	"author": "Ethan Lin",
+	"license": "GPL-3.0-or-later",
 	"private": true,
 	"scripts": {
 		"start": "wp-scripts start --webpack-copy-php",
@@ -15,13 +16,13 @@
 		"plugin-zip": "wp-scripts plugin-zip"
 	},
 	"dependencies": {
-		"katex": "*",
-		"mathlive": "*"
+		"katex": "^0.16.45",
+		"mathlive": "^0.109.2"
 	},
 	"devDependencies": {
-		"@tailwindcss/postcss": "*",
-		"@wordpress/scripts": "*",
-		"postcss": "*",
-		"tailwindcss": "*"
+		"@tailwindcss/postcss": "^4.3.0",
+		"@wordpress/scripts": "^32.1.0",
+		"postcss": "^8.5.14",
+		"tailwindcss": "^4.3.0"
 	}
 }
