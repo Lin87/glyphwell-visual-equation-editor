@@ -1,7 +1,23 @@
-.wp-block-equation-editor-equation {
+.wp-block-equation-editor-equation.equation-editor-equation {
 	margin-block: 1em;
+}
 
-	.equation-editor__placeholder {
-		color: #50575e;
-	}
+.equation-editor-equation.has-text-align-left {
+	text-align: left;
+}
+
+.equation-editor-equation.has-text-align-center {
+	text-align: center;
+}
+
+.equation-editor-equation.has-text-align-right {
+	text-align: right;
+}
+
+.equation-editor__mathml {
+	display: inline-block;
+}
+
+.equation-editor__fallback {
+	white-space: pre-wrap;
 }

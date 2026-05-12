@@ -248,3 +248,4 @@ wp-config.php
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,macos,wordpress
 
 build/
+equation-editor.zip

@@ -1,11 +1,39 @@
-.wp-block-equation-editor-equation {
-	.equation-editor-placeholder {
-		border: 1px dashed #8c8f94;
-		border-radius: 4px;
-		padding: 16px;
-	}
+.wp-block-equation-editor-equation.equation-editor-block {
+	margin-block: 1em;
+}
 
-	.equation-editor-placeholder p {
-		margin: 8px 0 0;
-	}
+.equation-editor-block__field {
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+	padding: 12px;
+}
+
+.equation-editor-math-field {
+	box-sizing: border-box;
+	display: block;
+	font-size: 1.35rem;
+	min-height: 56px;
+	width: 100%;
+}
+
+.equation-editor-block__temporary-symbols {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	justify-content: center;
+	margin-block-start: 10px;
+}
+
+.wp-block-equation-editor-equation.has-text-align-left .equation-editor-block__temporary-symbols {
+	justify-content: flex-start;
+}
+
+.wp-block-equation-editor-equation.has-text-align-right .equation-editor-block__temporary-symbols {
+	justify-content: flex-end;
+}
+
+.equation-editor-block__temporary-symbol.components-button {
+	font-size: 1rem;
+	min-width: 40px;
+	justify-content: center;
 }

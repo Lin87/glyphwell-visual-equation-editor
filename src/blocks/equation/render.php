@@ -1,6 +1,6 @@
 <?php
 /**
- * Placeholder render callback for the Equation block.
+ * Render callback for the Equation block.
  *
  * @package EquationEditor
  */
@@ -9,7 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$alignment = isset( $attributes['textAlign'] ) ? $attributes['textAlign'] : 'center';
+$latex     = isset( $attributes['latex'] ) && is_string( $attributes['latex'] ) ? $attributes['latex'] : '';
+$mathml    = isset( $attributes['mathML'] ) && is_string( $attributes['mathML'] ) ? $attributes['mathML'] : '';
+$alignment = isset( $attributes['textAlign'] ) && is_string( $attributes['textAlign'] ) ? $attributes['textAlign'] : 'center';
+
+if ( '' === trim( $latex ) && '' === trim( $mathml ) ) {
+	return '';
+}
 
 if ( ! in_array( $alignment, array( 'left', 'center', 'right' ), true ) ) {
 	$alignment = 'center';
@@ -21,8 +27,20 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	)
 );
 
+if ( '' !== trim( $mathml ) ) {
+	$equation_markup = sprintf(
+		'<div class="equation-editor__mathml">%s</div>',
+		equation_editor_sanitize_mathml( $mathml )
+	);
+} else {
+	$equation_markup = sprintf(
+		'<span class="equation-editor__fallback">%s</span>',
+		esc_html( $latex )
+	);
+}
+
 return sprintf(
-	'<figure %1$s><span class="equation-editor__placeholder">%2$s</span></figure>',
+	'<figure %1$s>%2$s</figure>',
 	$wrapper_attributes,
-	esc_html( 'Equation placeholder' )
+	$equation_markup
 );

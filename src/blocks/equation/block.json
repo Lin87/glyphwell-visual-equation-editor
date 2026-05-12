@@ -6,7 +6,7 @@
 	"title": "Equation",
 	"category": "text",
 	"icon": "editor-code",
-	"description": "Placeholder scaffold for an equation block.",
+	"description": "Create a standalone mathematical equation.",
 	"attributes": {
 		"latex": {
 			"type": "string",
