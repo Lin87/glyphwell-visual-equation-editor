@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "equation-editor/equation",
+	"version": "0.1.0",
+	"title": "Equation",
+	"category": "text",
+	"icon": "editor-code",
+	"description": "Placeholder scaffold for an equation block.",
+	"attributes": {
+		"latex": {
+			"type": "string",
+			"default": ""
+		},
+		"mathML": {
+			"type": "string",
+			"default": ""
+		},
+		"textAlign": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
