@@ -3,17 +3,62 @@
 }
 
 .equation-editor-block__field {
+	text-align: initial;
 	border: 1px solid #8c8f94;
 	border-radius: 4px;
 	padding: 12px;
 }
 
+.equation-editor-math-field-container {
+	display: flex;
+	width: 100%;
+}
+
+.wp-block-equation-editor-equation.has-text-align-left,
+.equation-editor-block.has-text-align-left {
+	.equation-editor-math-field-container {
+		justify-content: flex-start;
+	}
+
+	.equation-editor-block__temporary-symbols {
+		justify-content: flex-start;
+	}
+}
+
+.wp-block-equation-editor-equation.has-text-align-center,
+.equation-editor-block.has-text-align-center {
+	.equation-editor-math-field-container {
+		justify-content: center;
+	}
+
+	.equation-editor-block__temporary-symbols {
+		justify-content: center;
+	}
+}
+
+.wp-block-equation-editor-equation.has-text-align-right,
+.equation-editor-block.has-text-align-right {
+	.equation-editor-math-field-container {
+		justify-content: flex-end;
+	}
+
+	.equation-editor-block__temporary-symbols {
+		justify-content: flex-end;
+	}
+}
+
 .equation-editor-math-field {
 	box-sizing: border-box;
-	display: block;
 	font-size: 1.35rem;
-	min-height: 56px;
-	width: 100%;
+	display: inline-block;
+	max-width: 100%;
+	min-width: 120px;
+	width: auto;
+}
+
+.equation-editor-math-field::part(virtual-keyboard-toggle),
+.equation-editor-math-field::part(menu-toggle) {
+	display: none;
 }
 
 .equation-editor-block__temporary-symbols {
@@ -34,6 +79,6 @@
 
 .equation-editor-block__temporary-symbol.components-button {
 	font-size: 1rem;
-	min-width: 40px;
 	justify-content: center;
+	min-width: 40px;
 }

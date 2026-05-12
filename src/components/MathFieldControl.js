@@ -1,154 +1,181 @@
-import {
-	forwardRef,
-	useCallback,
-	useEffect,
-	useImperativeHandle,
-	useRef,
-} from '@wordpress/element';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from '@wordpress/element';
 import { MathfieldElement } from 'mathlive';
 
-import 'mathlive/static.css';
-import 'mathlive/fonts.css';
-
-MathfieldElement.fontsDirectory = null;
-
-const getMathML = ( mathfield ) => {
-	try {
-		return mathfield.getValue( 'math-ml' ) || '';
-	} catch {
-		return '';
-	}
+const getMathML = (mathfield) => {
+    try {
+        return mathfield.getValue('math-ml') || '';
+    } catch {
+        return '';
+    }
 };
 
-function MathFieldControl(
-	{ className = '', latex = '', onLatexChange, onMathMLChange },
-	ref
-) {
-	const callbacksRef = useRef( { onLatexChange, onMathMLChange } );
-	const containerRef = useRef( null );
-	const initialLatexRef = useRef( latex || '' );
-	const lastLatexRef = useRef( latex || '' );
-	const mathfieldRef = useRef( null );
+const getStyleSheetText = (styleSheet) => {
+    try {
+        return Array.from(styleSheet.cssRules)
+            .map((rule) => rule.cssText)
+            .join('\n');
+    } catch {
+        return '';
+    }
+};
 
-	useEffect( () => {
-		callbacksRef.current = { onLatexChange, onMathMLChange };
-	}, [ onLatexChange, onMathMLChange ] );
+const getShadowStyleTexts = (mathfield) => {
+    const shadowRoot = mathfield.shadowRoot;
 
-	const emitCurrentValue = useCallback( ( mathfield ) => {
-		const nextLatex = mathfield.value || '';
-		const callbacks = callbacksRef.current;
+    if (!shadowRoot || !shadowRoot.adoptedStyleSheets) {
+        return [];
+    }
 
-		lastLatexRef.current = nextLatex;
+    return Array.from(shadowRoot.adoptedStyleSheets).map(getStyleSheetText).filter(Boolean);
+};
 
-		if ( typeof callbacks.onLatexChange === 'function' ) {
-			callbacks.onLatexChange( nextLatex );
-		}
+const restoreShadowStylesForDocument = (mathfield, ownerDocument, styleTexts) => {
+    const shadowRoot = mathfield.shadowRoot;
 
-		if ( typeof callbacks.onMathMLChange === 'function' ) {
-			callbacks.onMathMLChange( getMathML( mathfield ) );
-		}
-	}, [] );
+    if (!shadowRoot || !styleTexts.length) {
+        return;
+    }
 
-	useEffect( () => {
-		const container = containerRef.current;
+    const ownerWindow = ownerDocument.defaultView;
 
-		if ( ! container ) {
-			return undefined;
-		}
+    if (ownerWindow?.CSSStyleSheet && 'adoptedStyleSheets' in shadowRoot) {
+        try {
+            shadowRoot.adoptedStyleSheets = styleTexts.map((cssText) => {
+                const styleSheet = new ownerWindow.CSSStyleSheet();
+                styleSheet.replaceSync(cssText);
 
-		const mathfield = new MathfieldElement();
+                return styleSheet;
+            });
 
-		mathfield.setAttribute( 'aria-label', 'Equation editor' );
-		mathfield.className = [ 'equation-editor-math-field', className ]
-			.filter( Boolean )
-			.join( ' ' );
-		mathfield.mathVirtualKeyboardPolicy = 'manual';
-		mathfield.smartFence = true;
-		mathfield.value = initialLatexRef.current;
+            return;
+        } catch {
+            // Fall back to style tags below.
+        }
+    }
 
-		mathfieldRef.current = mathfield;
-		lastLatexRef.current = initialLatexRef.current;
-		container.appendChild( mathfield );
+    styleTexts.forEach((cssText) => {
+        const style = ownerDocument.createElement('style');
+        style.textContent = cssText;
+        shadowRoot.prepend(style);
+    });
+};
 
-		if ( typeof callbacksRef.current.onMathMLChange === 'function' ) {
-			callbacksRef.current.onMathMLChange( getMathML( mathfield ) );
-		}
+function MathFieldControl({ className = '', latex = '', onLatexChange, onMathMLChange }, ref) {
+    const callbacksRef = useRef({ onLatexChange, onMathMLChange });
+    const containerRef = useRef(null);
+    const initialLatexRef = useRef(latex || '');
+    const lastLatexRef = useRef(latex || '');
+    const mathfieldRef = useRef(null);
 
-		const handleInput = () => {
-			emitCurrentValue( mathfield );
-		};
+    useEffect(() => {
+        callbacksRef.current = { onLatexChange, onMathMLChange };
+    }, [onLatexChange, onMathMLChange]);
 
-		mathfield.addEventListener( 'input', handleInput );
+    const emitCurrentValue = useCallback((mathfield) => {
+        const nextLatex = mathfield.value || '';
+        const callbacks = callbacksRef.current;
 
-		return () => {
-			mathfield.removeEventListener( 'input', handleInput );
-			mathfield.remove();
+        lastLatexRef.current = nextLatex;
 
-			if ( mathfieldRef.current === mathfield ) {
-				mathfieldRef.current = null;
-			}
-		};
-	}, [ className, emitCurrentValue ] );
+        if (typeof callbacks.onLatexChange === 'function') {
+            callbacks.onLatexChange(nextLatex);
+        }
 
-	useEffect( () => {
-		const mathfield = mathfieldRef.current;
-		const nextLatex = latex || '';
+        if (typeof callbacks.onMathMLChange === 'function') {
+            callbacks.onMathMLChange(getMathML(mathfield));
+        }
+    }, []);
 
-		if ( ! mathfield || nextLatex === lastLatexRef.current ) {
-			return;
-		}
+    useEffect(() => {
+        const container = containerRef.current;
 
-		mathfield.value = nextLatex;
-		lastLatexRef.current = nextLatex;
+        if (!container) {
+            return undefined;
+        }
 
-		if ( typeof callbacksRef.current.onMathMLChange === 'function' ) {
-			callbacksRef.current.onMathMLChange( getMathML( mathfield ) );
-		}
-	}, [ latex ] );
+        const ownerDocument = container.ownerDocument;
+        const mathfield = new MathfieldElement();
 
-	useImperativeHandle(
-		ref,
-		() => ( {
-			focus() {
-				mathfieldRef.current?.focus();
-			},
-			insertLatex( nextLatex ) {
-				const mathfield = mathfieldRef.current;
+        const shadowStyleTexts = getShadowStyleTexts(mathfield);
 
-				if ( ! mathfield ) {
-					return;
-				}
+        mathfield.setAttribute('aria-label', 'Equation editor');
+        mathfield.className = ['equation-editor-math-field', className].filter(Boolean).join(' ');
 
-				mathfield.focus();
+        mathfield.mathVirtualKeyboardPolicy = 'manual';
+        mathfield.smartFence = true;
+        mathfield.value = initialLatexRef.current;
 
-				if ( typeof mathfield.insert === 'function' ) {
-					mathfield.insert( nextLatex, {
-						insertionMode: 'replaceSelection',
-						selectionMode: 'placeholder',
-					} );
-				} else if ( typeof mathfield.executeCommand === 'function' ) {
-					mathfield.executeCommand( [
-						'insert',
-						nextLatex,
-						{
-							insertionMode: 'replaceSelection',
-							selectionMode: 'placeholder',
-						},
-					] );
-				} else {
-					mathfield.value = `${
-						mathfield.value || ''
-					}${ nextLatex }`;
-				}
+        mathfieldRef.current = mathfield;
+        lastLatexRef.current = initialLatexRef.current;
 
-				emitCurrentValue( mathfield );
-				mathfield.focus();
-			},
-		} ),
-		[ emitCurrentValue ]
-	);
+        container.appendChild(mathfield);
 
-	return <div ref={ containerRef } />;
+        restoreShadowStylesForDocument(mathfield, ownerDocument, shadowStyleTexts);
+
+        if (typeof callbacksRef.current.onMathMLChange === 'function') {
+            callbacksRef.current.onMathMLChange(getMathML(mathfield));
+        }
+
+        const handleInput = () => {
+            emitCurrentValue(mathfield);
+        };
+
+        mathfield.addEventListener('input', handleInput);
+
+        return () => {
+            mathfield.removeEventListener('input', handleInput);
+            mathfield.remove();
+
+            if (mathfieldRef.current === mathfield) {
+                mathfieldRef.current = null;
+            }
+        };
+    }, [className, emitCurrentValue]);
+
+    useEffect(() => {
+        const mathfield = mathfieldRef.current;
+        const nextLatex = latex || '';
+
+        if (!mathfield || nextLatex === lastLatexRef.current) {
+            return;
+        }
+
+        mathfield.value = nextLatex;
+        lastLatexRef.current = nextLatex;
+
+        if (typeof callbacksRef.current.onMathMLChange === 'function') {
+            callbacksRef.current.onMathMLChange(getMathML(mathfield));
+        }
+    }, [latex]);
+
+    useImperativeHandle(
+        ref,
+        () => ({
+            focus() {
+                mathfieldRef.current?.focus();
+            },
+            insertLatex(nextLatex) {
+                const mathfield = mathfieldRef.current;
+
+                if (!mathfield) {
+                    return;
+                }
+
+                mathfield.focus();
+
+                mathfield.insert(nextLatex, {
+                    insertionMode: 'replaceSelection',
+                    selectionMode: 'placeholder',
+                });
+
+                emitCurrentValue(mathfield);
+                mathfield.focus();
+            },
+        }),
+        [emitCurrentValue],
+    );
+
+    return <div ref={containerRef} className='equation-editor-math-field-container' />;
 }
 
-export default forwardRef( MathFieldControl );
+export default forwardRef(MathFieldControl);
