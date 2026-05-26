@@ -32,11 +32,9 @@ Required runtime dependencies:
 Required development dependencies:
 
 - `@wordpress/scripts`
-- `tailwindcss`
-- `@tailwindcss/postcss`
 - `postcss`
 
-Do not load MathLive, KaTeX, Tailwind, fonts, CSS, or JavaScript from a CDN.
+Do not load MathLive, KaTeX, fonts, CSS, or JavaScript from a CDN.
 
 ## WordPress plugin rules
 
@@ -49,8 +47,6 @@ equation-editor/
 ├── package.json
 ├── package-lock.json
 ├── webpack.config.js
-├── postcss.config.mjs
-├── tailwind.config.js
 ├── includes/
 ├── src/
 ├── build/
@@ -325,20 +321,19 @@ Use the screenshot visual order as the source of truth.
 
 When a symbol has multiple valid LaTeX aliases, choose the standard KaTeX-supported macro that renders closest to the screenshot.
 
-## Tailwind CSS requirements
+## Editor CSS requirements
 
-Use Tailwind CSS for the editor UI only.
+Use SCSS for editor UI styling.
 
-Tailwind may be used for:
+Editor styles should cover:
 
 - symbol palette tabs
 - symbol buttons
 - popovers
 - editor layout
-- utility spacing
 - preview wrappers
 
-Do not save Tailwind utility classes into post content.
+Do not save editor-only styling classes into post content.
 
 Frontend markup must use stable plugin classes, for example:
 
@@ -354,8 +349,6 @@ equation-editor__mathml
 Use `@wordpress/scripts`.
 
 Use `webpack.config.js` to extend the default webpack setup only where needed.
-
-Use `postcss.config.mjs` for Tailwind/PostCSS.
 
 Required npm scripts:
 
@@ -378,7 +371,7 @@ Editor:
 
 - Load MathLive only in the block editor.
 - Load the symbol palette only in editor contexts.
-- Load Tailwind-generated editor CSS only in editor contexts.
+- Load editor CSS only in editor contexts.
 
 Frontend:
 

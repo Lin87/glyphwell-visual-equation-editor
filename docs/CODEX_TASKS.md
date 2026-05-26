@@ -14,7 +14,7 @@ The plugin must provide:
 6. Generated MathML as the stored display output.
 7. WordPress built-in math display support when available.
 8. Locally bundled KaTeX fallback rendering when WordPress built-in math display is unavailable.
-9. Tailwind CSS for editor UI styling.
+9. SCSS editor UI styling.
 10. WordPress.org-ready packaging.
 
 ## Source references
@@ -50,8 +50,6 @@ equation-editor/
 ├── package.json
 ├── package-lock.json
 ├── webpack.config.js
-├── postcss.config.mjs
-├── tailwind.config.js
 ├── .gitignore
 ├── includes/
 │   ├── assets.php
@@ -81,11 +79,9 @@ equation-editor/
 │   │   └── inline-equation/
 │   │       ├── index.js
 │   │       └── editor.scss
-│   ├── frontend/
+│   └── frontend/
 │   │   ├── katex-fallback.js
 │   │   └── frontend.scss
-│   └── styles/
-│       └── tailwind.css
 ├── build/
 ├── assets/
 │   └── screenshots/
@@ -123,8 +119,6 @@ equation-editor/
   - `includes/sanitization.php`
 - Create `package.json`.
 - Create `webpack.config.js`.
-- Create `postcss.config.mjs`.
-- Create `tailwind.config.js`.
 - Create `.gitignore`.
 - Create placeholder `readme.txt`.
 
@@ -143,7 +137,7 @@ Add dependencies:
 
 ```bash
 npm install --save mathlive katex
-npm install --save-dev @wordpress/scripts tailwindcss @tailwindcss/postcss postcss
+npm install --save-dev @wordpress/scripts postcss
 ```
 
 Configure scripts:
@@ -159,18 +153,6 @@ Configure scripts:
   "test:e2e": "wp-scripts test-e2e",
   "plugin-zip": "wp-scripts plugin-zip"
 }
-```
-
-Configure Tailwind through PostCSS.
-
-Use this `postcss.config.mjs` shape:
-
-```js
-export default {
-	plugins: {
-		'@tailwindcss/postcss': {},
-	},
-};
 ```
 
 Extend `@wordpress/scripts` webpack config only where needed.
@@ -968,21 +950,11 @@ document
 - KaTeX assets are not enqueued on pages that do not need them.
 - No CDN assets are loaded.
 
-## Milestone 9: Editor styling with Tailwind CSS
+## Milestone 9: Editor styling with SCSS
 
 ### Tasks
 
-Use Tailwind for editor-only UI.
-
-Create:
-
-```text
-src/styles/tailwind.css
-```
-
-Include Tailwind imports according to the installed Tailwind version.
-
-Use Tailwind classes in React editor components only.
+Use SCSS and stable plugin classes for editor UI.
 
 Use stable plugin classes for frontend.
 
@@ -999,8 +971,8 @@ Style:
 ### Acceptance criteria
 
 - Editor UI visually resembles the screenshots.
-- Frontend content does not contain Tailwind utility classes.
-- Tailwind CSS does not break WordPress admin layout.
+- Frontend content does not contain editor-only utility classes.
+- Editor CSS does not break WordPress admin layout.
 - Build output includes compiled editor CSS.
 
 ## Milestone 10: WordPress.org readiness
@@ -1133,7 +1105,7 @@ The task is complete when:
 - WordPress built-in math display is used when available.
 - KaTeX fallback is used when WordPress built-in math display is unavailable.
 - KaTeX and MathLive are bundled locally.
-- Tailwind CSS is used for editor UI.
+- SCSS is used for editor UI.
 - No CDN assets are loaded.
 - No custom macros are supported.
 - No equation numbering or cross-references are included.
