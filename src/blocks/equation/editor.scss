@@ -4,34 +4,46 @@
 	margin-block: 1em;
 }
 
-.equation-editor-block__field {
-	text-align: initial;
+.equation-editor-block__preview {
+	align-items: center;
 	border: 1px solid #8c8f94;
 	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	min-height: 92px;
 	padding: 12px;
+	text-align: initial;
+	width: 100%;
 }
 
-.wp-block-equation-editor-equation.has-text-align-left,
-.equation-editor-block.has-text-align-left {
-
-	.equation-editor-math-field-container {
-		justify-content: flex-start;
-	}
+.equation-editor-block__preview-math {
+	display: block;
+	max-width: 100%;
+	overflow-x: auto;
 }
 
-.wp-block-equation-editor-equation.has-text-align-center,
-.equation-editor-block.has-text-align-center {
-
-	.equation-editor-math-field-container {
-		justify-content: center;
-	}
+.equation-editor-block__empty-message {
+	color: #646970;
+	margin: 0;
 }
 
-.wp-block-equation-editor-equation.has-text-align-right,
-.equation-editor-block.has-text-align-right {
+.wp-block-equation-editor-equation.has-text-align-left .equation-editor-block__preview,
+.equation-editor-block.has-text-align-left .equation-editor-block__preview {
+	align-items: flex-start;
+}
 
-	.equation-editor-math-field-container {
-		justify-content: flex-end;
-	}
+.wp-block-equation-editor-equation.has-text-align-center .equation-editor-block__preview,
+.equation-editor-block.has-text-align-center .equation-editor-block__preview {
+	align-items: center;
+}
+
+.wp-block-equation-editor-equation.has-text-align-right .equation-editor-block__preview,
+.equation-editor-block.has-text-align-right .equation-editor-block__preview {
+	align-items: flex-end;
+}
+
+.equation-editor-block__edit-button {
+	flex: 0 0 auto;
 }
 

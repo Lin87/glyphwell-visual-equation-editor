@@ -4,39 +4,3 @@
 	display: inline;
 	vertical-align: baseline;
 }
-
-.equation-editor-inline-popover .components-popover__content {
-	max-height: min(650px, calc(100vh - 80px));
-	overflow-y: auto;
-	width: min(720px, calc(100vw - 32px));
-}
-
-.equation-editor-inline-popover__content {
-	padding: 16px;
-}
-
-.equation-editor-inline-popover__field {
-	border: 1px solid #8c8f94;
-	border-radius: 4px;
-	padding: 12px;
-}
-
-.equation-editor-inline-popover__field .equation-editor-math-field-container {
-	justify-content: flex-start;
-}
-
-.equation-editor-inline-popover__latex {
-	margin-block-start: 16px;
-}
-
-.equation-editor-inline-popover__latex textarea {
-	font-family: Consolas, Monaco, monospace;
-}
-
-.equation-editor-inline-popover__actions {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-	justify-content: flex-end;
-	margin-block-start: 16px;
-}

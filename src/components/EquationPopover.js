@@ -45,13 +45,13 @@ export default function EquationPopover( {
 	return (
 		<Popover
 			anchor={ anchor }
-			className="equation-editor-inline-popover"
+			className="equation-editor-popover"
 			focusOnMount={ false }
 			onClose={ onClose }
 			placement="bottom-start"
 		>
-			<div className="equation-editor-inline-popover__content">
-				<div className="equation-editor-inline-popover__field">
+			<div className="equation-editor-popover__content">
+				<div className="equation-editor-popover__field">
 					<MathFieldControl
 						ref={ mathfieldRef }
 						latex={ latex }
@@ -63,14 +63,14 @@ export default function EquationPopover( {
 				<SymbolPalette onInsertSymbol={ insertSymbol } />
 
 				<TextareaControl
-					className="equation-editor-inline-popover__latex"
+					className="equation-editor-popover__latex"
 					label="LaTeX"
 					value={ latex }
 					onChange={ setLatex }
 					__nextHasNoMarginBottom
 				/>
 
-				<div className="equation-editor-inline-popover__actions">
+				<div className="equation-editor-popover__actions">
 					<Button variant="primary" onClick={ applyEquation }>
 						{ isEditing ? 'Update' : 'Apply' }
 					</Button>

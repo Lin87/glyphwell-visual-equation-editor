@@ -1,10 +1,14 @@
-import { BlockControls, useBlockProps } from '@wordpress/block-editor';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
-import { useCallback, useRef } from '@wordpress/element';
-import { alignCenter, alignLeft, alignRight } from '@wordpress/icons';
+import {
+	BlockControls,
+	store as blockEditorStore,
+	useBlockProps,
+} from '@wordpress/block-editor';
+import { Button, ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
+import { useCallback, useEffect, useRef, useState } from '@wordpress/element';
+import { alignCenter, alignLeft, alignRight, math } from '@wordpress/icons';
 
-import MathFieldControl from '../../components/MathFieldControl';
-import SymbolPalette from '../../components/SymbolPalette';
+import EquationPopover from '../../components/EquationPopover';
 
 const ALIGNMENTS = [
 	{
@@ -24,27 +28,49 @@ const ALIGNMENTS = [
 	},
 ];
 
-export default function Edit( { attributes, setAttributes } ) {
-	const { latex = '', textAlign = 'center' } = attributes;
-	const mathfieldRef = useRef( null );
+function EquationPreview( { latex } ) {
+	return (
+		<math-div
+			aria-label="Equation preview"
+			className="equation-editor-block__preview-math"
+		>
+			{ latex }
+		</math-div>
+	);
+}
+
+export default function Edit( { attributes, clientId, setAttributes } ) {
+	const { latex = '', mathML = '', textAlign = 'center' } = attributes;
+	const [ isPopoverOpen, setIsPopoverOpen ] = useState( false );
+	const blockRef = useRef( null );
+	const hasAutoOpenedRef = useRef( false );
+	const hasEquation = Boolean( latex.trim() );
 
 	const blockProps = useBlockProps( {
 		className: `equation-editor-block has-text-align-${ textAlign }`,
+		ref: blockRef,
 	} );
 
-	const updateLatex = useCallback(
-		( nextLatex ) => {
-			setAttributes( { latex: nextLatex } );
+	const wasJustInserted = useSelect(
+		( select ) => {
+			const editor = select( blockEditorStore );
+
+			return (
+				editor.wasBlockJustInserted( clientId ) ||
+				editor.wasBlockJustInserted( clientId, 'inserter_menu' )
+			);
 		},
-		[ setAttributes ]
+		[ clientId ]
 	);
 
-	const updateMathML = useCallback(
-		( nextMathML ) => {
-			setAttributes( { mathML: nextMathML || '' } );
-		},
-		[ setAttributes ]
-	);
+	useEffect( () => {
+		if ( ! wasJustInserted || hasAutoOpenedRef.current ) {
+			return;
+		}
+
+		hasAutoOpenedRef.current = true;
+		setIsPopoverOpen( true );
+	}, [ wasJustInserted ] );
 
 	const updateAlignment = useCallback(
 		( nextAlignment ) => {
@@ -53,9 +79,25 @@ export default function Edit( { attributes, setAttributes } ) {
 		[ setAttributes ]
 	);
 
-	const insertSymbol = useCallback( ( symbol ) => {
-		mathfieldRef.current?.insertLatex( symbol.latex );
+	const openPopover = useCallback( () => {
+		setIsPopoverOpen( true );
 	}, [] );
+
+	const closePopover = useCallback( () => {
+		setIsPopoverOpen( false );
+	}, [] );
+
+	const applyEquation = useCallback(
+		( { latex: nextLatex, mathML: nextMathML } ) => {
+			setAttributes( {
+				latex: nextLatex,
+				mathML: nextMathML || '',
+			} );
+
+			closePopover();
+		},
+		[ closePopover, setAttributes ]
+	);
 
 	return (
 		<>
@@ -74,16 +116,35 @@ export default function Edit( { attributes, setAttributes } ) {
 			</BlockControls>
 
 			<div { ...blockProps }>
-				<div className="equation-editor-block__field">
-					<MathFieldControl
-						ref={ mathfieldRef }
-						latex={ latex }
-						onLatexChange={ updateLatex }
-						onMathMLChange={ updateMathML }
-					/>
+				<div className="equation-editor-block__preview">
+					{ hasEquation ? (
+						<EquationPreview key={ latex } latex={ latex } />
+					) : (
+						<p className="equation-editor-block__empty-message">
+							Enter an equation to display it here.
+						</p>
+					) }
+
+					<Button
+						className="equation-editor-block__edit-button"
+						icon={ math }
+						onClick={ openPopover }
+						variant="secondary"
+					>
+						{ hasEquation ? 'Edit equation' : 'Enter equation' }
+					</Button>
 				</div>
 
-				<SymbolPalette onInsertSymbol={ insertSymbol } />
+				{ isPopoverOpen && (
+					<EquationPopover
+						anchor={ blockRef.current }
+						initialLatex={ latex }
+						initialMathML={ mathML }
+						isEditing={ hasEquation }
+						onApply={ applyEquation }
+						onClose={ closePopover }
+					/>
+				) }
 			</div>
 		</>
 	);
