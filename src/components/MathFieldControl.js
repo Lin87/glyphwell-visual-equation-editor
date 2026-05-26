@@ -109,6 +109,10 @@ const restoreShadowStylesForDocument = (
 	} );
 };
 
+const forceLightTheme = ( mathfield ) => {
+	mathfield.setAttribute( 'theme', 'light' );
+};
+
 function MathFieldControl(
 	{ className = '', latex = '', onLatexChange, onMathMLChange },
 	ref
@@ -169,6 +173,7 @@ function MathFieldControl(
 			ownerDocument,
 			shadowStyleTexts
 		);
+		forceLightTheme( mathfield );
 
 		if ( typeof callbacksRef.current.onMathMLChange === 'function' ) {
 			callbacksRef.current.onMathMLChange( getMathML( mathfield ) );
