@@ -67,13 +67,17 @@ function equation_editor_content_has_inline_equation( string $content ): bool {
 }
 
 /**
- * Checks whether post content contains a standalone equation block.
+ * Checks whether post content contains a saved standalone equation token.
  *
  * @param string $content Post content.
  * @return bool True when an equation block is present.
  */
 function equation_editor_content_has_equation_block( string $content ): bool {
-	return has_block( 'equation-editor/equation', $content );
+	return has_block( 'equation-editor/equation', $content )
+		|| (
+			false !== strpos( $content, 'equation-editor__mathml' )
+			&& false !== strpos( $content, 'data-equation-editor-latex' )
+		);
 }
 
 /**

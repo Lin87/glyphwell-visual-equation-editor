@@ -19,16 +19,39 @@ const renderEquation = ( element, displayMode ) => {
 		return;
 	}
 
-	katex.render( latex, element, {
+	const renderTarget =
+		element.namespaceURI === 'http://www.w3.org/1998/Math/MathML'
+			? document.createElement( displayMode ? 'div' : 'span' )
+			: element;
+
+	if ( renderTarget !== element ) {
+		renderTarget.className = element.getAttribute( 'class' ) || '';
+		renderTarget.dataset.equationEditorLatex = latex;
+	}
+
+	katex.render( latex, renderTarget, {
 		...KATEX_OPTIONS,
 		displayMode,
 	} );
+
+	if ( renderTarget !== element ) {
+		element.replaceWith( renderTarget );
+	}
 };
 
 document
 	.querySelectorAll( '.equation-editor__fallback' )
 	.forEach( ( element ) => {
 		renderEquation( element, element.dataset.displayMode === 'block' );
+	} );
+
+document
+	.querySelectorAll( '.equation-editor__mathml[data-equation-editor-latex]' )
+	.forEach( ( element ) => {
+		renderEquation(
+			element,
+			element.getAttribute( 'display' ) === 'block'
+		);
 	} );
 
 document
