@@ -7,9 +7,46 @@ import {
 } from '@wordpress/element';
 import { MathfieldElement } from 'mathlive';
 
+const MATH_FIELD_TAG = 'math-field';
+
+const defineMathfieldElement = () => {
+	if (
+		typeof window === 'undefined' ||
+		! window.customElements ||
+		window.customElements.get( MATH_FIELD_TAG )
+	) {
+		return;
+	}
+
+	try {
+		window.customElements.define( MATH_FIELD_TAG, MathfieldElement );
+	} catch {
+		// MathLive may already be registered by another editor entry point.
+	}
+};
+
+const createMathfieldElement = ( ownerDocument ) => {
+	defineMathfieldElement();
+
+	const ownerWindow = ownerDocument.defaultView;
+
+	if ( ownerWindow?.customElements?.get( MATH_FIELD_TAG ) ) {
+		return ownerDocument.createElement( MATH_FIELD_TAG );
+	}
+
+	if (
+		typeof document !== 'undefined' &&
+		window?.customElements?.get( MATH_FIELD_TAG )
+	) {
+		return document.createElement( MATH_FIELD_TAG );
+	}
+
+	return ownerDocument.createElement( MATH_FIELD_TAG );
+};
+
 const getMathML = ( mathfield ) => {
 	try {
-		return mathfield.getValue( 'math-ml' ) || '';
+		return mathfield.getValue?.( 'math-ml' ) || '';
 	} catch {
 		return '';
 	}
@@ -109,7 +146,7 @@ function MathFieldControl(
 		}
 
 		const ownerDocument = container.ownerDocument;
-		const mathfield = new MathfieldElement();
+		const mathfield = createMathfieldElement( ownerDocument );
 
 		const shadowStyleTexts = getShadowStyleTexts( mathfield );
 

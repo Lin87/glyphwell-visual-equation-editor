@@ -27,14 +27,17 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	)
 );
 
-if ( '' !== trim( $mathml ) ) {
+if ( equation_editor_has_core_math_support() && '' !== trim( $mathml ) ) {
 	$equation_markup = sprintf(
 		'<div class="equation-editor__mathml">%s</div>',
 		equation_editor_sanitize_mathml( $mathml )
 	);
 } else {
+	equation_editor_enqueue_katex_fallback_assets();
+
 	$equation_markup = sprintf(
-		'<span class="equation-editor__fallback">%s</span>',
+		'<span class="equation-editor__fallback" data-display-mode="block" data-latex="%1$s"></span><noscript>%2$s</noscript>',
+		esc_attr( $latex ),
 		esc_html( $latex )
 	);
 }
