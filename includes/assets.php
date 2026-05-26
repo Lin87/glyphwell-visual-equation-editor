@@ -67,9 +67,19 @@ function equation_editor_content_has_inline_equation( string $content ): bool {
 }
 
 /**
- * Enqueues fallback assets for saved inline equations on sites without core math support.
+ * Checks whether post content contains a standalone equation block.
+ *
+ * @param string $content Post content.
+ * @return bool True when an equation block is present.
  */
-function equation_editor_enqueue_inline_equation_fallback_assets(): void {
+function equation_editor_content_has_equation_block( string $content ): bool {
+	return has_block( 'equation-editor/equation', $content );
+}
+
+/**
+ * Enqueues fallback assets for saved equations on sites without core math support.
+ */
+function equation_editor_enqueue_equation_fallback_assets(): void {
 	if ( equation_editor_has_core_math_support() || ! is_a( $GLOBALS['wp_query'] ?? null, 'WP_Query' ) ) {
 		return;
 	}
@@ -79,10 +89,13 @@ function equation_editor_enqueue_inline_equation_fallback_assets(): void {
 			continue;
 		}
 
-		if ( equation_editor_content_has_inline_equation( $post->post_content ) ) {
+		if (
+			equation_editor_content_has_equation_block( $post->post_content )
+			|| equation_editor_content_has_inline_equation( $post->post_content )
+		) {
 			equation_editor_enqueue_katex_fallback_assets();
 			return;
 		}
 	}
 }
-add_action( 'wp_enqueue_scripts', 'equation_editor_enqueue_inline_equation_fallback_assets' );
+add_action( 'wp_enqueue_scripts', 'equation_editor_enqueue_equation_fallback_assets' );

@@ -5,8 +5,16 @@ import {
 } from '@wordpress/block-editor';
 import { Button, ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-import { useCallback, useEffect, useRef, useState } from '@wordpress/element';
+import {
+	RawHTML,
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from '@wordpress/element';
 import { alignCenter, alignLeft, alignRight, math } from '@wordpress/icons';
+import { convertLatexToMarkup } from 'mathlive';
 
 import EquationPopover from '../../components/EquationPopover';
 
@@ -29,13 +37,28 @@ const ALIGNMENTS = [
 ];
 
 function EquationPreview( { latex } ) {
+	const markup = useMemo( () => {
+		try {
+			return convertLatexToMarkup( latex, {
+				defaultMode: 'math',
+			} );
+		} catch {
+			return '';
+		}
+	}, [ latex ] );
+
+	if ( ! markup ) {
+		return (
+			<p className="equation-editor-block__empty-message">
+				The equation preview could not be rendered.
+			</p>
+		);
+	}
+
 	return (
-		<math-div
-			aria-label="Equation preview"
-			className="equation-editor-block__preview-math"
-		>
-			{ latex }
-		</math-div>
+		<RawHTML className="equation-editor-block__preview-math">
+			{ markup }
+		</RawHTML>
 	);
 }
 

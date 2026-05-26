@@ -36,7 +36,7 @@ if ( equation_editor_has_core_math_support() && '' !== trim( $mathml ) ) {
 	equation_editor_enqueue_katex_fallback_assets();
 
 	$equation_markup = sprintf(
-		'<span class="equation-editor__fallback" data-display-mode="block" data-latex="%1$s"></span><noscript>%2$s</noscript>',
+		'<span class="equation-editor__fallback" data-display-mode="block" data-latex="%1$s">%2$s</span>',
 		esc_attr( $latex ),
 		esc_html( $latex )
 	);
