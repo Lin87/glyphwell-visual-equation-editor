@@ -1,0 +1,105 @@
+.equation-editor-math-field-container {
+	display: flex;
+	width: 100%;
+}
+
+.equation-editor-math-field {
+	box-sizing: border-box;
+	display: inline-block;
+	font-size: 1.35rem;
+	max-width: 100%;
+	min-width: 120px;
+	width: auto;
+}
+
+.equation-editor-math-field::part(virtual-keyboard-toggle),
+.equation-editor-math-field::part(menu-toggle) {
+	display: none;
+}
+
+.equation-editor-symbol-palette {
+	margin-block-start: 14px;
+	text-align: initial;
+}
+
+.equation-editor-symbol-tabs {
+	align-items: flex-end;
+	border-block-end: 1px solid #8c8f94;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	padding-inline-start: 0;
+}
+
+.equation-editor-symbol-tab {
+	appearance: none;
+	background: transparent;
+	border: 1px solid transparent;
+	border-block-end: 0;
+	border-radius: 4px 4px 0 0;
+	color: #1e1e1e;
+	cursor: pointer;
+	font: inherit;
+	margin: 0 0 -1px;
+	min-height: 46px;
+	padding: 10px 16px;
+	position: relative;
+	white-space: nowrap;
+}
+
+.equation-editor-symbol-tab[aria-selected="true"] {
+	background: #fff;
+	border-color: #8c8f94;
+	color: #1e1e1e;
+	z-index: 1;
+}
+
+.equation-editor-symbol-tab:focus-visible {
+	outline: 2px solid #3858e9;
+	outline-offset: 2px;
+}
+
+.equation-editor-symbol-panel {
+	padding-block-start: 12px;
+}
+
+.equation-editor-symbol-row {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 5px;
+	margin-block-end: 5px;
+	overflow-x: auto;
+}
+
+.equation-editor-symbol-button {
+	align-items: center;
+	appearance: none;
+	background: #f0f2f3;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+	color: #1d2327;
+	cursor: pointer;
+	display: inline-flex;
+	flex: 0 0 38px;
+	font-family: "Cambria Math", Cambria, Georgia, serif;
+	font-size: 23px;
+	height: 38px;
+	justify-content: center;
+	line-height: 1;
+	padding: 0;
+}
+
+.equation-editor-symbol-button:focus-visible {
+	outline: 2px solid #3858e9;
+	outline-offset: 2px;
+}
+
+.equation-editor-symbol-button:hover {
+	background: #fff;
+	border-color: #8c8f94;
+}
+
+.equation-editor-symbol-button:active {
+	background: #dcdcde;
+}
