@@ -19,8 +19,9 @@
 
 .equation-editor-block__preview-math {
 	display: block;
+	font-size: 1.25rem;
 	max-width: 100%;
-	overflow-x: auto;
+	overflow: visible;
 }
 
 .equation-editor-block__empty-message {
