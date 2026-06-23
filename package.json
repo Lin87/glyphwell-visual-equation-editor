@@ -22,7 +22,7 @@
 		"lint:css": "wp-scripts lint-style",
 		"test:unit": "wp-scripts test-unit-js",
 		"test:e2e": "wp-scripts test-e2e",
-		"plugin-zip": "wp-scripts plugin-zip"
+		"ship": "wp-scripts plugin-zip"
 	},
 	"dependencies": {
 		"katex": "^0.16.45",

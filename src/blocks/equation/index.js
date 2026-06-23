@@ -1,6 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 
 import 'mathlive/fonts.css';
+import 'mathlive/static.css';
 
 import metadata from './block.json';
 import Edit from './edit';
