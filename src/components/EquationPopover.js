@@ -66,7 +66,7 @@ export default function EquationPopover( {
 			className="equation-editor-popover"
 			focusOnMount={ false }
 			onClose={ onClose }
-			placement="bottom-start"
+			onFocusOutside = {(() => void{})}
 		>
 			<div className="equation-editor-popover__content">
 				<div className="equation-editor-popover__field">

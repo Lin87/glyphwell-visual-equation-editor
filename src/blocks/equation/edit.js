@@ -101,7 +101,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const hasEquation = Boolean( latex.trim() );
 
 	const blockProps = useBlockProps( {
-		className: `equation-editor-block has-text-align-${ textAlign }`,
+		className: 'equation-editor-block',
 		ref: blockRef,
 	} );
 
@@ -173,23 +173,27 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 			</BlockControls>
 
 			<div { ...blockProps }>
-				<div className="equation-editor-block__preview">
-					{ hasEquation ? (
-						<EquationPreview key={ latex } latex={ latex } />
-					) : (
-						<EmptyMessage>
-							Enter an equation to display it here.
-						</EmptyMessage>
-					) }
-
-					<Button
-						className="equation-editor-block__edit-button"
-						icon={ math }
-						onClick={ openPopover }
-						variant="secondary"
-					>
-						{ hasEquation ? 'Edit equation' : 'Enter equation' }
-					</Button>
+				<div className="equation-editor-block__preview-wrapper">
+					<div className={`equation-editor-block__preview has-text-align-${ textAlign }`}>
+						{ hasEquation ? (
+							<EquationPreview key={ latex } latex={ latex } />
+						) : (
+							<EmptyMessage>
+								Enter an equation to display it here.
+							</EmptyMessage>
+						) }
+					</div>
+					<div class="equation-editor-block__preview-actions">
+						<Button
+							className="equation-editor-block__edit-button"
+							icon={ math }
+							onClick={ openPopover }
+							variant="secondary"
+							disabled={isPopoverOpen}
+						>
+							{ hasEquation ? 'Edit equation' : 'Enter equation' }
+						</Button>
+					</div>
 				</div>
 
 				{ isPopoverOpen && (

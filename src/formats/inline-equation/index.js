@@ -1,4 +1,3 @@
-import './editor.scss';
 import 'mathlive/fonts.css';
 
 import { RichTextToolbarButton } from '@wordpress/block-editor';

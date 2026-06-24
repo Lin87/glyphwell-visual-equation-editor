@@ -1,50 +1,76 @@
 @use "../../components/editor";
 
-.wp-block-equation-editor-equation.equation-editor-block {
-	margin-block: 1em;
+.wp-block-equation-editor-equation {
+
+	$gray-color: #8c8f94;
+	$spacing: 16px;
+
+	.equation-editor-block__preview-wrapper {
+
+		display: flex;
+		flex-direction: column;
+		gap: $spacing;
+		border: 1px dashed $gray-color;
+		border-radius: 6px;
+		padding: $spacing;
+
+		.equation-editor-block__preview {
+
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			text-align: initial;
+			width: 100%;
+
+			.equation-editor-block__preview-math {
+				
+				display: block;
+				font-size: 1.35rem;
+				max-width: 100%;
+				overflow: visible;
+				
+				.ML__base {
+					user-select: none;
+					cursor: grab;
+				}
+
+			}
+
+			.equation-editor-block__empty-message {
+				color: $gray-color;
+				margin: 0;
+			}
+
+			&.has-text-align-left {
+				align-items: flex-start;
+			}
+
+			&.has-text-align-center {
+				align-items: center;
+			}
+
+			&.has-text-align-right {
+				align-items: flex-end;
+			}
+
+		}
+
+		.equation-editor-block__preview-actions {
+			text-align: center;
+		}
+
+	}
+
+	&.equation-editor-block {
+		margin-block: 1em;
+	}
+
 }
 
-.equation-editor-block__preview {
-	align-items: center;
-	border: 1px solid #8c8f94;
-	border-radius: 4px;
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	min-height: 92px;
-	padding: 12px;
-	text-align: initial;
-	width: 100%;
-}
 
-.equation-editor-block__preview-math {
-	display: block;
-	font-size: 1.25rem;
-	max-width: 100%;
-	overflow: visible;
-}
 
-.equation-editor-block__empty-message {
-	color: #646970;
-	margin: 0;
-}
 
-.wp-block-equation-editor-equation.has-text-align-left .equation-editor-block__preview,
-.equation-editor-block.has-text-align-left .equation-editor-block__preview {
-	align-items: flex-start;
-}
 
-.wp-block-equation-editor-equation.has-text-align-center .equation-editor-block__preview,
-.equation-editor-block.has-text-align-center .equation-editor-block__preview {
-	align-items: center;
-}
 
-.wp-block-equation-editor-equation.has-text-align-right .equation-editor-block__preview,
-.equation-editor-block.has-text-align-right .equation-editor-block__preview {
-	align-items: flex-end;
-}
 
-.equation-editor-block__edit-button {
-	flex: 0 0 auto;
-}
 

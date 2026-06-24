@@ -5,8 +5,7 @@
 	"version": "0.1.0",
 	"title": "Equation",
 	"category": "text",
-	"icon": "editor-code",
-	"description": "Create a standalone mathematical equation.",
+	"description": "Create and display a mathematical equation.",
 	"attributes": {
 		"latex": {
 			"type": "string",

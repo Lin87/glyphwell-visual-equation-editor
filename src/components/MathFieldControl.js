@@ -260,6 +260,15 @@ function MathFieldControl(
 
 		return () => {
 			mathfield.removeEventListener( 'input', handleInput );
+
+			// Blur before removal so MathLive clears its global "focused
+			// field" pointer while this field's model is still valid.
+			try {
+				mathfield.blur?.();
+			} catch {
+				// Ignore: blurring is best-effort cleanup.
+			}
+
 			mathfield.remove();
 
 			if ( mathfieldRef.current === mathfield ) {

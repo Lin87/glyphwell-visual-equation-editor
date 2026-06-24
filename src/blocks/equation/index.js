@@ -4,17 +4,20 @@
  */
 
 import { registerBlockType } from '@wordpress/blocks';
+import metadata from './block.json';
+import Edit from './edit';
+import save from './save';
 
 import 'mathlive/fonts.css';
 import 'mathlive/static.css';
 
-import metadata from './block.json';
-import Edit from './edit';
-import save from './save';
 import './editor.scss';
 import './style.scss';
 
+import { Icon, math } from '@wordpress/icons';
+
 registerBlockType( metadata.name, {
+	icon: math,
 	edit: Edit,
 	save,
 } );
