@@ -29,14 +29,16 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 if ( equation_editor_has_core_math_support() && '' !== trim( $mathml ) ) {
 	$equation_markup = sprintf(
-		'<div class="equation-editor__mathml">%s</div>',
+		'<div class="%1$s">%2$s</div>',
+		esc_attr( EQUATION_EDITOR_MATHML_CLASS ),
 		equation_editor_sanitize_mathml( $mathml )
 	);
 } else {
 	equation_editor_enqueue_katex_fallback_assets();
 
 	$equation_markup = sprintf(
-		'<span class="equation-editor__fallback" data-display-mode="block" data-latex="%1$s">%2$s</span>',
+		'<span class="%1$s" data-display-mode="block" data-latex="%2$s">%3$s</span>',
+		esc_attr( EQUATION_EDITOR_FALLBACK_CLASS ),
 		esc_attr( $latex ),
 		esc_html( $latex )
 	);

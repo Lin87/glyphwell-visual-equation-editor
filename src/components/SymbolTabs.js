@@ -1,3 +1,15 @@
+/**
+ * Accessible tab list for switching between symbol groups.
+ *
+ * Each tab uses `aria-controls`/`aria-selected` to associate it with the panel
+ * rendered by `SymbolPalette` (panel id `equation-editor-symbol-panel-<id>`).
+ *
+ * @param {Object}   props               Component props.
+ * @param {string}   props.activeGroupId Id of the currently selected group.
+ * @param {Object[]} props.groups        Symbol groups ({ id, label, rows }).
+ * @param {Function} props.onSelectGroup Called with a group id when a tab is clicked.
+ * @return {Element} The tab list.
+ */
 export default function SymbolTabs( { activeGroupId, groups, onSelectGroup } ) {
 	return (
 		<div

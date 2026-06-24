@@ -36,6 +36,24 @@ const ALIGNMENTS = [
 	},
 ];
 
+/**
+ * Renders a muted placeholder line inside the block.
+ *
+ * @param {Object} props          Component props.
+ * @param {string} props.children Message text to display.
+ * @return {Element} The placeholder paragraph.
+ */
+function EmptyMessage( { children } ) {
+	return <p className="equation-editor-block__empty-message">{ children }</p>;
+}
+
+/**
+ * Renders a live preview of a LaTeX equation inside the editor.
+ *
+ * @param {Object} props       Component props.
+ * @param {string} props.latex LaTeX source to render.
+ * @return {Element} The rendered math, or a placeholder if rendering fails.
+ */
 function EquationPreview( { latex } ) {
 	const markup = useMemo( () => {
 		try {
@@ -49,9 +67,9 @@ function EquationPreview( { latex } ) {
 
 	if ( ! markup ) {
 		return (
-			<p className="equation-editor-block__empty-message">
+			<EmptyMessage>
 				The equation preview could not be rendered.
-			</p>
+			</EmptyMessage>
 		);
 	}
 
@@ -62,6 +80,19 @@ function EquationPreview( { latex } ) {
 	);
 }
 
+/**
+ * Edit interface for the equation block.
+ *
+ * Shows a preview plus an edit button, exposes alignment controls in the block
+ * toolbar, and opens the equation popover automatically when the block is first
+ * inserted so the user can start typing immediately.
+ *
+ * @param {Object}   props               Block edit props.
+ * @param {Object}   props.attributes    Block attributes (latex, mathML, textAlign).
+ * @param {string}   props.clientId      Client id of this block instance.
+ * @param {Function} props.setAttributes Updates block attributes.
+ * @return {Element} The block edit UI.
+ */
 export default function Edit( { attributes, clientId, setAttributes } ) {
 	const { latex = '', mathML = '', textAlign = 'center' } = attributes;
 	const [ isPopoverOpen, setIsPopoverOpen ] = useState( false );
@@ -86,6 +117,9 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		[ clientId ]
 	);
 
+	// Auto-open the popover once, the first time this block is inserted. The
+	// ref guard prevents re-opening if `wasJustInserted` stays true across
+	// re-renders or after the user has manually closed the popover.
 	useEffect( () => {
 		if ( ! wasJustInserted || hasAutoOpenedRef.current ) {
 			return;
@@ -143,9 +177,9 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					{ hasEquation ? (
 						<EquationPreview key={ latex } latex={ latex } />
 					) : (
-						<p className="equation-editor-block__empty-message">
+						<EmptyMessage>
 							Enter an equation to display it here.
-						</p>
+						</EmptyMessage>
 					) }
 
 					<Button

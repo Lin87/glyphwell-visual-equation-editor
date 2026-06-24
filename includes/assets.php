@@ -10,80 +10,69 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers frontend assets for targeted KaTeX fallback rendering.
+ * Registers the KaTeX fallback script and style for later conditional loading.
  */
-function equation_editor_register_frontend_assets(): void {
-	$script_path = EQUATION_EDITOR_PLUGIN_DIR . 'build/frontend/katex-fallback.js';
-	$asset_path  = EQUATION_EDITOR_PLUGIN_DIR . 'build/frontend/katex-fallback.asset.php';
-	$style_path  = EQUATION_EDITOR_PLUGIN_DIR . 'build/frontend/katex-fallback.css';
-
-	if ( ! file_exists( $script_path ) || ! file_exists( $asset_path ) ) {
-		return;
-	}
-
-	$asset = require $asset_path;
-
-	wp_register_script(
-		'equation-editor-katex-fallback',
-		EQUATION_EDITOR_PLUGIN_URL . 'build/frontend/katex-fallback.js',
-		$asset['dependencies'] ?? array(),
-		$asset['version'] ?? EQUATION_EDITOR_VERSION,
+function equation_editor_register_katex_fallback_assets(): void {
+	equation_editor_load_asset(
+		EQUATION_EDITOR_FALLBACK_HANDLE,
+		'build/frontend/',
+		'katex-fallback',
 		true
 	);
-
-	if ( file_exists( $style_path ) ) {
-		wp_register_style(
-			'equation-editor-katex-fallback',
-			EQUATION_EDITOR_PLUGIN_URL . 'build/frontend/katex-fallback.css',
-			array(),
-			$asset['version'] ?? EQUATION_EDITOR_VERSION
-		);
-	}
 }
-add_action( 'init', 'equation_editor_register_frontend_assets' );
+add_action( 'init', 'equation_editor_register_katex_fallback_assets' );
 
 /**
- * Enqueues frontend KaTeX fallback assets if they have been registered.
+ * Enqueues the registered KaTeX fallback script and style.
  */
 function equation_editor_enqueue_katex_fallback_assets(): void {
-	if ( wp_script_is( 'equation-editor-katex-fallback', 'registered' ) ) {
-		wp_enqueue_script( 'equation-editor-katex-fallback' );
+	if ( wp_script_is( EQUATION_EDITOR_FALLBACK_HANDLE, 'registered' ) ) {
+		wp_enqueue_script( EQUATION_EDITOR_FALLBACK_HANDLE );
 	}
 
-	if ( wp_style_is( 'equation-editor-katex-fallback', 'registered' ) ) {
-		wp_enqueue_style( 'equation-editor-katex-fallback' );
+	if ( wp_style_is( EQUATION_EDITOR_FALLBACK_HANDLE, 'registered' ) ) {
+		wp_enqueue_style( EQUATION_EDITOR_FALLBACK_HANDLE );
 	}
 }
 
 /**
- * Checks whether post content contains a saved inline equation token.
+ * Checks whether post content contains saved inline equation markup.
+ *
+ * Inline equations carry both the inline marker class and the LaTeX data
+ * attribute, so both must be present to count as a match.
  *
  * @param string $content Post content.
  * @return bool True when inline equation markup is present.
  */
 function equation_editor_content_has_inline_equation( string $content ): bool {
-	return false !== strpos( $content, 'equation-editor-inline' )
-		&& false !== strpos( $content, 'data-equation-editor-latex' );
+	return false !== strpos( $content, EQUATION_EDITOR_INLINE_CLASS )
+		&& false !== strpos( $content, EQUATION_EDITOR_LATEX_ATTR );
 }
 
 /**
- * Checks whether post content contains a saved standalone equation token.
+ * Checks whether post content contains a saved standalone equation block.
+ *
+ * Detects both the current block (via has_block) and legacy saved markup that
+ * predates block registration, identified by its MathML class plus LaTeX attr.
  *
  * @param string $content Post content.
  * @return bool True when an equation block is present.
  */
 function equation_editor_content_has_equation_block( string $content ): bool {
-	return has_block( 'equation-editor/equation', $content )
+	return has_block( EQUATION_EDITOR_BLOCK_NAME, $content )
 		|| (
-			false !== strpos( $content, 'equation-editor__mathml' )
-			&& false !== strpos( $content, 'data-equation-editor-latex' )
+			false !== strpos( $content, EQUATION_EDITOR_MATHML_CLASS )
+			&& false !== strpos( $content, EQUATION_EDITOR_LATEX_ATTR )
 		);
 }
 
 /**
  * Enqueues fallback assets for saved equations on sites without core math support.
  */
-function equation_editor_enqueue_equation_fallback_assets(): void {
+function equation_editor_maybe_enqueue_fallback_assets(): void {
+	// Core math support renders equations natively, and without a main query
+	// there is no post content to inspect, so in both cases there is nothing
+	// to enqueue.
 	if ( equation_editor_has_core_math_support() || ! is_a( $GLOBALS['wp_query'] ?? null, 'WP_Query' ) ) {
 		return;
 	}
@@ -93,6 +82,7 @@ function equation_editor_enqueue_equation_fallback_assets(): void {
 			continue;
 		}
 
+		// Enqueue once as soon as any post in the query needs the fallback.
 		if (
 			equation_editor_content_has_equation_block( $post->post_content )
 			|| equation_editor_content_has_inline_equation( $post->post_content )
@@ -102,4 +92,4 @@ function equation_editor_enqueue_equation_fallback_assets(): void {
 		}
 	}
 }
-add_action( 'wp_enqueue_scripts', 'equation_editor_enqueue_equation_fallback_assets' );
+add_action( 'wp_enqueue_scripts', 'equation_editor_maybe_enqueue_fallback_assets' );

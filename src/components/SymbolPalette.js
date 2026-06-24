@@ -4,6 +4,16 @@ import { SYMBOL_GROUPS } from '../data/symbols';
 import SymbolButton from './SymbolButton';
 import SymbolTabs from './SymbolTabs';
 
+/**
+ * Tabbed palette of insertable equation symbols.
+ *
+ * Tracks the active symbol group and renders its rows of {@link SymbolButton}s
+ * below the group tabs.
+ *
+ * @param {Object}   props                Component props.
+ * @param {Function} props.onInsertSymbol Called with the chosen symbol on click.
+ * @return {Element} The symbol palette.
+ */
 export default function SymbolPalette( { onInsertSymbol } ) {
 	const [ activeGroupId, setActiveGroupId ] = useState(
 		SYMBOL_GROUPS[ 0 ].id

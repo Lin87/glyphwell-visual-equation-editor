@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return bool True when core math support is available.
  */
 function equation_editor_has_core_math_support(): bool {
+	// The core/math block first shipped in WordPress 6.9.
 	if ( version_compare( get_bloginfo( 'version' ), '6.9', '<' ) ) {
 		return false;
 	}

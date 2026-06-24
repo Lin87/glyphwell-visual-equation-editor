@@ -1,3 +1,8 @@
+/**
+ * Entry point for the equation block: registers the block type with WordPress
+ * using its metadata and the edit/save implementations (side-effect module).
+ */
+
 import { registerBlockType } from '@wordpress/blocks';
 
 import 'mathlive/fonts.css';

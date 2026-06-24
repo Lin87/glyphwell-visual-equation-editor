@@ -4,6 +4,22 @@ import { useCallback, useEffect, useRef, useState } from '@wordpress/element';
 import MathFieldControl from './MathFieldControl';
 import SymbolPalette from './SymbolPalette';
 
+/**
+ * Popover for composing an equation.
+ *
+ * Hosts the math field, symbol palette, and a raw LaTeX textarea, and exposes
+ * Apply/Update, Remove (when editing), and Cancel actions back to the caller.
+ *
+ * @param {Object}      props               Component props.
+ * @param {HTMLElement} props.anchor        Element the popover is positioned against.
+ * @param {string}      props.initialLatex  LaTeX to seed the field with.
+ * @param {string}      props.initialMathML MathML to seed the field with.
+ * @param {boolean}     props.isEditing     True when editing an existing equation.
+ * @param {Function}    props.onApply       Called with { latex, mathML } to apply.
+ * @param {Function}    props.onClose       Called to dismiss without changes.
+ * @param {Function}    [props.onRemove]    Called to remove the existing equation.
+ * @return {Element} The popover UI.
+ */
 export default function EquationPopover( {
 	anchor,
 	initialLatex = '',
@@ -25,6 +41,8 @@ export default function EquationPopover( {
 		mathfieldRef.current?.insertLatex( symbol.latex );
 	}, [] );
 
+	// Applies the equation; an empty field means "no equation", so when editing
+	// we remove the existing one, and when inserting we simply close.
 	const applyEquation = useCallback( () => {
 		if ( ! latex.trim() ) {
 			if ( isEditing && typeof onRemove === 'function' ) {

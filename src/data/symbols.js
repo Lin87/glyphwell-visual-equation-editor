@@ -1,3 +1,12 @@
+/**
+ * Builds a palette symbol descriptor.
+ *
+ * @param {string} id        Unique symbol id (also used as a React key).
+ * @param {string} visual    Glyph shown on the button.
+ * @param {string} latex     LaTeX inserted when the symbol is chosen.
+ * @param {string} ariaLabel Accessible label for the button.
+ * @return {{id: string, visual: string, latex: string, ariaLabel: string}} The descriptor.
+ */
 const symbol = ( id, visual, latex, ariaLabel ) => ( {
 	id,
 	visual,
@@ -5,6 +14,12 @@ const symbol = ( id, visual, latex, ariaLabel ) => ( {
 	ariaLabel,
 } );
 
+/**
+ * Ordered symbol groups shown in the palette. Each group has an `id`, a `label`
+ * for its tab, and `rows` of {@link symbol} descriptors laid out as a grid.
+ *
+ * @type {Array<{id: string, label: string, rows: Array<Array<Object>>}>}
+ */
 export const SYMBOL_GROUPS = [
 	{
 		id: 'basic',

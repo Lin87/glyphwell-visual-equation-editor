@@ -1,7 +1,7 @@
 === Equation Editor ===
 Contributors: eslin87
 Tags: equation, math, latex, mathml, katex, block
-Requires at least: 6.3
+Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
 Stable tag: 0.1.0

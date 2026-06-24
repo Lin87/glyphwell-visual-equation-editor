@@ -134,12 +134,15 @@ function equation_editor_extend_allowed_post_tags( array $tags, string $context 
 	}
 
 	foreach ( equation_editor_allowed_mathml_tags() as $tag_name => $attributes ) {
+		// Merge with any attributes WordPress already allows for the tag so we
+		// extend, rather than overwrite, the existing rules.
 		$tags[ $tag_name ] = isset( $tags[ $tag_name ] )
 			? array_merge( $tags[ $tag_name ], $attributes )
 			: $attributes;
 	}
 
-	$tags['math']['data-equation-editor-latex'] = true;
+	// Allow the LaTeX source attribute the KaTeX fallback reads from.
+	$tags['math'][ EQUATION_EDITOR_LATEX_ATTR ] = true;
 
 	return $tags;
 }

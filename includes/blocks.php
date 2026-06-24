@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers plugin blocks when built block metadata is available.
+ * Registers the equation block when its built metadata is available.
  */
 function equation_editor_register_blocks(): void {
 	$block_path = EQUATION_EDITOR_PLUGIN_DIR . 'build/blocks/equation';

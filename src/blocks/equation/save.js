@@ -1,19 +1,20 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 
-const getMathMLInnerHTML = ( mathML ) => {
-	if ( ! mathML || typeof window === 'undefined' ) {
-		return mathML || '';
-	}
+import { MATHML_CLASS } from '../../constants';
+import { getMathMLInnerHTML } from '../../utils/mathml';
 
-	const template = window.document.createElement( 'template' );
-	template.innerHTML = mathML.trim();
-
-	const mathElement = template.content.querySelector( 'math' );
-
-	return mathElement ? mathElement.innerHTML : mathML;
-};
-
+/**
+ * Serializes the equation block for the front end.
+ *
+ * Outputs a `<figure>` wrapping a block-level `<math>` element that carries the
+ * original LaTeX (consumed by the KaTeX fallback) and the rendered MathML inner
+ * markup. Returns `null` for an empty equation so no markup is persisted.
+ *
+ * @param {Object} props            Block save props.
+ * @param {Object} props.attributes Saved block attributes (latex, mathML, textAlign).
+ * @return {?Element} The block markup, or `null` when the equation is empty.
+ */
 export default function save( { attributes } ) {
 	const { latex = '', mathML = '', textAlign = 'center' } = attributes;
 
@@ -28,7 +29,7 @@ export default function save( { attributes } ) {
 	return (
 		<figure { ...blockProps }>
 			<math
-				className="equation-editor__mathml"
+				className={ MATHML_CLASS }
 				data-equation-editor-latex={ latex }
 				display="block"
 			>

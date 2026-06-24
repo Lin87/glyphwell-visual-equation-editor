@@ -12,24 +12,22 @@ import {
 } from '@wordpress/rich-text';
 
 import EquationPopover from '../../components/EquationPopover';
+import {
+	INLINE_CLASS,
+	INLINE_FORMAT_NAME,
+	LATEX_DATA_ATTRIBUTE,
+} from '../../constants';
+import { getMathMLInnerHTML } from '../../utils/mathml';
 
-const FORMAT_NAME = 'equation-editor/inline-equation';
-
-const getMathMLInnerHTML = ( mathML ) => {
-	if ( ! mathML || typeof window === 'undefined' ) {
-		return mathML || '';
-	}
-
-	const template = window.document.createElement( 'template' );
-	template.innerHTML = mathML.trim();
-
-	const mathElement = template.content.querySelector( 'math' );
-
-	return mathElement ? mathElement.innerHTML : mathML;
-};
-
-const createEquationObject = ( latex, mathML ) => ( {
-	type: FORMAT_NAME,
+/**
+ * Builds the rich-text format object inserted into the content for an equation.
+ *
+ * @param {string} latex  LaTeX source of the equation.
+ * @param {string} mathML Serialized MathML for the equation.
+ * @return {Object} A rich-text format object of type {@link INLINE_FORMAT_NAME}.
+ */
+const createInlineEquationFormat = ( latex, mathML ) => ( {
+	type: INLINE_FORMAT_NAME,
 	attributes: {
 		latex,
 		display: 'inline',
@@ -37,12 +35,27 @@ const createEquationObject = ( latex, mathML ) => ( {
 	innerHTML: getMathMLInnerHTML( mathML ),
 } );
 
+/**
+ * Toolbar control for inserting and editing inline equations.
+ *
+ * Renders the toolbar button and, while editing, the equation popover. Popover
+ * state captures the selection range and the equation object (if any) being
+ * edited so the change can be applied back to the exact same range.
+ *
+ * @param {Object}   props            Format edit props supplied by WordPress.
+ * @param {Object}   props.contentRef Ref to the editable content element (popover anchor).
+ * @param {Object}   props.value      Current rich-text value.
+ * @param {Function} props.onChange   Commits an updated rich-text value.
+ * @return {Element} The toolbar button and optional popover.
+ */
 function InlineEquationEdit( { contentRef, value, onChange } ) {
+	// { start, end, object }: the selection range to write back to, plus the
+	// equation object being edited (null when inserting a new equation).
 	const [ popoverState, setPopoverState ] = useState( null );
 
 	const activeObject = getActiveObject( value );
 	const selectedEquation =
-		activeObject?.type === FORMAT_NAME ? activeObject : null;
+		activeObject?.type === INLINE_FORMAT_NAME ? activeObject : null;
 	const isEditing = Boolean( popoverState?.object );
 
 	const anchor = contentRef?.current;
@@ -53,7 +66,7 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 		setPopoverState( {
 			start: value.start,
 			end: value.end,
-			object: object?.type === FORMAT_NAME ? object : null,
+			object: object?.type === INLINE_FORMAT_NAME ? object : null,
 		} );
 	}, [ value ] );
 
@@ -63,13 +76,14 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 
 	const applyEquation = useCallback(
 		( { latex, mathML } ) => {
+			// Write the equation back to the range captured when the popover opened.
 			const start = popoverState?.start;
 			const end = popoverState?.end;
 
 			onChange(
 				insertObject(
 					value,
-					createEquationObject( latex, mathML ),
+					createInlineEquationFormat( latex, mathML ),
 					start,
 					end
 				)
@@ -84,6 +98,7 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 		const start = popoverState?.start;
 		const end = popoverState?.end;
 
+		// Only remove when an actual range was captured, otherwise this is a no-op.
 		if ( start !== undefined && end !== undefined ) {
 			onChange( remove( value, start, end ) );
 		}
@@ -125,13 +140,13 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 	);
 }
 
-registerFormatType( FORMAT_NAME, {
+registerFormatType( INLINE_FORMAT_NAME, {
 	title: 'Equation',
 	tagName: 'math',
-	className: 'equation-editor-inline',
+	className: INLINE_CLASS,
 	contentEditable: false,
 	attributes: {
-		latex: 'data-equation-editor-latex',
+		latex: LATEX_DATA_ATTRIBUTE,
 		display: 'display',
 	},
 	edit: InlineEquationEdit,
