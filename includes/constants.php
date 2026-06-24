@@ -25,5 +25,5 @@ define( 'EQUATION_EDITOR_INLINE_CLASS', 'equation-editor-inline' );
 define( 'EQUATION_EDITOR_FALLBACK_CLASS', 'equation-editor__fallback' );
 
 // Script/style handles registered with WordPress.
-define( 'EQUATION_EDITOR_FALLBACK_HANDLE', 'equation-editor-katex-fallback' );
+define( 'EQUATION_EDITOR_KATEX_HANDLE', 'equation-editor-katex' );
 define( 'EQUATION_EDITOR_INLINE_FORMAT_HANDLE', 'equation-editor-inline-format' );

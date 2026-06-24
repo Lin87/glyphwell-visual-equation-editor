@@ -10,28 +10,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the KaTeX fallback script and style for later conditional loading.
+ * Registers the KaTeX script and style for later conditional loading.
  */
-function equation_editor_register_katex_fallback_assets(): void {
+function equation_editor_register_katex_assets(): void {
 	equation_editor_load_asset(
-		EQUATION_EDITOR_FALLBACK_HANDLE,
+		EQUATION_EDITOR_KATEX_HANDLE,
 		'build/frontend/',
-		'katex-fallback',
+		'katex',
 		true
 	);
 }
-add_action( 'init', 'equation_editor_register_katex_fallback_assets' );
+add_action( 'init', 'equation_editor_register_katex_assets' );
 
 /**
- * Enqueues the registered KaTeX fallback script and style.
+ * Enqueues the registered KaTeX script and style.
  */
-function equation_editor_enqueue_katex_fallback_assets(): void {
-	if ( wp_script_is( EQUATION_EDITOR_FALLBACK_HANDLE, 'registered' ) ) {
-		wp_enqueue_script( EQUATION_EDITOR_FALLBACK_HANDLE );
+function equation_editor_enqueue_katex_assets(): void {
+	if ( wp_script_is( EQUATION_EDITOR_KATEX_HANDLE, 'registered' ) ) {
+		wp_enqueue_script( EQUATION_EDITOR_KATEX_HANDLE );
 	}
 
-	if ( wp_style_is( EQUATION_EDITOR_FALLBACK_HANDLE, 'registered' ) ) {
-		wp_enqueue_style( EQUATION_EDITOR_FALLBACK_HANDLE );
+	if ( wp_style_is( EQUATION_EDITOR_KATEX_HANDLE, 'registered' ) ) {
+		wp_enqueue_style( EQUATION_EDITOR_KATEX_HANDLE );
 	}
 }
 
@@ -67,13 +67,13 @@ function equation_editor_content_has_equation_block( string $content ): bool {
 }
 
 /**
- * Enqueues fallback assets for saved equations on sites without core math support.
+ * Enqueues the KaTeX assets for any post that contains saved equation markup.
  */
-function equation_editor_maybe_enqueue_fallback_assets(): void {
-	// Core math support renders equations natively, and without a main query
-	// there is no post content to inspect, so in both cases there is nothing
-	// to enqueue.
-	if ( equation_editor_has_core_math_support() || ! is_a( $GLOBALS['wp_query'] ?? null, 'WP_Query' ) ) {
+function equation_editor_maybe_enqueue_katex_assets(): void {
+	// KaTeX is the sole renderer, so the assets are needed wherever equation
+	// markup appears. Without a main query there is no post content to inspect,
+	// so there is nothing to enqueue.
+	if ( ! is_a( $GLOBALS['wp_query'] ?? null, 'WP_Query' ) ) {
 		return;
 	}
 
@@ -82,14 +82,14 @@ function equation_editor_maybe_enqueue_fallback_assets(): void {
 			continue;
 		}
 
-		// Enqueue once as soon as any post in the query needs the fallback.
+		// Enqueue once as soon as any post in the query contains an equation.
 		if (
 			equation_editor_content_has_equation_block( $post->post_content )
 			|| equation_editor_content_has_inline_equation( $post->post_content )
 		) {
-			equation_editor_enqueue_katex_fallback_assets();
+			equation_editor_enqueue_katex_assets();
 			return;
 		}
 	}
 }
-add_action( 'wp_enqueue_scripts', 'equation_editor_maybe_enqueue_fallback_assets' );
+add_action( 'wp_enqueue_scripts', 'equation_editor_maybe_enqueue_katex_assets' );

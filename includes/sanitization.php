@@ -141,7 +141,7 @@ function equation_editor_extend_allowed_post_tags( array $tags, string $context 
 			: $attributes;
 	}
 
-	// Allow the LaTeX source attribute the KaTeX fallback reads from.
+	// Allow the LaTeX source attribute the KaTeX renderer reads from.
 	$tags['math'][ EQUATION_EDITOR_LATEX_ATTR ] = true;
 
 	return $tags;

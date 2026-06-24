@@ -8,7 +8,7 @@ import { getMathMLInnerHTML } from '../../utils/mathml';
  * Serializes the equation block for the front end.
  *
  * Outputs a `<figure>` wrapping a block-level `<math>` element that carries the
- * original LaTeX (consumed by the KaTeX fallback) and the rendered MathML inner
+ * original LaTeX (consumed by the KaTeX renderer) and the rendered MathML inner
  * markup. Returns `null` for an empty equation so no markup is persisted.
  *
  * @param {Object} props            Block save props.

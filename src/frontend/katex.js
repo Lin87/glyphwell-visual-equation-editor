@@ -1,6 +1,4 @@
-import './frontend.scss';
 import 'katex/dist/katex.min.css';
-
 import katex from 'katex';
 
 import {
@@ -11,7 +9,7 @@ import {
 } from '../constants';
 
 /**
- * KaTeX render options shared by every fallback target.
+ * KaTeX render options shared by every render target.
  *
  * `htmlAndMathml` keeps an accessible MathML tree alongside the visual HTML,
  * while `trust: false` plus the size/expansion caps guard against malicious or
@@ -63,11 +61,10 @@ const renderEquationWithKatex = ( element, displayMode ) => {
 };
 
 /**
- * Fallback markers to scan for, and how each derives its display mode. Block
- * and inline equations encode the mode differently, so each selector needs its
- * own rule.
+ * Markers to scan for, and how each derives its display mode. Block and inline
+ * equations encode the mode differently, so each selector needs its own rule.
  */
-const FALLBACK_TARGETS = [
+const RENDER_TARGETS = [
 	{
 		selector: `.${ FALLBACK_CLASS }`,
 		getDisplayMode: ( element ) => element.dataset.displayMode === 'block',
@@ -83,7 +80,7 @@ const FALLBACK_TARGETS = [
 	},
 ];
 
-FALLBACK_TARGETS.forEach( ( { selector, getDisplayMode } ) => {
+RENDER_TARGETS.forEach( ( { selector, getDisplayMode } ) => {
 	document.querySelectorAll( selector ).forEach( ( element ) => {
 		renderEquationWithKatex( element, getDisplayMode( element ) );
 	} );

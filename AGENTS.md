@@ -156,52 +156,31 @@ Do not add custom macro support in the first release.
 
 ## Rendering strategy
 
-### WordPress built-in math display path
+KaTeX is the single renderer for every surface — the editor preview, the
+standalone block, and inline equations — regardless of the WordPress version or
+whether the core math block is available. Equations are always rendered from the
+saved LaTeX, so any styling captured in the LaTeX (e.g. `\textcolor`,
+`\colorbox`) carries through to the published page.
 
-When WordPress built-in math display is available:
+- Enqueue the locally bundled KaTeX assets on any post that contains saved
+  equation markup (detected by class plus the `data-equation-editor-latex`
+  attribute); do not load them on pages without equations.
+- Render standalone block equations and inline equations from the
+  `data-equation-editor-latex` attribute.
+- The editor preview renders the same LaTeX with the same KaTeX options so it
+  matches the frontend exactly.
+- Use targeted rendering only. Do not use KaTeX auto-render across the full page.
 
-- Render sanitized MathML.
-- Do not enqueue KaTeX fallback assets for the standalone block.
-- Do not enqueue KaTeX fallback assets for inline equations unless needed.
-
-Use a helper similar to:
-
-```php
-function equation_editor_has_core_math_support(): bool {
-	if ( version_compare( get_bloginfo( 'version' ), '6.9', '<' ) ) {
-		return false;
-	}
-
-	if ( ! class_exists( 'WP_Block_Type_Registry' ) ) {
-		return false;
-	}
-
-	return WP_Block_Type_Registry::get_instance()->is_registered( 'core/math' );
-}
-```
-
-Keep this helper isolated in:
-
-```text
-includes/math-support.php
-```
-
-### KaTeX fallback path
-
-When WordPress built-in math display is unavailable:
-
-- Enqueue locally bundled KaTeX assets.
-- Render standalone block equations from the saved LaTeX.
-- Render inline equations from the `data-equation-editor-latex` attribute.
-- Use targeted rendering only.
-- Do not use KaTeX auto-render across the full page.
-
-Fallback targets:
+Render targets:
 
 ```text
 .equation-editor__fallback
+.equation-editor__mathml[data-equation-editor-latex]
 .equation-editor-inline[data-equation-editor-latex]
 ```
+
+The saved markup still includes a serialized MathML representation for
+backwards compatibility, but KaTeX renders over it from the LaTeX.
 
 Recommended KaTeX options:
 

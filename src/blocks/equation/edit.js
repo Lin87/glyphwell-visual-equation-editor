@@ -14,9 +14,24 @@ import {
 	useState,
 } from '@wordpress/element';
 import { alignCenter, alignLeft, alignRight, math } from '@wordpress/icons';
-import { convertLatexToMarkup } from 'mathlive';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 
 import EquationPopover from '../../components/EquationPopover';
+
+/**
+ * KaTeX render options for the editor preview. Kept in sync with the frontend
+ * renderer (src/frontend/katex.js) so the preview matches the
+ * published output exactly.
+ */
+const KATEX_OPTIONS = {
+	throwOnError: false,
+	output: 'htmlAndMathml',
+	trust: false,
+	maxSize: 20,
+	maxExpand: 1000,
+	displayMode: true,
+};
 
 const ALIGNMENTS = [
 	{
@@ -57,9 +72,7 @@ function EmptyMessage( { children } ) {
 function EquationPreview( { latex } ) {
 	const markup = useMemo( () => {
 		try {
-			return convertLatexToMarkup( latex, {
-				defaultMode: 'math',
-			} );
+			return katex.renderToString( latex, KATEX_OPTIONS );
 		} catch {
 			return '';
 		}

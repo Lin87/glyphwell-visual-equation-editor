@@ -22,5 +22,5 @@ export const MATHML_CLASS = 'equation-editor__mathml';
 /** CSS class marking an inline equation. */
 export const INLINE_CLASS = 'equation-editor-inline';
 
-/** CSS class marking a LaTeX placeholder rendered by the KaTeX fallback. */
+/** CSS class marking a LaTeX placeholder rendered by the KaTeX renderer. */
 export const FALLBACK_CLASS = 'equation-editor__fallback';

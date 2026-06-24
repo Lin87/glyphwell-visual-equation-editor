@@ -29,5 +29,4 @@ require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/asset-loader.php';
 require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/assets.php';
 require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/blocks.php';
 require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/inline-format.php';
-require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/math-support.php';
 require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/sanitization.php';
