@@ -132,6 +132,13 @@
 	justify-content: center;
 	line-height: 1;
 	padding: 0;
+
+	.katex {
+		font-size: 18px;
+		line-height: 1;
+		// Clicks land on the button, never on inner KaTeX spans.
+		pointer-events: none;
+	}
 }
 
 .equation-editor-symbol-button:focus-visible {

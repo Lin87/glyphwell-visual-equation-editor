@@ -325,8 +325,18 @@ export const SYMBOL_GROUPS = [
 					'\\supseteq',
 					'Insert superset or equal'
 				),
-				symbol( 'not-subset', '⊄', '\\nsubset', 'Insert not subset' ),
-				symbol( 'not-supset', '⊅', '\\nsupset', 'Insert not superset' ),
+				symbol(
+					'not-subset',
+					'⊄',
+					'\\not\\subset',
+					'Insert not subset'
+				),
+				symbol(
+					'not-supset',
+					'⊅',
+					'\\not\\supset',
+					'Insert not superset'
+				),
 				symbol( 'models', '⊨', '\\models', 'Insert models' ),
 				symbol( 'prec', '≺', '\\prec', 'Insert precedes' ),
 				symbol( 'succ', '≻', '\\succ', 'Insert succeeds' ),
