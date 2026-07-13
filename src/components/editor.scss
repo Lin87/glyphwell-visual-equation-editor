@@ -53,6 +53,7 @@
 			.equation-editor-symbol-palette {
 
 				margin-block-start: 14px;
+				margin-block-end: 14px;
 				text-align: initial;
 
 				.equation-editor-symbol-tabs {
@@ -157,6 +158,10 @@
 
 .equation-editor-popover__latex {
 	margin-block-start: 16px;
+}
+
+.equation-editor-popover__latex--hidden {
+	display: none;
 }
 
 .equation-editor-popover__latex textarea {

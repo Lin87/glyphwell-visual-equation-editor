@@ -1,4 +1,9 @@
-import { Button, Popover, TextareaControl } from '@wordpress/components';
+import {
+	Button,
+	Popover,
+	TextareaControl,
+	ToggleControl,
+} from '@wordpress/components';
 import { useCallback, useEffect, useRef, useState } from '@wordpress/element';
 
 import MathFieldControl from './MathFieldControl';
@@ -31,6 +36,7 @@ export default function EquationPopover( {
 } ) {
 	const [ latex, setLatex ] = useState( initialLatex );
 	const [ mathML, setMathML ] = useState( initialMathML );
+	const [ showLatex, setShowLatex ] = useState( false );
 	const mathfieldRef = useRef( null );
 
 	useEffect( () => {
@@ -80,11 +86,24 @@ export default function EquationPopover( {
 
 				<SymbolPalette onInsertSymbol={ insertSymbol } />
 
+				<ToggleControl
+					className="equation-editor-popover__latex-toggle"
+					label="Show LaTeX"
+					checked={ showLatex }
+					onChange={ setShowLatex }
+					__nextHasNoMarginBottom
+				/>
+
 				<TextareaControl
-					className="equation-editor-popover__latex"
+					className={ `equation-editor-popover__latex${
+						showLatex
+							? ''
+							: ' equation-editor-popover__latex--hidden'
+					}` }
 					label="LaTeX"
 					value={ latex }
 					onChange={ setLatex }
+					readOnly={ ! showLatex }
 					__nextHasNoMarginBottom
 				/>
 
