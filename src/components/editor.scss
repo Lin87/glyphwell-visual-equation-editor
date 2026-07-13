@@ -107,12 +107,10 @@
 	padding-block-start: 12px;
 }
 
-.equation-editor-symbol-row {
-	display: flex;
-	flex-wrap: nowrap;
+.equation-editor-symbol-grid {
+	display: grid;
 	gap: 5px;
-	margin-block-end: 5px;
-	overflow-x: auto;
+	grid-template-columns: repeat(auto-fill, 38px);
 }
 
 .equation-editor-symbol-button {

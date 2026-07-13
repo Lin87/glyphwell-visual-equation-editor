@@ -7,8 +7,8 @@ import SymbolTabs from './SymbolTabs';
 /**
  * Tabbed palette of insertable equation symbols.
  *
- * Tracks the active symbol group and renders its rows of {@link SymbolButton}s
- * below the group tabs.
+ * Tracks the active symbol group and renders its {@link SymbolButton}s in a
+ * wrapping grid below the group tabs.
  *
  * @param {Object}   props                Component props.
  * @param {Function} props.onInsertSymbol Called with the chosen symbol on click.
@@ -39,20 +39,15 @@ export default function SymbolPalette( { onInsertSymbol } ) {
 				id={ `equation-editor-symbol-panel-${ activeGroup.id }` }
 				role="tabpanel"
 			>
-				{ activeGroup.rows.map( ( row, rowIndex ) => (
-					<div
-						key={ `${ activeGroup.id }-${ rowIndex }` }
-						className="equation-editor-symbol-row"
-					>
-						{ row.map( ( symbol ) => (
-							<SymbolButton
-								key={ symbol.id }
-								symbol={ symbol }
-								onInsert={ onInsertSymbol }
-							/>
-						) ) }
-					</div>
-				) ) }
+				<div className="equation-editor-symbol-grid">
+					{ activeGroup.symbols.map( ( symbol ) => (
+						<SymbolButton
+							key={ symbol.id }
+							symbol={ symbol }
+							onInsert={ onInsertSymbol }
+						/>
+					) ) }
+				</div>
 			</div>
 		</div>
 	);

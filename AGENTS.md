@@ -232,25 +232,10 @@ equation_editor_extend_allowed_post_tags( array $tags, string $context ): array
 
 ## Symbol palette requirements
 
-The symbol palette must exactly match the provided screenshots.
-
-Reference images are located at:
-
-```text
-docs/reference/symbol-palette/basic.png
-docs/reference/symbol-palette/greek.png
-docs/reference/symbol-palette/operators.png
-docs/reference/symbol-palette/relationships.png
-docs/reference/symbol-palette/arrows.png
-docs/reference/symbol-palette/delimiters.png
-docs/reference/symbol-palette/misc.png
-```
-
-Zoomed reference images are also available in:
-
-```text
-docs/reference/symbol-palette/zoom/
-```
+The symbol palette is organized by math topic so symbols are easy to find for
+authors who are not LaTeX experts. Symbols are grouped into the tabs listed
+below; within a tab, entries must be unique (no duplicate glyph/LaTeX) and kept
+in a sensible reading order.
 
 Create symbol data in:
 
@@ -258,7 +243,9 @@ Create symbol data in:
 src/data/symbols.js
 ```
 
-Use a data-driven structure.
+Use a data-driven structure. The data is layout-agnostic: each group is a flat,
+ordered `symbols` list. How many symbols appear per visual row is decided by CSS
+(the palette grid wraps to fit the popover width), not by this data.
 
 Recommended shape:
 
@@ -267,15 +254,13 @@ export const SYMBOL_GROUPS = [
 	{
 		id: 'basic',
 		label: 'Basic',
-		rows: [
-			[
-				{
-					id: 'subscript',
-					visual: 'x□',
-					latex: 'x_{#0}',
-					ariaLabel: 'Insert subscript',
-				},
-			],
+		symbols: [
+			{
+				id: 'subscript',
+				visual: 'x□',
+				latex: 'x_{#0}',
+				ariaLabel: 'Insert subscript',
+			},
 		],
 	},
 ];
@@ -286,19 +271,19 @@ The same symbol palette component must be reused by:
 - the standalone equation block
 - the inline equation popover
 
-Required groups, in this exact order:
+Required groups, in this exact order (index 0 is the default-selected tab):
 
-1. Basic
-2. Greek
-3. Operators
-4. Relationships
-5. Arrows
-6. Delimiters
-7. Misc
+1. Basic — structures and everyday arithmetic
+2. Greek — lowercase, variants, then uppercase
+3. Operators — binary operators
+4. Relations — comparison and order relations
+5. Sets & Logic — number sets, membership, subsets, quantifiers, connectives
+6. Calculus — derivatives, big operators, limits
+7. Arrows
+8. Delimiters — brackets, braces, fences
+9. Symbols — named constants and decorative glyphs
 
-Use the screenshot visual order as the source of truth.
-
-When a symbol has multiple valid LaTeX aliases, choose the standard KaTeX-supported macro that renders closest to the screenshot.
+When a symbol has multiple valid LaTeX aliases, choose the standard KaTeX-supported macro that renders the intended glyph.
 
 ## Editor CSS requirements
 
