@@ -1,49 +1,79 @@
-.equation-editor-math-field-container {
-	display: flex;
-	width: 100%;
+.equation-editor-popover {
+
+	.components-popover__content {
+
+		max-height: min(650px, calc(100vh - 80px));
+		overflow-y: auto;
+		width: min(720px, calc(100vw - 32px));
+
+		.equation-editor-popover__content {
+
+			padding: 16px;
+
+			.equation-editor-popover__field {
+
+				.equation-editor-math-field-container {
+					display: flex;
+					justify-content: flex-start;
+					width: 100%;
+				}
+
+				.equation-editor-math-field {
+					--caret-color: hsl(var(--hue, 212), 40%, 49%);
+					--composition-background-color: #fff1c2;
+					--composition-text-color: #000;
+					--contains-highlight-background-color: hsl(var(--hue, 212), 40%, 95%);
+					--highlight-text: hsla(var(--hue, 212), 40%, 50%, 0.1);
+					--latex-color: hsl(var(--hue, 212), 80%, 40%);
+					--placeholder-color: hsl(var(--hue, 212), 40%, 49%);
+					--selection-background-color: hsl(var(--hue, 212), 70%, 85%);
+					--selection-color: #000;
+					--smart-fence-color: currentcolor;
+					--smart-fence-opacity: 0.5;
+					--text-highlight-background-color: hsla(var(--hue, 212), 40%, 50%, 0.1);
+
+					display: inline-block;
+					box-sizing: border-box;
+					color-scheme: light;
+					font-size: 1.35rem;
+					width: 100%;
+
+					&::part(virtual-keyboard-toggle) {
+						display: none;
+					}
+
+					&::part(menu-toggle) {
+						display: none;
+					}
+
+				}
+
+			}
+
+			.equation-editor-symbol-palette {
+
+				margin-block-start: 14px;
+				text-align: initial;
+
+				.equation-editor-symbol-tabs {
+					align-items: flex-end;
+					border-block-end: 1px solid #8c8f94;
+					display: flex;
+					flex-wrap: nowrap;
+					overflow-x: auto;
+					padding-inline-start: 0;
+				}
+				
+			}
+
+		}
+
+	}
+
 }
 
-.equation-editor-math-field {
-	--caret-color: hsl(var(--hue, 212), 40%, 49%);
-	--composition-background-color: #fff1c2;
-	--composition-text-color: #000;
-	--contains-highlight-background-color: hsl(var(--hue, 212), 40%, 95%);
-	--highlight-text: hsla(var(--hue, 212), 40%, 50%, 0.1);
-	--latex-color: hsl(var(--hue, 212), 80%, 40%);
-	--placeholder-color: hsl(var(--hue, 212), 40%, 49%);
-	--selection-background-color: hsl(var(--hue, 212), 70%, 85%);
-	--selection-color: #000;
-	--smart-fence-color: currentcolor;
-	--smart-fence-opacity: 0.5;
-	--text-highlight-background-color: hsla(var(--hue, 212), 40%, 50%, 0.1);
 
-	box-sizing: border-box;
-	color-scheme: light;
-	display: inline-block;
-	font-size: 1.35rem;
-	max-width: 100%;
-	min-width: 120px;
-	width: auto;
-}
 
-.equation-editor-math-field::part(virtual-keyboard-toggle),
-.equation-editor-math-field::part(menu-toggle) {
-	display: none;
-}
-
-.equation-editor-symbol-palette {
-	margin-block-start: 14px;
-	text-align: initial;
-}
-
-.equation-editor-symbol-tabs {
-	align-items: flex-end;
-	border-block-end: 1px solid #8c8f94;
-	display: flex;
-	flex-wrap: nowrap;
-	overflow-x: auto;
-	padding-inline-start: 0;
-}
 
 .equation-editor-symbol-tab {
 	appearance: none;
@@ -118,25 +148,7 @@
 	background: #dcdcde;
 }
 
-.equation-editor-popover .components-popover__content {
-	max-height: min(650px, calc(100vh - 80px));
-	overflow-y: auto;
-	width: min(720px, calc(100vw - 32px));
-}
 
-.equation-editor-popover__content {
-	padding: 16px;
-}
-
-.equation-editor-popover__field {
-	border: 1px solid #8c8f94;
-	border-radius: 4px;
-	padding: 12px;
-}
-
-.equation-editor-popover__field .equation-editor-math-field-container {
-	justify-content: flex-start;
-}
 
 .equation-editor-popover__latex {
 	margin-block-start: 16px;
