@@ -10,6 +10,21 @@ import { MathfieldElement } from 'mathlive';
 const MATH_FIELD_TAG = 'math-field';
 
 /**
+ * IDs of MathLive's default context-menu items to remove. MathLive's built-in
+ * menu (right-click / long-press) is otherwise left intact.
+ *
+ * @type {string[]}
+ */
+const HIDDEN_MENU_ITEM_IDS = [
+	'mode',
+	'variant',
+	'color',
+	'background-color',
+	'cut',
+	'select-all',
+];
+
+/**
  * Registers MathLive's `<math-field>` custom element, once, if not already done.
  *
  * @return {void}
@@ -240,6 +255,12 @@ function MathFieldControl(
 		lastLatexRef.current = initialLatexRef.current;
 
 		container.appendChild( mathfield );
+
+		// Trim unwanted entries from MathLive's built-in context menu. The
+		// `menuItems` getter returns a copy, so reassign a filtered array.
+		mathfield.menuItems = mathfield.menuItems.filter(
+			( item ) => ! HIDDEN_MENU_ITEM_IDS.includes( item.id )
+		);
 
 		restoreShadowStylesForDocument(
 			mathfield,
