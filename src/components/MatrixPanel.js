@@ -182,7 +182,9 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 							key={ action.id }
 							type="button"
 							aria-label={ action.ariaLabel }
-							className="equation-editor-matrix-action-button"
+							className={ `equation-editor-matrix-action-button${
+								action.destructive ? ' is-destructive' : ''
+							}` }
 							onClick={ () => onRunCommand( action.command ) }
 						>
 							{ action.label }
@@ -192,7 +194,8 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 			</div>
 
 			<p className="equation-editor-matrix-hint full-width">
-				Place the cursor inside a matrix to change its borders or add and remove rows and columns.
+				Place the cursor inside a matrix to change its borders or add
+				and remove rows and columns.
 			</p>
 		</div>
 	);

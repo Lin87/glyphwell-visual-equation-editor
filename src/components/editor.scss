@@ -208,6 +208,16 @@
 								outline: 2px solid #3858e9;
 								outline-offset: 1px;
 							}
+
+							&.is-destructive {
+								border-color: #f0b8b8;
+								color: #b32d2e;
+
+								&:hover {
+									background: #f7e6e6;
+									border-color: #d63638;
+								}
+							}
 						}
 					}
 

@@ -371,10 +371,14 @@ function MathFieldControl(
 
 				// `command` is a command name, or a `[name, ...args]` array for
 				// commands that take arguments (e.g. `[ 'setEnvironment', env ]`).
-				// `executeCommand` fires the field's `input` event, so the mount
-				// effect's listener re-emits the LaTeX/MathML on its own.
 				mathfield.executeCommand( command );
 
+				// Some commands (notably `setEnvironment`) mutate the field
+				// without firing an `input` event, so the mount effect's listener
+				// would not re-emit. Emit explicitly to keep the controlled
+				// `latex`/MathML (and thus the block preview) in sync; commands
+				// that do fire `input` just re-emit the same value harmlessly.
+				emitCurrentValue( mathfield );
 				mathfield.focus();
 			},
 		} ),

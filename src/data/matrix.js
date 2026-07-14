@@ -85,7 +85,7 @@ export const BORDER_OPTIONS = [
  * MathLive command name run via `mathfield.executeCommand(...)`; they no-op
  * when the caret is not inside a matrix.
  *
- * @type {Array<{id: string, label: string, command: string, ariaLabel: string}>}
+ * @type {Array<{id: string, label: string, command: string, ariaLabel: string, destructive?: boolean}>}
  */
 export const MATRIX_ACTIONS = [
 	{
@@ -117,11 +117,13 @@ export const MATRIX_ACTIONS = [
 		label: 'Delete row',
 		command: 'removeRow',
 		ariaLabel: 'Delete current row',
+		destructive: true,
 	},
 	{
 		id: 'delete-column',
 		label: 'Delete column',
 		command: 'removeColumn',
 		ariaLabel: 'Delete current column',
+		destructive: true,
 	},
 ];
