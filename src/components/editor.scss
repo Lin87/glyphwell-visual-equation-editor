@@ -98,25 +98,20 @@
 
 				.equation-editor-symbol-grid {
 					display: grid;
-					gap: 5px;
-					grid-template-columns: repeat(auto-fill, 50px);
+					gap: 0px;
+					grid-template-columns: repeat(auto-fill, 52.5px);
 
 					.equation-editor-symbol-button {
+						display: flex;
 						align-items: center;
-						appearance: none;
-						background: #f0f2f3;
-						border: 1px solid #c3c4c7;
-						border-radius: 4px;
-						box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
-						color: #1d2327;
-						cursor: pointer;
-						display: inline-flex;
-						flex: 0 0 50px;
-						font-family: "Cambria Math", Cambria, Georgia, serif;
-						height: 50px;
 						justify-content: center;
-						line-height: 1;
-						padding: 0;
+						flex: 0 0 52.5px;
+						height: 52.5px;
+						font-family: "Cambria Math", Cambria, Georgia, serif;
+						color: #000;
+						background-color: transparent;
+						border: 1px solid transparent;
+						cursor: pointer;
 
 						.katex {
 							font-size: 22px;
@@ -126,17 +121,16 @@
 						}
 
 						&:focus-visible {
-							outline: 2px solid #3858e9;
-							outline-offset: 2px;
+							outline: 1px solid #3858e9;
+							outline-offset: 0;
 						}
 
 						&:hover {
-							background: #fff;
-							border-color: #8c8f94;
+							border-color: #dbdbdb;
 						}
 
 						&:active {
-							background: #dcdcde;
+							background-color: #dbdbdb;
 						}
 					}
 				}
