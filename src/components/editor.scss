@@ -1,13 +1,10 @@
 .equation-editor-popover {
 
 	.components-popover__content {
-
 		max-height: min(650px, calc(100vh - 80px));
 		overflow-y: auto;
-		width: min(720px, calc(100vw - 32px));
 
 		.equation-editor-popover__content {
-
 			padding: 16px;
 
 			.equation-editor-popover__field {
@@ -45,13 +42,10 @@
 					&::part(menu-toggle) {
 						display: none;
 					}
-
 				}
-
 			}
 
 			.equation-editor-symbol-palette {
-
 				margin-block-start: 14px;
 				margin-block-end: 14px;
 				text-align: initial;
@@ -61,117 +55,107 @@
 					border-block-end: 1px solid #8c8f94;
 					display: flex;
 					flex-wrap: nowrap;
-					overflow-x: auto;
 					padding-inline-start: 0;
+
+					.equation-editor-symbol-tab {
+						appearance: none;
+						background: transparent;
+						border: 1px solid transparent;
+						border-block-end: 0;
+						border-radius: 4px 4px 0 0;
+						color: #1e1e1e;
+						cursor: pointer;
+						font: inherit;
+						margin: 0 0 -1px;
+						min-height: 46px;
+						padding: 10px 16px;
+						position: relative;
+						white-space: nowrap;
+
+						&[aria-selected="true"] {
+							background: #fff;
+							border-color: #8c8f94;
+							color: #1e1e1e;
+							z-index: 1;
+						}
+
+						&:focus-visible {
+							outline: 2px solid #3858e9;
+							outline-offset: 2px;
+						}
+					}
 				}
-				
 			}
 
+			.equation-editor-symbol-panel {
+				padding-block-start: 12px;
+
+				.equation-editor-symbol-grid {
+					display: grid;
+					gap: 5px;
+					grid-template-columns: repeat(auto-fill, 38px);
+
+					.equation-editor-symbol-button {
+						align-items: center;
+						appearance: none;
+						background: #f0f2f3;
+						border: 1px solid #c3c4c7;
+						border-radius: 4px;
+						box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+						color: #1d2327;
+						cursor: pointer;
+						display: inline-flex;
+						flex: 0 0 38px;
+						font-family: "Cambria Math", Cambria, Georgia, serif;
+						font-size: 23px;
+						height: 38px;
+						justify-content: center;
+						line-height: 1;
+						padding: 0;
+
+						.katex {
+							font-size: 18px;
+							line-height: 1;
+							// Clicks land on the button, never on inner KaTeX spans.
+							pointer-events: none;
+						}
+
+						&:focus-visible {
+							outline: 2px solid #3858e9;
+							outline-offset: 2px;
+						}
+
+						&:hover {
+							background: #fff;
+							border-color: #8c8f94;
+						}
+
+						&:active {
+							background: #dcdcde;
+						}
+					}
+				}
+			}
+
+			.equation-editor-popover__latex {
+				margin-block-start: 16px;
+
+				textarea {
+					font-family: Consolas, Monaco, monospace;
+				}
+
+				&.equation-editor-popover__latex--hidden {
+					display: none;
+				}
+			}
+
+			.equation-editor-popover__actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				justify-content: flex-end;
+				margin-block-start: 16px;
+			}
 		}
-
 	}
-
-}
-
-
-
-
-.equation-editor-symbol-tab {
-	appearance: none;
-	background: transparent;
-	border: 1px solid transparent;
-	border-block-end: 0;
-	border-radius: 4px 4px 0 0;
-	color: #1e1e1e;
-	cursor: pointer;
-	font: inherit;
-	margin: 0 0 -1px;
-	min-height: 46px;
-	padding: 10px 16px;
-	position: relative;
-	white-space: nowrap;
-}
-
-.equation-editor-symbol-tab[aria-selected="true"] {
-	background: #fff;
-	border-color: #8c8f94;
-	color: #1e1e1e;
-	z-index: 1;
-}
-
-.equation-editor-symbol-tab:focus-visible {
-	outline: 2px solid #3858e9;
-	outline-offset: 2px;
-}
-
-.equation-editor-symbol-panel {
-	padding-block-start: 12px;
-}
-
-.equation-editor-symbol-grid {
-	display: grid;
-	gap: 5px;
-	grid-template-columns: repeat(auto-fill, 38px);
-}
-
-.equation-editor-symbol-button {
-	align-items: center;
-	appearance: none;
-	background: #f0f2f3;
-	border: 1px solid #c3c4c7;
-	border-radius: 4px;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
-	color: #1d2327;
-	cursor: pointer;
-	display: inline-flex;
-	flex: 0 0 38px;
-	font-family: "Cambria Math", Cambria, Georgia, serif;
-	font-size: 23px;
-	height: 38px;
-	justify-content: center;
-	line-height: 1;
-	padding: 0;
-
-	.katex {
-		font-size: 18px;
-		line-height: 1;
-		// Clicks land on the button, never on inner KaTeX spans.
-		pointer-events: none;
-	}
-}
-
-.equation-editor-symbol-button:focus-visible {
-	outline: 2px solid #3858e9;
-	outline-offset: 2px;
-}
-
-.equation-editor-symbol-button:hover {
-	background: #fff;
-	border-color: #8c8f94;
-}
-
-.equation-editor-symbol-button:active {
-	background: #dcdcde;
-}
-
-
-
-.equation-editor-popover__latex {
-	margin-block-start: 16px;
-}
-
-.equation-editor-popover__latex--hidden {
-	display: none;
-}
-
-.equation-editor-popover__latex textarea {
-	font-family: Consolas, Monaco, monospace;
-}
-
-.equation-editor-popover__actions {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-	justify-content: flex-end;
-	margin-block-start: 16px;
 }

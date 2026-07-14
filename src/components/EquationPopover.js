@@ -70,9 +70,11 @@ export default function EquationPopover( {
 		<Popover
 			anchor={ anchor }
 			className="equation-editor-popover"
-			focusOnMount={ false }
+			focusOnMount={ true }
 			onClose={ onClose }
 			onFocusOutside = {(() => void{})}
+			resize={ false }
+			shift={ true }
 		>
 			<div className="equation-editor-popover__content">
 				<div className="equation-editor-popover__field">
