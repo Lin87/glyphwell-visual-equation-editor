@@ -13,6 +13,10 @@ const MATH_FIELD_TAG = 'math-field';
  * IDs of MathLive's default context-menu items to remove. MathLive's built-in
  * menu (right-click / long-press) is otherwise left intact.
  *
+ * The matrix-related entries (`insert-matrix`, the add/remove row & column
+ * items) are removed because the same actions are exposed through the palette's
+ * Matrix tab; the Borders item has no id and is matched separately below.
+ *
  * @type {string[]}
  */
 const HIDDEN_MENU_ITEM_IDS = [
@@ -22,7 +26,22 @@ const HIDDEN_MENU_ITEM_IDS = [
 	'background-color',
 	'cut',
 	'select-all',
+	'insert-matrix',
+	'add-row-above',
+	'add-row-below',
+	'add-column-before',
+	'add-column-after',
+	'delete-row',
+	'delete-column',
 ];
+
+/**
+ * `submenuClass` values of context-menu items to remove. MathLive's "Borders"
+ * item carries no `id`, so it is identified by its submenu class instead.
+ *
+ * @type {string[]}
+ */
+const HIDDEN_MENU_SUBMENU_CLASSES = [ 'border-submenu' ];
 
 /**
  * Registers MathLive's `<math-field>` custom element, once, if not already done.
@@ -259,7 +278,9 @@ function MathFieldControl(
 		// Trim unwanted entries from MathLive's built-in context menu. The
 		// `menuItems` getter returns a copy, so reassign a filtered array.
 		mathfield.menuItems = mathfield.menuItems.filter(
-			( item ) => ! HIDDEN_MENU_ITEM_IDS.includes( item.id )
+			( item ) =>
+				! HIDDEN_MENU_ITEM_IDS.includes( item.id ) &&
+				! HIDDEN_MENU_SUBMENU_CLASSES.includes( item.submenuClass )
 		);
 
 		restoreShadowStylesForDocument(
@@ -337,6 +358,23 @@ function MathFieldControl(
 				} );
 
 				emitCurrentValue( mathfield );
+				mathfield.focus();
+			},
+			runCommand( command ) {
+				const mathfield = mathfieldRef.current;
+
+				if ( ! mathfield ) {
+					return;
+				}
+
+				mathfield.focus();
+
+				// `command` is a command name, or a `[name, ...args]` array for
+				// commands that take arguments (e.g. `[ 'setEnvironment', env ]`).
+				// `executeCommand` fires the field's `input` event, so the mount
+				// effect's listener re-emits the LaTeX/MathML on its own.
+				mathfield.executeCommand( command );
+
 				mathfield.focus();
 			},
 		} ),

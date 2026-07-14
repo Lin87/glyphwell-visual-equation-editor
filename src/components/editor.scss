@@ -55,6 +55,7 @@
 					display: flex;
 					flex-wrap: nowrap;
 					gap: 8px;
+					overflow-x: auto;
 					padding-inline-start: 0;
 
 					.equation-editor-symbol-tab {
@@ -95,6 +96,131 @@
 
 			.equation-editor-symbol-panel {
 				padding-block-start: 12px;
+
+				.equation-editor-matrix-panel {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					gap: 16px;
+
+					.equation-editor-matrix-section__heading {
+						color: #50575e;
+						font-size: 11px;
+						font-weight: 600;
+						letter-spacing: 0.06em;
+						margin-block-end: 8px;
+						text-transform: uppercase;
+					}
+
+					.equation-editor-matrix-size-grid {
+						display: grid;
+						gap: 3px;
+						inline-size: fit-content;
+
+						.equation-editor-matrix-size-cell {
+							appearance: none;
+							background: #fff;
+							border: 1px solid #c3c4c7;
+							block-size: 22px;
+							cursor: pointer;
+							inline-size: 22px;
+							padding: 0;
+							transition: background-color 0.1s ease,
+								border-color 0.1s ease;
+
+							&.is-active {
+								background: hsl(230, 82%, 92%);
+								border-color: #3858e9;
+							}
+
+							&:focus-visible {
+								outline: 2px solid #3858e9;
+								outline-offset: 1px;
+							}
+						}
+					}
+
+					.equation-editor-matrix-size-label {
+						color: #1e1e1e;
+						font-size: 13px;
+						margin-block-start: 8px;
+					}
+
+					.equation-editor-matrix-borders {
+						display: flex;
+						flex-wrap: wrap;
+						gap: 4px;
+
+						.equation-editor-matrix-border-button {
+							align-items: center;
+							background-color: transparent;
+							border: 1px solid transparent;
+							color: #000;
+							cursor: pointer;
+							display: flex;
+							block-size: 44px;
+							inline-size: 44px;
+							justify-content: center;
+
+							.katex {
+								font-size: 18px;
+								line-height: 1;
+								pointer-events: none;
+							}
+
+							&:hover {
+								border-color: #dbdbdb;
+							}
+
+							&:active {
+								background-color: #dbdbdb;
+							}
+
+							&:focus-visible {
+								outline: 1px solid #3858e9;
+								outline-offset: 0;
+							}
+						}
+					}
+
+					.equation-editor-matrix-actions {
+						display: flex;
+						flex-wrap: wrap;
+						gap: 6px;
+
+						.equation-editor-matrix-action-button {
+							appearance: none;
+							background: #f6f7f7;
+							border: 1px solid #dcdcde;
+							border-radius: 2px;
+							color: #1e1e1e;
+							cursor: pointer;
+							font: inherit;
+							font-size: 12px;
+							padding: 6px 10px;
+
+							&:hover {
+								background: #f0f0f1;
+								border-color: #c3c4c7;
+							}
+
+							&:focus-visible {
+								outline: 2px solid #3858e9;
+								outline-offset: 1px;
+							}
+						}
+					}
+
+					.equation-editor-matrix-hint {
+						color: #757575;
+						font-size: 12px;
+						margin: 0;
+					}
+
+					.full-width {
+						flex: 1 1 100%;
+					}
+				}
 
 				.equation-editor-symbol-grid {
 					display: grid;

@@ -47,6 +47,14 @@ export default function EquationPopover( {
 		mathfieldRef.current?.insertLatex( symbol.latex );
 	}, [] );
 
+	const insertLatex = useCallback( ( latex ) => {
+		mathfieldRef.current?.insertLatex( latex );
+	}, [] );
+
+	const runCommand = useCallback( ( command ) => {
+		mathfieldRef.current?.runCommand( command );
+	}, [] );
+
 	// Applies the equation; an empty field means "no equation", so when editing
 	// we remove the existing one, and when inserting we simply close.
 	const applyEquation = useCallback( () => {
@@ -86,7 +94,11 @@ export default function EquationPopover( {
 					/>
 				</div>
 
-				<SymbolPalette onInsertSymbol={ insertSymbol } />
+				<SymbolPalette
+					onInsertSymbol={ insertSymbol }
+					onInsertLatex={ insertLatex }
+					onRunCommand={ runCommand }
+				/>
 
 				<ToggleControl
 					className="equation-editor-popover__latex-toggle"

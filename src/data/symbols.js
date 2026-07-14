@@ -23,7 +23,11 @@ const symbol = ( id, visual, latex, ariaLabel ) => ( {
  * row is decided by CSS (the palette grid wraps to fit the popover width), not
  * by this data.
  *
- * @type {Array<{id: string, label: string, symbols: Array<Object>}>}
+ * Most groups render a glyph grid from their `symbols` list. A group may
+ * instead set `type` to render a custom panel (e.g. `type: 'matrix'`), in which
+ * case it carries no `symbols`.
+ *
+ * @type {Array<{id: string, label: string, type?: string, symbols?: Array<Object>}>}
  */
 export const SYMBOL_GROUPS = [
 	{
@@ -462,5 +466,13 @@ export const SYMBOL_GROUPS = [
 			symbol( 'vdots', '⋮', '\\vdots', 'Insert vertical ellipsis' ),
 			symbol( 'ddots', '⋱', '\\ddots', 'Insert diagonal ellipsis' ),
 		],
+	},
+	{
+		// The Matrix tab renders a custom panel (matrix size grid, border and
+		// row/column controls) instead of a flat glyph grid, so it carries a
+		// `type` and no `symbols` list. See MatrixPanel and src/data/matrix.js.
+		id: 'matrix',
+		label: 'Matrix',
+		type: 'matrix',
 	},
 ];
