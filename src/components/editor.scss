@@ -55,7 +55,6 @@
 					display: flex;
 					flex-wrap: nowrap;
 					gap: 8px;
-					overflow-x: auto;
 					padding-inline-start: 0;
 
 					.equation-editor-symbol-tab {
@@ -102,6 +101,7 @@
 					flex-direction: row;
 					flex-wrap: wrap;
 					gap: 16px;
+					padding: 0 16px;
 
 					.equation-editor-matrix-section__heading {
 						color: #50575e;
@@ -235,14 +235,15 @@
 				.equation-editor-symbol-grid {
 					display: grid;
 					gap: 0px;
-					grid-template-columns: repeat(auto-fill, 52.5px);
+					grid-template-columns: repeat(auto-fill, 50px);
+					justify-content: center;
 
 					.equation-editor-symbol-button {
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						flex: 0 0 52.5px;
-						height: 52.5px;
+						flex: 0 0 50px;
+						height: 50px;
 						font-family: "Cambria Math", Cambria, Georgia, serif;
 						color: #000;
 						background-color: transparent;
