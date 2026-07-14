@@ -51,32 +51,38 @@
 				text-align: initial;
 
 				.equation-editor-symbol-tabs {
-					align-items: flex-end;
-					border-block-end: 1px solid #8c8f94;
+					border-block-end: 1px solid #dcdcde;
 					display: flex;
 					flex-wrap: nowrap;
+					gap: 8px;
 					padding-inline-start: 0;
 
 					.equation-editor-symbol-tab {
 						appearance: none;
 						background: transparent;
-						border: 1px solid transparent;
-						border-block-end: 0;
-						border-radius: 4px 4px 0 0;
-						color: #1e1e1e;
+						border: 0;
+						border-block-end: 2px solid transparent;
+						color: #50575e;
 						cursor: pointer;
 						font: inherit;
-						margin: 0 0 -1px;
-						min-height: 46px;
-						padding: 10px 16px;
+						font-size: 13px;
+						font-weight: 500;
+						letter-spacing: 0.06em;
+						margin-block-end: -1px;
+						padding: 8px 16px;
 						position: relative;
+						text-transform: uppercase;
+						transition: border-color 0.15s ease, color 0.15s ease;
 						white-space: nowrap;
 
 						&[aria-selected="true"] {
-							background: #fff;
-							border-color: #8c8f94;
+							border-block-end-color: #3858e9;
+							color: #3858e9;
+							font-weight: 600;
+						}
+
+						&:hover {
 							color: #1e1e1e;
-							z-index: 1;
 						}
 
 						&:focus-visible {
@@ -93,7 +99,7 @@
 				.equation-editor-symbol-grid {
 					display: grid;
 					gap: 5px;
-					grid-template-columns: repeat(auto-fill, 38px);
+					grid-template-columns: repeat(auto-fill, 50px);
 
 					.equation-editor-symbol-button {
 						align-items: center;
@@ -105,16 +111,15 @@
 						color: #1d2327;
 						cursor: pointer;
 						display: inline-flex;
-						flex: 0 0 38px;
+						flex: 0 0 50px;
 						font-family: "Cambria Math", Cambria, Georgia, serif;
-						font-size: 23px;
-						height: 38px;
+						height: 50px;
 						justify-content: center;
 						line-height: 1;
 						padding: 0;
 
 						.katex {
-							font-size: 18px;
+							font-size: 22px;
 							line-height: 1;
 							// Clicks land on the button, never on inner KaTeX spans.
 							pointer-events: none;
