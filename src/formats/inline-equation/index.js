@@ -2,6 +2,7 @@ import 'mathlive/fonts.css';
 
 import { RichTextToolbarButton } from '@wordpress/block-editor';
 import { useCallback, useMemo, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 import { math } from '@wordpress/icons';
 import {
 	getActiveObject,
@@ -119,9 +120,9 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 			<RichTextToolbarButton
 				icon={ math }
 				isPressed={ Boolean( selectedEquation ) }
-				label="Equation"
+				label={ __( 'Equation', 'equation-editor' ) }
 				onClick={ openPopover }
-				title="Equation"
+				title={ __( 'Equation', 'equation-editor' ) }
 			/>
 
 			{ popoverState && (
@@ -140,7 +141,7 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 }
 
 registerFormatType( INLINE_FORMAT_NAME, {
-	title: 'Equation',
+	title: __( 'Equation', 'equation-editor' ),
 	tagName: 'math',
 	className: INLINE_CLASS,
 	contentEditable: false,

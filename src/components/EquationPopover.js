@@ -5,6 +5,7 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 import { useCallback, useEffect, useRef, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 import MathFieldControl from './MathFieldControl';
 import SymbolPalette from './SymbolPalette';
@@ -80,7 +81,7 @@ export default function EquationPopover( {
 			className="equation-editor-popover"
 			focusOnMount={ true }
 			onClose={ onClose }
-			onFocusOutside = {(() => void{})}
+			onFocusOutside={ () => void {} }
 			resize={ false }
 			shift={ true }
 		>
@@ -102,7 +103,7 @@ export default function EquationPopover( {
 
 				<ToggleControl
 					className="equation-editor-popover__latex-toggle"
-					label="Show LaTeX"
+					label={ __( 'Show LaTeX', 'equation-editor' ) }
 					checked={ showLatex }
 					onChange={ setShowLatex }
 					__nextHasNoMarginBottom
@@ -114,7 +115,7 @@ export default function EquationPopover( {
 							? ''
 							: ' equation-editor-popover__latex--hidden'
 					}` }
-					label="LaTeX"
+					label={ __( 'LaTeX', 'equation-editor' ) }
 					value={ latex }
 					onChange={ setLatex }
 					readOnly={ ! showLatex }
@@ -123,7 +124,9 @@ export default function EquationPopover( {
 
 				<div className="equation-editor-popover__actions">
 					<Button variant="primary" onClick={ applyEquation }>
-						{ isEditing ? 'Update' : 'Apply' }
+						{ isEditing
+							? __( 'Update', 'equation-editor' )
+							: __( 'Apply', 'equation-editor' ) }
 					</Button>
 
 					{ isEditing && (
@@ -132,12 +135,12 @@ export default function EquationPopover( {
 							variant="secondary"
 							onClick={ onRemove }
 						>
-							Remove
+							{ __( 'Remove', 'equation-editor' ) }
 						</Button>
 					) }
 
 					<Button variant="tertiary" onClick={ onClose }>
-						Cancel
+						{ __( 'Cancel', 'equation-editor' ) }
 					</Button>
 				</div>
 			</div>

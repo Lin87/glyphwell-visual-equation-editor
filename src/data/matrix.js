@@ -7,6 +7,8 @@
  * {@link buildMatrixLatex}. See `MatrixPanel` for the wiring.
  */
 
+import { __ } from '@wordpress/i18n';
+
 /**
  * Largest matrix the interactive size grid can insert (rows and columns).
  *
@@ -46,37 +48,37 @@ export const BORDER_OPTIONS = [
 		id: 'no-border',
 		latex: '\\ddots',
 		environment: 'matrix',
-		ariaLabel: 'No border',
+		ariaLabel: __( 'No border', 'equation-editor' ),
 	},
 	{
 		id: 'parentheses',
 		latex: '\\left(\\ddots\\right)',
 		environment: 'pmatrix',
-		ariaLabel: 'Parentheses border',
+		ariaLabel: __( 'Parentheses border', 'equation-editor' ),
 	},
 	{
 		id: 'brackets',
 		latex: '\\left[\\ddots\\right]',
 		environment: 'bmatrix',
-		ariaLabel: 'Square bracket border',
+		ariaLabel: __( 'Square bracket border', 'equation-editor' ),
 	},
 	{
 		id: 'braces',
 		latex: '\\left\\lbrace\\ddots\\right\\rbrace',
 		environment: 'Bmatrix',
-		ariaLabel: 'Curly brace border',
+		ariaLabel: __( 'Curly brace border', 'equation-editor' ),
 	},
 	{
 		id: 'bar',
 		latex: '\\left\\vert\\ddots\\right\\vert',
 		environment: 'vmatrix',
-		ariaLabel: 'Single bar border',
+		ariaLabel: __( 'Single bar border', 'equation-editor' ),
 	},
 	{
 		id: 'double-bar',
 		latex: '\\left\\Vert\\ddots\\right\\Vert',
 		environment: 'Vmatrix',
-		ariaLabel: 'Double bar border',
+		ariaLabel: __( 'Double bar border', 'equation-editor' ),
 	},
 ];
 
@@ -90,40 +92,40 @@ export const BORDER_OPTIONS = [
 export const MATRIX_ACTIONS = [
 	{
 		id: 'add-row-above',
-		label: 'Add Row above',
+		label: __( 'Add Row above', 'equation-editor' ),
 		command: 'addRowBefore',
-		ariaLabel: 'Add row above',
+		ariaLabel: __( 'Add row above', 'equation-editor' ),
 	},
 	{
 		id: 'add-row-below',
-		label: 'Add Row below',
+		label: __( 'Add Row below', 'equation-editor' ),
 		command: 'addRowAfter',
-		ariaLabel: 'Add row below',
+		ariaLabel: __( 'Add row below', 'equation-editor' ),
 	},
 	{
 		id: 'add-column-before',
-		label: 'Add Column left',
+		label: __( 'Add Column left', 'equation-editor' ),
 		command: 'addColumnBefore',
-		ariaLabel: 'Add column to the left',
+		ariaLabel: __( 'Add column to the left', 'equation-editor' ),
 	},
 	{
 		id: 'add-column-after',
-		label: 'Add Column right',
+		label: __( 'Add Column right', 'equation-editor' ),
 		command: 'addColumnAfter',
-		ariaLabel: 'Add column to the right',
+		ariaLabel: __( 'Add column to the right', 'equation-editor' ),
 	},
 	{
 		id: 'delete-row',
-		label: 'Delete row',
+		label: __( 'Delete row', 'equation-editor' ),
 		command: 'removeRow',
-		ariaLabel: 'Delete current row',
+		ariaLabel: __( 'Delete current row', 'equation-editor' ),
 		destructive: true,
 	},
 	{
 		id: 'delete-column',
-		label: 'Delete column',
+		label: __( 'Delete column', 'equation-editor' ),
 		command: 'removeColumn',
-		ariaLabel: 'Delete current column',
+		ariaLabel: __( 'Delete current column', 'equation-editor' ),
 		destructive: true,
 	},
 ];

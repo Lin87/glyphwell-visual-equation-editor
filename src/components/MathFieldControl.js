@@ -5,6 +5,7 @@ import {
 	useImperativeHandle,
 	useRef,
 } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 import { MathfieldElement } from 'mathlive';
 
 const MATH_FIELD_TAG = 'math-field';
@@ -261,7 +262,10 @@ function MathFieldControl(
 
 		const shadowStyleTexts = getShadowStyleTexts( mathfield );
 
-		mathfield.setAttribute( 'aria-label', 'Equation editor' );
+		mathfield.setAttribute(
+			'aria-label',
+			__( 'Equation editor', 'equation-editor' )
+		);
 		mathfield.className = [ 'equation-editor-math-field', className ]
 			.filter( Boolean )
 			.join( ' ' );

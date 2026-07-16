@@ -1,0 +1,1040 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Equation Editor 0.1.0\n"
+"Report-Msgid-Bugs-To: https://profiles.wordpress.org/eslin87/\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: equation-editor\n"
+
+#: src/data/matrix.js:107
+msgid "Add Column left"
+msgstr ""
+
+#: src/data/matrix.js:113
+msgid "Add Column right"
+msgstr ""
+
+#: src/data/matrix.js:109
+msgid "Add column to the left"
+msgstr ""
+
+#: src/data/matrix.js:115
+msgid "Add column to the right"
+msgstr ""
+
+#: src/data/matrix.js:97
+msgid "Add row above"
+msgstr ""
+
+#: src/data/matrix.js:95
+msgid "Add Row above"
+msgstr ""
+
+#: src/data/matrix.js:103
+msgid "Add row below"
+msgstr ""
+
+#: src/data/matrix.js:101
+msgid "Add Row below"
+msgstr ""
+
+#: src/blocks/equation/edit.js:45
+msgid "Align center"
+msgstr ""
+
+#: src/blocks/equation/edit.js:40
+msgid "Align left"
+msgstr ""
+
+#: src/blocks/equation/edit.js:50
+msgid "Align right"
+msgstr ""
+
+#: src/components/EquationPopover.js:129
+msgid "Apply"
+msgstr ""
+
+#: src/data/symbols.js:936
+msgid "Arrows"
+msgstr ""
+
+#: src/data/symbols.js:37
+msgid "Basic"
+msgstr ""
+
+#: src/components/MatrixPanel.js:149
+msgid "Borders"
+msgstr ""
+
+#: src/components/EquationPopover.js:143
+msgid "Cancel"
+msgstr ""
+
+#: src/blocks/equation/block.json
+msgid "Create and display a mathematical equation."
+msgstr ""
+
+#: src/data/matrix.js:69
+msgid "Curly brace border"
+msgstr ""
+
+#: src/data/matrix.js:126
+msgid "Delete column"
+msgstr ""
+
+#: src/data/matrix.js:128
+msgid "Delete current column"
+msgstr ""
+
+#: src/data/matrix.js:121
+msgid "Delete current row"
+msgstr ""
+
+#: src/data/matrix.js:119
+msgid "Delete row"
+msgstr ""
+
+#: src/data/matrix.js:81
+msgid "Double bar border"
+msgstr ""
+
+#: src/blocks/equation/edit.js:219
+msgid "Edit equation"
+msgstr ""
+
+#: src/blocks/equation/edit.js:203
+msgid "Enter an equation to display it here."
+msgstr ""
+
+#: src/blocks/equation/edit.js:220
+msgid "Enter equation"
+msgstr ""
+
+#: src/blocks/equation/block.json
+#: src/formats/inline-equation/index.js:123
+#: src/formats/inline-equation/index.js:125
+#: src/formats/inline-equation/index.js:144
+msgid "Equation"
+msgstr ""
+
+#: src/blocks/equation/edit.js:180
+msgid "Equation alignment"
+msgstr ""
+
+#: src/components/MathFieldControl.js:267
+msgid "Equation editor"
+msgstr ""
+
+#: src/components/SymbolTabs.js:18
+msgid "Equation symbol groups"
+msgstr ""
+
+#: src/data/symbols.js:200
+msgid "Greek"
+msgstr ""
+
+#. translators: 1: number of rows, 2: number of columns.
+#: src/components/MatrixPanel.js:54
+msgid "Insert %1$d by %2$d matrix"
+msgstr ""
+
+#: src/data/symbols.js:1206
+msgid "Insert aleph"
+msgstr ""
+
+#: src/data/symbols.js:206
+msgid "Insert alpha"
+msgstr ""
+
+#: src/data/symbols.js:558
+msgid "Insert amalgamation symbol"
+msgstr ""
+
+#: src/data/symbols.js:1218
+msgid "Insert angle"
+msgstr ""
+
+#: src/data/symbols.js:666
+msgid "Insert approximately equal"
+msgstr ""
+
+#: src/data/symbols.js:164
+msgid "Insert asterisk"
+msgstr ""
+
+#: src/data/symbols.js:660
+msgid "Insert asymptotically equal"
+msgstr ""
+
+#: src/data/symbols.js:1170
+msgid "Insert backslash"
+msgstr ""
+
+#: src/data/symbols.js:930
+msgid "Insert because"
+msgstr ""
+
+#: src/data/symbols.js:212
+msgid "Insert beta"
+msgstr ""
+
+#: src/data/symbols.js:73
+msgid "Insert binomial"
+msgstr ""
+
+#: src/data/symbols.js:756
+msgid "Insert bowtie"
+msgstr ""
+
+#: src/data/symbols.js:176
+msgid "Insert bullet"
+msgstr ""
+
+#: src/data/symbols.js:170
+msgid "Insert center dot"
+msgstr ""
+
+#: src/data/symbols.js:1278
+msgid "Insert centered ellipsis"
+msgstr ""
+
+#: src/data/symbols.js:306
+msgid "Insert chi"
+msgstr ""
+
+#: src/data/symbols.js:510
+msgid "Insert circle operator"
+msgstr ""
+
+#: src/data/symbols.js:504
+msgid "Insert circled dot"
+msgstr ""
+
+#: src/data/symbols.js:492
+msgid "Insert circled minus"
+msgstr ""
+
+#: src/data/symbols.js:1248
+msgid "Insert club suit"
+msgstr ""
+
+#: src/data/symbols.js:822
+msgid "Insert complex numbers"
+msgstr ""
+
+#: src/data/symbols.js:642
+msgid "Insert congruent to"
+msgstr ""
+
+#: src/data/symbols.js:858
+msgid "Insert contains as member"
+msgstr ""
+
+#: src/data/symbols.js:594
+msgid "Insert contour integral"
+msgstr ""
+
+#: src/data/symbols.js:612
+msgid "Insert coproduct"
+msgstr ""
+
+#: src/data/symbols.js:546
+msgid "Insert dagger"
+msgstr ""
+
+#: src/data/symbols.js:588
+msgid "Insert definite integral"
+msgstr ""
+
+#: src/data/symbols.js:1212
+msgid "Insert degree"
+msgstr ""
+
+#: src/data/symbols.js:224
+msgid "Insert delta"
+msgstr ""
+
+#: src/data/symbols.js:1290
+msgid "Insert diagonal ellipsis"
+msgstr ""
+
+#: src/data/symbols.js:516
+msgid "Insert diamond"
+msgstr ""
+
+#: src/data/symbols.js:1254
+msgid "Insert diamond suit"
+msgstr ""
+
+#: src/data/symbols.js:324
+msgid "Insert digamma"
+msgstr ""
+
+#: src/data/symbols.js:486
+msgid "Insert direct sum"
+msgstr ""
+
+#: src/data/symbols.js:738
+msgid "Insert divides"
+msgstr ""
+
+#: src/data/symbols.js:104
+msgid "Insert division sign"
+msgstr ""
+
+#: src/data/symbols.js:864
+msgid "Insert does not contain as member"
+msgstr ""
+
+#: src/data/symbols.js:678
+msgid "Insert dotted equals"
+msgstr ""
+
+#: src/data/symbols.js:552
+msgid "Insert double dagger"
+msgstr ""
+
+#: src/data/symbols.js:996
+msgid "Insert double down arrow"
+msgstr ""
+
+#: src/data/symbols.js:954
+msgid "Insert double left arrow"
+msgstr ""
+
+#: src/data/symbols.js:960
+msgid "Insert double right arrow"
+msgstr ""
+
+#: src/data/symbols.js:990
+msgid "Insert double up arrow"
+msgstr ""
+
+#: src/data/symbols.js:1008
+msgid "Insert double up down arrow"
+msgstr ""
+
+#: src/data/symbols.js:1164
+msgid "Insert double vertical bar"
+msgstr ""
+
+#: src/data/symbols.js:984
+msgid "Insert down arrow"
+msgstr ""
+
+#: src/data/symbols.js:528
+msgid "Insert down triangle"
+msgstr ""
+
+#: src/data/symbols.js:846
+msgid "Insert element of"
+msgstr ""
+
+#: src/data/symbols.js:1272
+msgid "Insert ellipsis"
+msgstr ""
+
+#: src/data/symbols.js:840
+msgid "Insert empty set"
+msgstr ""
+
+#: src/data/symbols.js:230
+msgid "Insert epsilon"
+msgstr ""
+
+#: src/data/symbols.js:128
+msgid "Insert equals"
+msgstr ""
+
+#: src/data/symbols.js:636
+msgid "Insert equivalent to"
+msgstr ""
+
+#: src/data/symbols.js:242
+msgid "Insert eta"
+msgstr ""
+
+#: src/data/symbols.js:912
+msgid "Insert exists"
+msgstr ""
+
+#: src/data/symbols.js:1230
+msgid "Insert flat"
+msgstr ""
+
+#: src/data/symbols.js:906
+msgid "Insert for all"
+msgstr ""
+
+#: src/data/symbols.js:55
+msgid "Insert fraction"
+msgstr ""
+
+#: src/data/symbols.js:768
+msgid "Insert frown"
+msgstr ""
+
+#: src/data/symbols.js:218
+msgid "Insert gamma"
+msgstr ""
+
+#: src/data/symbols.js:146
+msgid "Insert greater than"
+msgstr ""
+
+#: src/data/symbols.js:158
+msgid "Insert greater than or equal to"
+msgstr ""
+
+#: src/data/symbols.js:1182
+msgid "Insert h-bar"
+msgstr ""
+
+#: src/data/symbols.js:188
+msgid "Insert hat accent"
+msgstr ""
+
+#: src/data/symbols.js:1260
+msgid "Insert heart suit"
+msgstr ""
+
+#: src/data/symbols.js:1026
+msgid "Insert hooked left arrow"
+msgstr ""
+
+#: src/data/symbols.js:1032
+msgid "Insert hooked right arrow"
+msgstr ""
+
+#: src/data/symbols.js:972
+msgid "Insert if and only if"
+msgstr ""
+
+#: src/data/symbols.js:1200
+msgid "Insert imaginary part"
+msgstr ""
+
+#: src/data/symbols.js:624
+msgid "Insert infinity"
+msgstr ""
+
+#: src/data/symbols.js:804
+msgid "Insert integers"
+msgstr ""
+
+#: src/data/symbols.js:582
+msgid "Insert integral"
+msgstr ""
+
+#: src/data/symbols.js:462
+msgid "Insert intersection"
+msgstr ""
+
+#: src/data/symbols.js:254
+msgid "Insert iota"
+msgstr ""
+
+#: src/data/symbols.js:260
+msgid "Insert kappa"
+msgstr ""
+
+#: src/data/symbols.js:266
+msgid "Insert lambda"
+msgstr ""
+
+#: src/data/symbols.js:1146
+msgid "Insert left angle bracket"
+msgstr ""
+
+#: src/data/symbols.js:942
+msgid "Insert left arrow"
+msgstr ""
+
+#: src/data/symbols.js:1110
+msgid "Insert left brace"
+msgstr ""
+
+#: src/data/symbols.js:1098
+msgid "Insert left bracket"
+msgstr ""
+
+#: src/data/symbols.js:1134
+msgid "Insert left ceiling"
+msgstr ""
+
+#: src/data/symbols.js:1122
+msgid "Insert left floor"
+msgstr ""
+
+#: src/data/symbols.js:1080
+msgid "Insert left harpoon down"
+msgstr ""
+
+#: src/data/symbols.js:1068
+msgid "Insert left harpoon up"
+msgstr ""
+
+#: src/data/symbols.js:79
+msgid "Insert left parenthesis"
+msgstr ""
+
+#: src/data/symbols.js:966
+msgid "Insert left right arrow"
+msgstr ""
+
+#: src/data/symbols.js:534
+msgid "Insert left triangle"
+msgstr ""
+
+#: src/data/symbols.js:140
+msgid "Insert less than"
+msgstr ""
+
+#: src/data/symbols.js:152
+msgid "Insert less than or equal to"
+msgstr ""
+
+#: src/data/symbols.js:618
+msgid "Insert limit"
+msgstr ""
+
+#: src/data/symbols.js:1014
+msgid "Insert long left right arrow"
+msgstr ""
+
+#: src/data/symbols.js:1020
+msgid "Insert maps to"
+msgstr ""
+
+#: src/components/MatrixPanel.js:109
+msgid "Insert matrix"
+msgstr ""
+
+#: src/data/symbols.js:92
+msgid "Insert minus"
+msgstr ""
+
+#: src/data/symbols.js:122
+msgid "Insert minus plus"
+msgstr ""
+
+#: src/data/symbols.js:720
+msgid "Insert models"
+msgstr ""
+
+#: src/data/symbols.js:268
+msgid "Insert mu"
+msgstr ""
+
+#: src/data/symbols.js:714
+msgid "Insert much greater than"
+msgstr ""
+
+#: src/data/symbols.js:708
+msgid "Insert much less than"
+msgstr ""
+
+#: src/data/symbols.js:98
+msgid "Insert multiplication sign"
+msgstr ""
+
+#: src/data/symbols.js:468
+msgid "Insert multiset union"
+msgstr ""
+
+#: src/data/symbols.js:576
+msgid "Insert nabla"
+msgstr ""
+
+#: src/data/symbols.js:1236
+msgid "Insert natural"
+msgstr ""
+
+#: src/data/symbols.js:798
+msgid "Insert natural numbers"
+msgstr ""
+
+#: src/data/symbols.js:918
+msgid "Insert negation"
+msgstr ""
+
+#: src/data/symbols.js:1044
+msgid "Insert northeast arrow"
+msgstr ""
+
+#: src/data/symbols.js:1062
+msgid "Insert northwest arrow"
+msgstr ""
+
+#: src/data/symbols.js:648
+msgid "Insert not congruent to"
+msgstr ""
+
+#: src/data/symbols.js:852
+msgid "Insert not element of"
+msgstr ""
+
+#: src/data/symbols.js:134
+msgid "Insert not equal"
+msgstr ""
+
+#: src/data/symbols.js:894
+msgid "Insert not subset"
+msgstr ""
+
+#: src/data/symbols.js:900
+msgid "Insert not superset"
+msgstr ""
+
+#: src/data/symbols.js:67
+msgid "Insert nth root"
+msgstr ""
+
+#: src/data/symbols.js:269
+msgid "Insert nu"
+msgstr ""
+
+#: src/data/symbols.js:318
+msgid "Insert omega"
+msgstr ""
+
+#: src/data/symbols.js:1038
+msgid "Insert opposing arrows"
+msgstr ""
+
+#: src/data/symbols.js:182
+msgid "Insert overbar"
+msgstr ""
+
+#: src/data/symbols.js:744
+msgid "Insert parallel"
+msgstr ""
+
+#: src/data/symbols.js:570
+msgid "Insert partial derivative"
+msgstr ""
+
+#: src/data/symbols.js:750
+msgid "Insert perpendicular"
+msgstr ""
+
+#: src/data/symbols.js:300
+msgid "Insert phi"
+msgstr ""
+
+#: src/data/symbols.js:271
+msgid "Insert pi"
+msgstr ""
+
+#: src/data/symbols.js:87
+msgid "Insert plus"
+msgstr ""
+
+#: src/data/symbols.js:116
+msgid "Insert plus minus"
+msgstr ""
+
+#: src/data/symbols.js:684
+msgid "Insert precedes"
+msgstr ""
+
+#: src/data/symbols.js:696
+msgid "Insert precedes or equal"
+msgstr ""
+
+#: src/data/symbols.js:606
+msgid "Insert product"
+msgstr ""
+
+#: src/data/symbols.js:834
+msgid "Insert projective space"
+msgstr ""
+
+#: src/data/symbols.js:672
+msgid "Insert proportional to"
+msgstr ""
+
+#: src/data/symbols.js:312
+msgid "Insert psi"
+msgstr ""
+
+#: src/data/symbols.js:828
+msgid "Insert quaternions"
+msgstr ""
+
+#: src/data/symbols.js:810
+msgid "Insert rational numbers"
+msgstr ""
+
+#: src/data/symbols.js:816
+msgid "Insert real numbers"
+msgstr ""
+
+#: src/data/symbols.js:1194
+msgid "Insert real part"
+msgstr ""
+
+#: src/data/symbols.js:732
+msgid "Insert reverse turnstile"
+msgstr ""
+
+#: src/data/symbols.js:276
+msgid "Insert rho"
+msgstr ""
+
+#: src/data/symbols.js:1152
+msgid "Insert right angle bracket"
+msgstr ""
+
+#: src/data/symbols.js:948
+msgid "Insert right arrow"
+msgstr ""
+
+#: src/data/symbols.js:1116
+msgid "Insert right brace"
+msgstr ""
+
+#: src/data/symbols.js:1104
+msgid "Insert right bracket"
+msgstr ""
+
+#: src/data/symbols.js:1140
+msgid "Insert right ceiling"
+msgstr ""
+
+#: src/data/symbols.js:1128
+msgid "Insert right floor"
+msgstr ""
+
+#: src/data/symbols.js:1086
+msgid "Insert right harpoon down"
+msgstr ""
+
+#: src/data/symbols.js:1074
+msgid "Insert right harpoon up"
+msgstr ""
+
+#: src/data/symbols.js:85
+msgid "Insert right parenthesis"
+msgstr ""
+
+#: src/data/symbols.js:540
+msgid "Insert right triangle"
+msgstr ""
+
+#: src/data/symbols.js:1176
+msgid "Insert script ell"
+msgstr ""
+
+#: src/data/symbols.js:564
+msgid "Insert set minus"
+msgstr ""
+
+#: src/data/symbols.js:1242
+msgid "Insert sharp"
+msgstr ""
+
+#: src/data/symbols.js:282
+msgid "Insert sigma"
+msgstr ""
+
+#: src/data/symbols.js:654
+msgid "Insert similar to"
+msgstr ""
+
+#: src/data/symbols.js:110
+msgid "Insert slash"
+msgstr ""
+
+#: src/data/symbols.js:762
+msgid "Insert smile"
+msgstr ""
+
+#: src/data/symbols.js:1050
+msgid "Insert southeast arrow"
+msgstr ""
+
+#: src/data/symbols.js:1056
+msgid "Insert southwest arrow"
+msgstr ""
+
+#: src/data/symbols.js:1266
+msgid "Insert spade suit"
+msgstr ""
+
+#: src/data/symbols.js:474
+msgid "Insert square cap"
+msgstr ""
+
+#: src/data/symbols.js:480
+msgid "Insert square cup"
+msgstr ""
+
+#: src/data/symbols.js:61
+msgid "Insert square root"
+msgstr ""
+
+#: src/data/symbols.js:774
+msgid "Insert square subset"
+msgstr ""
+
+#: src/data/symbols.js:786
+msgid "Insert square subset or equal"
+msgstr ""
+
+#: src/data/symbols.js:780
+msgid "Insert square superset"
+msgstr ""
+
+#: src/data/symbols.js:792
+msgid "Insert square superset or equal"
+msgstr ""
+
+#: src/data/symbols.js:43
+msgid "Insert subscript"
+msgstr ""
+
+#: src/data/symbols.js:870
+msgid "Insert subset"
+msgstr ""
+
+#: src/data/symbols.js:882
+msgid "Insert subset or equal"
+msgstr ""
+
+#: src/data/symbols.js:690
+msgid "Insert succeeds"
+msgstr ""
+
+#: src/data/symbols.js:702
+msgid "Insert succeeds or equal"
+msgstr ""
+
+#: src/data/symbols.js:600
+msgid "Insert summation"
+msgstr ""
+
+#: src/data/symbols.js:49
+msgid "Insert superscript"
+msgstr ""
+
+#: src/data/symbols.js:876
+msgid "Insert superset"
+msgstr ""
+
+#: src/data/symbols.js:888
+msgid "Insert superset or equal"
+msgstr ""
+
+#: src/data/symbols.js:288
+msgid "Insert tau"
+msgstr ""
+
+#: src/data/symbols.js:498
+msgid "Insert tensor product"
+msgstr ""
+
+#: src/data/symbols.js:924
+msgid "Insert therefore"
+msgstr ""
+
+#: src/data/symbols.js:248
+msgid "Insert theta"
+msgstr ""
+
+#: src/data/symbols.js:1224
+msgid "Insert top"
+msgstr ""
+
+#: src/data/symbols.js:522
+msgid "Insert triangle"
+msgstr ""
+
+#: src/data/symbols.js:726
+msgid "Insert turnstile"
+msgstr ""
+
+#: src/data/symbols.js:456
+msgid "Insert union"
+msgstr ""
+
+#: src/data/symbols.js:978
+msgid "Insert up arrow"
+msgstr ""
+
+#: src/data/symbols.js:1002
+msgid "Insert up down arrow"
+msgstr ""
+
+#: src/data/symbols.js:378
+msgid "Insert uppercase delta"
+msgstr ""
+
+#: src/data/symbols.js:372
+msgid "Insert uppercase gamma"
+msgstr ""
+
+#: src/data/symbols.js:390
+msgid "Insert uppercase lambda"
+msgstr ""
+
+#: src/data/symbols.js:432
+msgid "Insert uppercase omega"
+msgstr ""
+
+#: src/data/symbols.js:420
+msgid "Insert uppercase phi"
+msgstr ""
+
+#: src/data/symbols.js:402
+msgid "Insert uppercase pi"
+msgstr ""
+
+#: src/data/symbols.js:426
+msgid "Insert uppercase psi"
+msgstr ""
+
+#: src/data/symbols.js:408
+msgid "Insert uppercase sigma"
+msgstr ""
+
+#: src/data/symbols.js:384
+msgid "Insert uppercase theta"
+msgstr ""
+
+#: src/data/symbols.js:414
+msgid "Insert uppercase upsilon"
+msgstr ""
+
+#: src/data/symbols.js:396
+msgid "Insert uppercase xi"
+msgstr ""
+
+#: src/data/symbols.js:294
+msgid "Insert upsilon"
+msgstr ""
+
+#: src/data/symbols.js:330
+msgid "Insert varepsilon"
+msgstr ""
+
+#: src/data/symbols.js:342
+msgid "Insert varkappa"
+msgstr ""
+
+#: src/data/symbols.js:366
+msgid "Insert varphi"
+msgstr ""
+
+#: src/data/symbols.js:348
+msgid "Insert varpi"
+msgstr ""
+
+#: src/data/symbols.js:354
+msgid "Insert varrho"
+msgstr ""
+
+#: src/data/symbols.js:360
+msgid "Insert varsigma"
+msgstr ""
+
+#: src/data/symbols.js:336
+msgid "Insert vartheta"
+msgstr ""
+
+#: src/data/symbols.js:194
+msgid "Insert vector accent"
+msgstr ""
+
+#: src/data/symbols.js:450
+msgid "Insert vee"
+msgstr ""
+
+#: src/data/symbols.js:1158
+msgid "Insert vertical bar"
+msgstr ""
+
+#: src/data/symbols.js:1284
+msgid "Insert vertical ellipsis"
+msgstr ""
+
+#: src/data/symbols.js:444
+msgid "Insert wedge"
+msgstr ""
+
+#: src/data/symbols.js:1188
+msgid "Insert Weierstrass p"
+msgstr ""
+
+#: src/data/symbols.js:270
+msgid "Insert xi"
+msgstr ""
+
+#: src/data/symbols.js:236
+msgid "Insert zeta"
+msgstr ""
+
+#: src/components/EquationPopover.js:118
+msgid "LaTeX"
+msgstr ""
+
+#: src/data/symbols.js:1299
+msgid "Matrix"
+msgstr ""
+
+#: src/data/matrix.js:51
+msgid "No border"
+msgstr ""
+
+#: src/data/symbols.js:438
+msgid "Operators"
+msgstr ""
+
+#: src/data/matrix.js:57
+msgid "Parentheses border"
+msgstr ""
+
+#: src/components/MatrixPanel.js:103
+msgid "Pick a size"
+msgstr ""
+
+#: src/components/MatrixPanel.js:203
+msgid "Place the cursor inside a matrix to change its borders or add and remove rows and columns."
+msgstr ""
+
+#: src/data/symbols.js:630
+msgid "Relations & Sets"
+msgstr ""
+
+#: src/components/EquationPopover.js:138
+msgid "Remove"
+msgstr ""
+
+#: src/components/MatrixPanel.js:182
+msgid "Rows & columns"
+msgstr ""
+
+#: src/components/EquationPopover.js:106
+msgid "Show LaTeX"
+msgstr ""
+
+#: src/data/matrix.js:75
+msgid "Single bar border"
+msgstr ""
+
+#: src/data/matrix.js:63
+msgid "Square bracket border"
+msgstr ""
+
+#: src/data/symbols.js:1092
+msgid "Symbols"
+msgstr ""
+
+#: src/blocks/equation/edit.js:85
+msgid "The equation preview could not be rendered."
+msgstr ""
+
+#: src/components/EquationPopover.js:128
+msgid "Update"
+msgstr ""

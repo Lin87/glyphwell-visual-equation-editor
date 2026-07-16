@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 /**
  * Accessible tab list for switching between symbol groups.
  *
@@ -13,7 +15,7 @@
 export default function SymbolTabs( { activeGroupId, groups, onSelectGroup } ) {
 	return (
 		<div
-			aria-label="Equation symbol groups"
+			aria-label={ __( 'Equation symbol groups', 'equation-editor' ) }
 			className="equation-editor-symbol-tabs"
 			role="tablist"
 		>

@@ -10,6 +10,7 @@
 		"build/",
 		"equation-editor.php",
 		"includes/",
+		"languages/",
 		"LICENSE",
 		"readme.txt",
 		"src/"
@@ -20,9 +21,10 @@
 		"format": "wp-scripts format",
 		"lint:js": "wp-scripts lint-js",
 		"lint:css": "wp-scripts lint-style",
+		"make-pot": "node ./bin/make-pot.js",
 		"test:unit": "wp-scripts test-unit-js",
 		"test:e2e": "wp-scripts test-e2e",
-		"ship": "wp-scripts plugin-zip"
+		"ship": "npm run make-pot && npm run build && wp-scripts plugin-zip"
 	},
 	"dependencies": {
 		"katex": "^0.16.45",
@@ -31,6 +33,7 @@
 	"devDependencies": {
 		"@wordpress/icons": "^13.0.0",
 		"@wordpress/scripts": "^32.1.0",
+		"gettext-extractor": "^4.0.6",
 		"postcss": "^8.5.14"
 	}
 }

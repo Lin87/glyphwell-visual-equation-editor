@@ -19,5 +19,12 @@ function equation_editor_enqueue_inline_format_assets(): void {
 		'index',
 		false
 	);
+
+	// Load the JS translations for the inline format's editor bundle.
+	wp_set_script_translations(
+		EQUATION_EDITOR_INLINE_FORMAT_HANDLE,
+		'equation-editor',
+		EQUATION_EDITOR_PLUGIN_DIR . 'languages'
+	);
 }
 add_action( 'enqueue_block_editor_assets', 'equation_editor_enqueue_inline_format_assets' );

@@ -1,4 +1,5 @@
 import { useMemo, useState } from '@wordpress/element';
+import { __, sprintf } from '@wordpress/i18n';
 import katex from 'katex';
 
 import {
@@ -48,7 +49,12 @@ function SizeCell( { row, col, active, onActivate, onSelect } ) {
 	return (
 		<button
 			type="button"
-			aria-label={ `Insert ${ row } by ${ col } matrix` }
+			aria-label={ sprintf(
+				/* translators: 1: number of rows, 2: number of columns. */
+				__( 'Insert %1$d by %2$d matrix', 'equation-editor' ),
+				row,
+				col
+			) }
 			className={ `equation-editor-matrix-size-cell${
 				active ? ' is-active' : ''
 			}` }
@@ -94,13 +100,13 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 	const sizeLabel =
 		hovered.rows > 0
 			? `${ hovered.rows } × ${ hovered.cols }`
-			: 'Pick a size';
+			: __( 'Pick a size', 'equation-editor' );
 
 	return (
 		<div className="equation-editor-matrix-panel">
 			<div className="equation-editor-matrix-section">
 				<div className="equation-editor-matrix-section__heading">
-					Insert matrix
+					{ __( 'Insert matrix', 'equation-editor' ) }
 				</div>
 
 				<div
@@ -140,7 +146,7 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 
 			<div className="equation-editor-matrix-section">
 				<div className="equation-editor-matrix-section__heading">
-					Borders
+					{ __( 'Borders', 'equation-editor' ) }
 				</div>
 
 				<div className="equation-editor-matrix-borders">
@@ -173,7 +179,7 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 
 			<div className="equation-editor-matrix-section full-width">
 				<div className="equation-editor-matrix-section__heading">
-					Rows &amp; columns
+					{ __( 'Rows & columns', 'equation-editor' ) }
 				</div>
 
 				<div className="equation-editor-matrix-actions">
@@ -194,8 +200,10 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 			</div>
 
 			<p className="equation-editor-matrix-hint full-width">
-				Place the cursor inside a matrix to change its borders or add
-				and remove rows and columns.
+				{ __(
+					'Place the cursor inside a matrix to change its borders or add and remove rows and columns.',
+					'equation-editor'
+				) }
 			</p>
 		</div>
 	);

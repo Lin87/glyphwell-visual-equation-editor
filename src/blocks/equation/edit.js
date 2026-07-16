@@ -13,6 +13,7 @@ import {
 	useRef,
 	useState,
 } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 import { alignCenter, alignLeft, alignRight, math } from '@wordpress/icons';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
@@ -36,17 +37,17 @@ const KATEX_OPTIONS = {
 const ALIGNMENTS = [
 	{
 		icon: alignLeft,
-		label: 'Align left',
+		label: __( 'Align left', 'equation-editor' ),
 		value: 'left',
 	},
 	{
 		icon: alignCenter,
-		label: 'Align center',
+		label: __( 'Align center', 'equation-editor' ),
 		value: 'center',
 	},
 	{
 		icon: alignRight,
-		label: 'Align right',
+		label: __( 'Align right', 'equation-editor' ),
 		value: 'right',
 	},
 ];
@@ -81,7 +82,10 @@ function EquationPreview( { latex } ) {
 	if ( ! markup ) {
 		return (
 			<EmptyMessage>
-				The equation preview could not be rendered.
+				{ __(
+					'The equation preview could not be rendered.',
+					'equation-editor'
+				) }
 			</EmptyMessage>
 		);
 	}
@@ -172,7 +176,9 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	return (
 		<>
 			<BlockControls>
-				<ToolbarGroup label="Equation alignment">
+				<ToolbarGroup
+					label={ __( 'Equation alignment', 'equation-editor' ) }
+				>
 					{ ALIGNMENTS.map( ( alignment ) => (
 						<ToolbarButton
 							key={ alignment.value }
@@ -187,12 +193,17 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 			<div { ...blockProps }>
 				<div className="equation-editor-block__preview-wrapper">
-					<div className={`equation-editor-block__preview has-text-align-${ textAlign }`}>
+					<div
+						className={ `equation-editor-block__preview has-text-align-${ textAlign }` }
+					>
 						{ hasEquation ? (
 							<EquationPreview key={ latex } latex={ latex } />
 						) : (
 							<EmptyMessage>
-								Enter an equation to display it here.
+								{ __(
+									'Enter an equation to display it here.',
+									'equation-editor'
+								) }
 							</EmptyMessage>
 						) }
 					</div>
@@ -202,9 +213,11 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							icon={ math }
 							onClick={ openPopover }
 							variant="secondary"
-							disabled={isPopoverOpen}
+							disabled={ isPopoverOpen }
 						>
-							{ hasEquation ? 'Edit equation' : 'Enter equation' }
+							{ hasEquation
+								? __( 'Edit equation', 'equation-editor' )
+								: __( 'Enter equation', 'equation-editor' ) }
 						</Button>
 					</div>
 				</div>

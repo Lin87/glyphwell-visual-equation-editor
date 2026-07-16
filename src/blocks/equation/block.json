@@ -6,6 +6,7 @@
 	"title": "Equation",
 	"category": "text",
 	"description": "Create and display a mathematical equation.",
+	"textdomain": "equation-editor",
 	"attributes": {
 		"latex": {
 			"type": "string",
