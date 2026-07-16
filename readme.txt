@@ -64,10 +64,8 @@ Equation Editor renders every equation from its stored LaTeX using the locally b
 
 == Screenshots ==
 
-1. Standalone Equation block in the editor.
-2. Inline equation popover with MathLive editing.
-3. Tabbed symbol palette.
-4. Frontend equation rendering.
+1. Standalone Equation block with WYSIWYG editing.
+2. Inline equation popover with WYSIWYG editing.
 
 == Changelog ==
 
