@@ -30,19 +30,3 @@ require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/assets.php';
 require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/blocks.php';
 require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/inline-format.php';
 require_once EQUATION_EDITOR_PLUGIN_DIR . 'includes/sanitization.php';
-
-/**
- * Loads the plugin text domain so bundled translations (including the block's
- * title and description) resolve.
- *
- * Runs before block registration (priority 10) so the metadata strings are
- * translated when the block type is registered.
- */
-function equation_editor_load_textdomain(): void {
-	load_plugin_textdomain(
-		'equation-editor',
-		false,
-		dirname( plugin_basename( __FILE__ ) ) . '/languages'
-	);
-}
-add_action( 'init', 'equation_editor_load_textdomain', 5 );
