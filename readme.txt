@@ -1,6 +1,6 @@
 === Equation Editor ===
 Contributors: eslin87
-Tags: equation, math, latex, mathml, katex, block
+Tags: equation, math, latex, mathml, katex
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
@@ -8,23 +8,32 @@ Stable tag: 0.1.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
+Author beautiful math in the WordPress block editor with a WYSIWYG editor, symbol palette, matrix builder, and crisp rendering.
+
 == Description ==
 
-Equation Editor adds a MathLive-powered equation authoring experience to the WordPress block editor.
+Equation Editor brings professional math authoring straight into the WordPress block editor — no shortcodes, no external services, no fuss.
 
-Use the standalone Equation block for display equations, or add inline equations inside rich text fields such as Paragraph, Heading, List, and Table cells. Equations use LaTeX as the editable source and generated MathML as the stored output.
+Compose display equations with the standalone Equation block, or drop inline equations right into your Paragraphs, Headings, Lists, and Table cells. A MathLive-powered WYSIWYG field lets you type and click your way to polished math, while a tabbed symbol palette puts Greek letters, operators, relations, sets, arrows, and more just a tap away. Need a matrix? The built-in matrix builder lets you set the size, choose your brackets, and add or remove rows and columns visually.
 
-When WordPress core math display support is available, Equation Editor renders sanitized MathML directly. On older WordPress versions, the plugin uses a locally bundled KaTeX fallback for targeted frontend rendering.
+Prefer raw LaTeX? Flip on the Show LaTeX toggle to edit the source directly. Every equation is stored as clean LaTeX and rendered on the front end by the bundled KaTeX engine for fast, crisp math on every device, with sanitized MathML kept alongside for portability and accessibility.
+
+Everything ships locally. MathLive, KaTeX, fonts, styles, and scripts are all bundled with the plugin — nothing is ever loaded from a CDN or an external service, and no tracking is included. Front-end assets load only on pages that actually contain equations, keeping the rest of your site lean. Fully translation-ready with a bundled translation template.
 
 Features:
 
-* Standalone Equation block.
-* Inline equation rich-text format.
-* MathLive WYSIWYG equation editing.
-* Tabbed symbol palette for common math symbols.
+* Standalone Equation block for display equations.
+* Inline equation format for Paragraph, Heading, List, and Table content.
+* WYSIWYG editing — type or point-and-click.
+* Tabbed symbol palette: Basic, Greek, Operators, Relations & Sets, Arrows, Symbols, and Matrix.
+* Visual matrix builder with adjustable size, bracket styles, and row/column controls.
+* Show LaTeX toggle for editing the raw source.
 * Left, center, and right alignment for standalone equations.
-* Sanitized MathML output.
-* Local KaTeX fallback without CDN assets.
+* Fast, high-quality KaTeX rendering on the front end.
+* Sanitized MathML stored alongside each equation.
+* 100% local assets — no CDN, no external calls, no tracking.
+* Front-end assets load only on pages that contain equations.
+* Translation-ready with a bundled .pot template.
 
 Equation Editor does not add equation numbering, labels, cross-references, custom macros, tracking, or external service calls.
 
@@ -47,25 +56,20 @@ No. The Equation block and inline equation format remain separate from core math
 
 = What is stored as the editable equation source? =
 
-LaTeX is stored as the editable source. Generated MathML is stored as the display output.
+LaTeX is stored as the editable source. Generated MathML is stored alongside it for portability and accessibility.
 
-= What happens when WordPress does not provide built-in math display support? =
+= How are equations rendered on the front end? =
 
-Equation Editor enqueues its locally bundled KaTeX fallback only on frontend pages that need equation rendering.
+Equation Editor renders every equation from its stored LaTeX using the locally bundled KaTeX engine. The front-end assets load only on pages that contain equations.
 
 == Screenshots ==
 
 1. Standalone Equation block in the editor.
 2. Inline equation popover with MathLive editing.
 3. Tabbed symbol palette.
-4. Frontend equation rendering with fallback support.
+4. Frontend equation rendering.
 
 == Changelog ==
-
-= 0.1.0 =
-Initial release.
-
-== Upgrade Notice ==
 
 = 0.1.0 =
 Initial release.
