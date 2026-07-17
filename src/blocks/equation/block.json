@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "equation-editor/equation",
+	"name": "glyphwell/equation",
 	"version": "0.1.0",
 	"title": "Equation",
 	"category": "text",
 	"description": "Create and display a mathematical equation.",
-	"textdomain": "equation-editor",
+	"textdomain": "glyphwell",
 	"attributes": {
 		"latex": {
 			"type": "string",

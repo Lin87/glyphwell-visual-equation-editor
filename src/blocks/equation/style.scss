@@ -1,27 +1,27 @@
-.wp-block-equation-editor-equation.equation-editor-equation {
+.wp-block-glyphwell-equation.glyphwell-equation {
 	display: flex;
 	width: 100%;
 	margin-block: 1em;
 }
 
-.wp-block-equation-editor-equation.has-text-align-left {
+.wp-block-glyphwell-equation.has-text-align-left {
 	justify-content: flex-start;
 }
 
-.wp-block-equation-editor-equation.has-text-align-center {
+.wp-block-glyphwell-equation.has-text-align-center {
 	justify-content: center;
 }
 
-.wp-block-equation-editor-equation.has-text-align-right {
+.wp-block-glyphwell-equation.has-text-align-right {
 	justify-content: flex-end;
 }
 
-.equation-editor__mathml {
+.glyphwell__mathml {
 	display: inline-block;
 	font-size: 1.25rem;
 }
 
-.equation-editor__fallback {
+.glyphwell__fallback {
 	font-size: 1.25rem;
 	white-space: pre-wrap;
 }

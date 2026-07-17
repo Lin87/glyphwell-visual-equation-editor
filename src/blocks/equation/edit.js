@@ -37,17 +37,17 @@ const KATEX_OPTIONS = {
 const ALIGNMENTS = [
 	{
 		icon: alignLeft,
-		label: __( 'Align left', 'equation-editor' ),
+		label: __( 'Align left', 'glyphwell' ),
 		value: 'left',
 	},
 	{
 		icon: alignCenter,
-		label: __( 'Align center', 'equation-editor' ),
+		label: __( 'Align center', 'glyphwell' ),
 		value: 'center',
 	},
 	{
 		icon: alignRight,
-		label: __( 'Align right', 'equation-editor' ),
+		label: __( 'Align right', 'glyphwell' ),
 		value: 'right',
 	},
 ];
@@ -60,7 +60,7 @@ const ALIGNMENTS = [
  * @return {Element} The placeholder paragraph.
  */
 function EmptyMessage( { children } ) {
-	return <p className="equation-editor-block__empty-message">{ children }</p>;
+	return <p className="glyphwell-block__empty-message">{ children }</p>;
 }
 
 /**
@@ -84,14 +84,14 @@ function EquationPreview( { latex } ) {
 			<EmptyMessage>
 				{ __(
 					'The equation preview could not be rendered.',
-					'equation-editor'
+					'glyphwell'
 				) }
 			</EmptyMessage>
 		);
 	}
 
 	return (
-		<RawHTML className="equation-editor-block__preview-math">
+		<RawHTML className="glyphwell-block__preview-math">
 			{ markup }
 		</RawHTML>
 	);
@@ -118,7 +118,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const hasEquation = Boolean( latex.trim() );
 
 	const blockProps = useBlockProps( {
-		className: 'equation-editor-block',
+		className: 'glyphwell-block',
 		ref: blockRef,
 	} );
 
@@ -177,7 +177,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		<>
 			<BlockControls>
 				<ToolbarGroup
-					label={ __( 'Equation alignment', 'equation-editor' ) }
+					label={ __( 'Equation alignment', 'glyphwell' ) }
 				>
 					{ ALIGNMENTS.map( ( alignment ) => (
 						<ToolbarButton
@@ -192,9 +192,9 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 			</BlockControls>
 
 			<div { ...blockProps }>
-				<div className="equation-editor-block__preview-wrapper">
+				<div className="glyphwell-block__preview-wrapper">
 					<div
-						className={ `equation-editor-block__preview has-text-align-${ textAlign }` }
+						className={ `glyphwell-block__preview has-text-align-${ textAlign }` }
 					>
 						{ hasEquation ? (
 							<EquationPreview key={ latex } latex={ latex } />
@@ -202,22 +202,22 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							<EmptyMessage>
 								{ __(
 									'Enter an equation to display it here.',
-									'equation-editor'
+									'glyphwell'
 								) }
 							</EmptyMessage>
 						) }
 					</div>
-					<div class="equation-editor-block__preview-actions">
+					<div class="glyphwell-block__preview-actions">
 						<Button
-							className="equation-editor-block__edit-button"
+							className="glyphwell-block__edit-button"
 							icon={ math }
 							onClick={ openPopover }
 							variant="secondary"
 							disabled={ isPopoverOpen }
 						>
 							{ hasEquation
-								? __( 'Edit equation', 'equation-editor' )
-								: __( 'Enter equation', 'equation-editor' ) }
+								? __( 'Edit equation', 'glyphwell' )
+								: __( 'Enter equation', 'glyphwell' ) }
 						</Button>
 					</div>
 				</div>

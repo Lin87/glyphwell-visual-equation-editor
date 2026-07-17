@@ -34,7 +34,7 @@ export default function SymbolPalette( {
 	);
 
 	return (
-		<div className="equation-editor-symbol-palette">
+		<div className="glyphwell-symbol-palette">
 			<SymbolTabs
 				activeGroupId={ activeGroup.id }
 				groups={ SYMBOL_GROUPS }
@@ -42,9 +42,9 @@ export default function SymbolPalette( {
 			/>
 
 			<div
-				aria-labelledby={ `equation-editor-symbol-tab-${ activeGroup.id }` }
-				className="equation-editor-symbol-panel"
-				id={ `equation-editor-symbol-panel-${ activeGroup.id }` }
+				aria-labelledby={ `glyphwell-symbol-tab-${ activeGroup.id }` }
+				className="glyphwell-symbol-panel"
+				id={ `glyphwell-symbol-panel-${ activeGroup.id }` }
 				role="tabpanel"
 			>
 				{ activeGroup.type === 'matrix' ? (
@@ -53,7 +53,7 @@ export default function SymbolPalette( {
 						onRunCommand={ onRunCommand }
 					/>
 				) : (
-					<div className="equation-editor-symbol-grid">
+					<div className="glyphwell-symbol-grid">
 						{ activeGroup.symbols.map( ( symbol ) => (
 							<SymbolButton
 								key={ symbol.id }

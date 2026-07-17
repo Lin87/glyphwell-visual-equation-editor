@@ -116,7 +116,7 @@ const warmKatexFonts = () => {
 			try {
 				document.fonts.load( `${ variant }10px "${ family }"` );
 			} catch {
-				// Ignore: an unparseable descriptor just skips that face.
+				// Ignore: an unparsable descriptor just skips that face.
 			}
 		} );
 	} );
@@ -145,7 +145,7 @@ export default function SymbolButton( { onInsert, symbol } ) {
 		<button
 			type="button"
 			aria-label={ symbol.ariaLabel }
-			className="equation-editor-symbol-button"
+			className="glyphwell-symbol-button"
 			onClick={ () => onInsert( symbol ) }
 		>
 			{ markup ? (

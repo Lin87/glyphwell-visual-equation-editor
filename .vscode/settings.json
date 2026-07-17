@@ -1,8 +1,20 @@
 {
     "cSpell.words": [
+        "bmatrix",
+        "Caligraphic",
+        "colorbox",
+        "glyphwell",
+        "insertable",
         "katex",
+        "largeop",
         "Mathfield",
-        "mathlive"
+        "mathlive",
+        "MATHML",
+        "movablelimits",
+        "pmatrix",
+        "renderable",
+        "textcolor",
+        "vmatrix"
     ],
     "cSpell.ignorePaths": [
         "package-lock.json",

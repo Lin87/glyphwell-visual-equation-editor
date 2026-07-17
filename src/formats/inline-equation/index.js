@@ -120,9 +120,9 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 			<RichTextToolbarButton
 				icon={ math }
 				isPressed={ Boolean( selectedEquation ) }
-				label={ __( 'Equation', 'equation-editor' ) }
+				label={ __( 'Equation', 'glyphwell' ) }
 				onClick={ openPopover }
-				title={ __( 'Equation', 'equation-editor' ) }
+				title={ __( 'Equation', 'glyphwell' ) }
 			/>
 
 			{ popoverState && (
@@ -141,7 +141,7 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 }
 
 registerFormatType( INLINE_FORMAT_NAME, {
-	title: __( 'Equation', 'equation-editor' ),
+	title: __( 'Equation', 'glyphwell' ),
 	tagName: 'math',
 	className: INLINE_CLASS,
 	contentEditable: false,

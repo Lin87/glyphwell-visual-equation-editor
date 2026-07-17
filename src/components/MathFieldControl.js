@@ -264,9 +264,9 @@ function MathFieldControl(
 
 		mathfield.setAttribute(
 			'aria-label',
-			__( 'Equation editor', 'equation-editor' )
+			__( 'Equation editor', 'glyphwell' )
 		);
-		mathfield.className = [ 'equation-editor-math-field', className ]
+		mathfield.className = [ 'glyphwell-math-field', className ]
 			.filter( Boolean )
 			.join( ' ' );
 
@@ -392,7 +392,7 @@ function MathFieldControl(
 	return (
 		<div
 			ref={ containerRef }
-			className="equation-editor-math-field-container"
+			className="glyphwell-math-field-container"
 		/>
 	);
 }

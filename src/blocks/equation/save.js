@@ -23,14 +23,14 @@ export default function save( { attributes } ) {
 	}
 
 	const blockProps = useBlockProps.save( {
-		className: `equation-editor-equation has-text-align-${ textAlign }`,
+		className: `glyphwell-equation has-text-align-${ textAlign }`,
 	} );
 
 	return (
 		<figure { ...blockProps }>
 			<math
 				className={ MATHML_CLASS }
-				data-equation-editor-latex={ latex }
+				data-glyphwell-latex={ latex }
 				display="block"
 			>
 				<RawHTML>{ getMathMLInnerHTML( mathML ) }</RawHTML>

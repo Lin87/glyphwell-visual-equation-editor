@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Generates languages/equation-editor.pot — the translation template for the
+ * Generates languages/glyphwell.pot — the translation template for the
  * plugin's user-facing strings.
  *
  * All translatable strings live in the JS/JSX under src/ (wrapped in the
@@ -11,7 +11,7 @@
  * only reads code, not metadata JSON.
  *
  * For a WP.org-grade catalog that also scans PHP in one pass, WP-CLI's
- * `wp i18n make-pot . languages/equation-editor.pot --domain=equation-editor`
+ * `wp i18n make-pot . languages/glyphwell.pot --domain=glyphwell`
  * is the canonical alternative where WP-CLI is available.
  *
  * Usage: `npm run make-pot`.
@@ -22,7 +22,7 @@ const path = require( 'path' );
 const { GettextExtractor, JsExtractors } = require( 'gettext-extractor' );
 
 const ROOT = path.resolve( __dirname, '..' );
-const TEXT_DOMAIN = 'equation-editor';
+const TEXT_DOMAIN = 'glyphwell';
 const OUTPUT = path.join( ROOT, 'languages', `${ TEXT_DOMAIN }.pot` );
 const BLOCK_JSON = path.join( ROOT, 'src', 'blocks', 'equation', 'block.json' );
 
@@ -78,7 +78,7 @@ for ( const key of [ 'title', 'description' ] ) {
 }
 
 const headers = {
-	'Project-Id-Version': 'Equation Editor 0.1.0',
+	'Project-Id-Version': 'Glyphwell - Visual Equation Editor 0.1.0',
 	'Report-Msgid-Bugs-To': 'https://profiles.wordpress.org/eslin87/',
 	'MIME-Version': '1.0',
 	'Content-Type': 'text/plain; charset=UTF-8',

@@ -78,15 +78,15 @@ export default function EquationPopover( {
 	return (
 		<Popover
 			anchor={ anchor }
-			className="equation-editor-popover"
+			className="glyphwell-popover"
 			focusOnMount={ true }
 			onClose={ onClose }
 			onFocusOutside={ () => void {} }
 			resize={ false }
 			shift={ true }
 		>
-			<div className="equation-editor-popover__content">
-				<div className="equation-editor-popover__field">
+			<div className="glyphwell-popover__content">
+				<div className="glyphwell-popover__field">
 					<MathFieldControl
 						ref={ mathfieldRef }
 						latex={ latex }
@@ -102,31 +102,31 @@ export default function EquationPopover( {
 				/>
 
 				<ToggleControl
-					className="equation-editor-popover__latex-toggle"
-					label={ __( 'Show LaTeX', 'equation-editor' ) }
+					className="glyphwell-popover__latex-toggle"
+					label={ __( 'Show LaTeX', 'glyphwell' ) }
 					checked={ showLatex }
 					onChange={ setShowLatex }
 					__nextHasNoMarginBottom
 				/>
 
 				<TextareaControl
-					className={ `equation-editor-popover__latex${
+					className={ `glyphwell-popover__latex${
 						showLatex
 							? ''
-							: ' equation-editor-popover__latex--hidden'
+							: ' glyphwell-popover__latex--hidden'
 					}` }
-					label={ __( 'LaTeX', 'equation-editor' ) }
+					label={ __( 'LaTeX', 'glyphwell' ) }
 					value={ latex }
 					onChange={ setLatex }
 					readOnly={ ! showLatex }
 					__nextHasNoMarginBottom
 				/>
 
-				<div className="equation-editor-popover__actions">
+				<div className="glyphwell-popover__actions">
 					<Button variant="primary" onClick={ applyEquation }>
 						{ isEditing
-							? __( 'Update', 'equation-editor' )
-							: __( 'Apply', 'equation-editor' ) }
+							? __( 'Update', 'glyphwell' )
+							: __( 'Apply', 'glyphwell' ) }
 					</Button>
 
 					{ isEditing && (
@@ -135,12 +135,12 @@ export default function EquationPopover( {
 							variant="secondary"
 							onClick={ onRemove }
 						>
-							{ __( 'Remove', 'equation-editor' ) }
+							{ __( 'Remove', 'glyphwell' ) }
 						</Button>
 					) }
 
 					<Button variant="tertiary" onClick={ onClose }>
-						{ __( 'Cancel', 'equation-editor' ) }
+						{ __( 'Cancel', 'glyphwell' ) }
 					</Button>
 				</div>
 			</div>

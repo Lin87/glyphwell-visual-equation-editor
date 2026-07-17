@@ -1,21 +1,21 @@
-.equation-editor-popover {
+.glyphwell-popover {
 
 	.components-popover__content {
 		max-height: min(650px, calc(100vh - 80px));
 		overflow-y: auto;
 
-		.equation-editor-popover__content {
+		.glyphwell-popover__content {
 			padding: 16px;
 
-			.equation-editor-popover__field {
+			.glyphwell-popover__field {
 
-				.equation-editor-math-field-container {
+				.glyphwell-math-field-container {
 					display: flex;
 					justify-content: flex-start;
 					width: 100%;
 				}
 
-				.equation-editor-math-field {
+				.glyphwell-math-field {
 					--caret-color: hsl(var(--hue, 212), 40%, 49%);
 					--composition-background-color: #fff1c2;
 					--composition-text-color: #000;
@@ -45,19 +45,19 @@
 				}
 			}
 
-			.equation-editor-symbol-palette {
+			.glyphwell-symbol-palette {
 				margin-block-start: 14px;
 				margin-block-end: 14px;
 				text-align: initial;
 
-				.equation-editor-symbol-tabs {
+				.glyphwell-symbol-tabs {
 					border-block-end: 1px solid #dcdcde;
 					display: flex;
 					flex-wrap: nowrap;
 					gap: 8px;
 					padding-inline-start: 0;
 
-					.equation-editor-symbol-tab {
+					.glyphwell-symbol-tab {
 						appearance: none;
 						background: transparent;
 						border: 0;
@@ -93,17 +93,17 @@
 				}
 			}
 
-			.equation-editor-symbol-panel {
+			.glyphwell-symbol-panel {
 				padding-block-start: 12px;
 
-				.equation-editor-matrix-panel {
+				.glyphwell-matrix-panel {
 					display: flex;
 					flex-direction: row;
 					flex-wrap: wrap;
 					gap: 16px;
 					padding: 0 16px;
 
-					.equation-editor-matrix-section__heading {
+					.glyphwell-matrix-section__heading {
 						color: #50575e;
 						font-size: 11px;
 						font-weight: 600;
@@ -112,12 +112,12 @@
 						text-transform: uppercase;
 					}
 
-					.equation-editor-matrix-size-grid {
+					.glyphwell-matrix-size-grid {
 						display: grid;
 						gap: 3px;
 						inline-size: fit-content;
 
-						.equation-editor-matrix-size-cell {
+						.glyphwell-matrix-size-cell {
 							appearance: none;
 							background: #fff;
 							border: 1px solid #c3c4c7;
@@ -140,18 +140,18 @@
 						}
 					}
 
-					.equation-editor-matrix-size-label {
+					.glyphwell-matrix-size-label {
 						color: #1e1e1e;
 						font-size: 13px;
 						margin-block-start: 8px;
 					}
 
-					.equation-editor-matrix-borders {
+					.glyphwell-matrix-borders {
 						display: flex;
 						flex-wrap: wrap;
 						gap: 4px;
 
-						.equation-editor-matrix-border-button {
+						.glyphwell-matrix-border-button {
 							align-items: center;
 							background-color: transparent;
 							border: 1px solid transparent;
@@ -183,12 +183,12 @@
 						}
 					}
 
-					.equation-editor-matrix-actions {
+					.glyphwell-matrix-actions {
 						display: flex;
 						flex-wrap: wrap;
 						gap: 6px;
 
-						.equation-editor-matrix-action-button {
+						.glyphwell-matrix-action-button {
 							appearance: none;
 							background: #f6f7f7;
 							border: 1px solid #dcdcde;
@@ -221,7 +221,7 @@
 						}
 					}
 
-					.equation-editor-matrix-hint {
+					.glyphwell-matrix-hint {
 						color: #757575;
 						font-size: 12px;
 						margin: 0;
@@ -232,13 +232,13 @@
 					}
 				}
 
-				.equation-editor-symbol-grid {
+				.glyphwell-symbol-grid {
 					display: grid;
 					gap: 0px;
 					grid-template-columns: repeat(auto-fill, 50px);
 					justify-content: center;
 
-					.equation-editor-symbol-button {
+					.glyphwell-symbol-button {
 						display: flex;
 						align-items: center;
 						justify-content: center;
@@ -273,19 +273,19 @@
 				}
 			}
 
-			.equation-editor-popover__latex {
+			.glyphwell-popover__latex {
 				margin-block-start: 16px;
 
 				textarea {
 					font-family: Consolas, Monaco, monospace;
 				}
 
-				&.equation-editor-popover__latex--hidden {
+				&.glyphwell-popover__latex--hidden {
 					display: none;
 				}
 			}
 
-			.equation-editor-popover__actions {
+			.glyphwell-popover__actions {
 				display: flex;
 				flex-wrap: wrap;
 				gap: 8px;

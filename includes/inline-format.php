@@ -2,7 +2,7 @@
 /**
  * Inline equation format registration.
  *
- * @package EquationEditor
+ * @package Glyphwell
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Enqueues the inline equation rich-text format assets in the block editor.
  */
-function equation_editor_enqueue_inline_format_assets(): void {
-	equation_editor_load_asset(
-		EQUATION_EDITOR_INLINE_FORMAT_HANDLE,
+function glyphwell_enqueue_inline_format_assets(): void {
+	glyphwell_load_asset(
+		GLYPHWELL_INLINE_FORMAT_HANDLE,
 		'build/formats/inline-equation/',
 		'index',
 		false
@@ -22,9 +22,10 @@ function equation_editor_enqueue_inline_format_assets(): void {
 
 	// Load the JS translations for the inline format's editor bundle.
 	wp_set_script_translations(
-		EQUATION_EDITOR_INLINE_FORMAT_HANDLE,
-		'equation-editor',
-		EQUATION_EDITOR_PLUGIN_DIR . 'languages'
+		GLYPHWELL_INLINE_FORMAT_HANDLE,
+		'glyphwell',
+		GLYPHWELL_PLUGIN_DIR . 'languages'
 	);
 }
-add_action( 'enqueue_block_editor_assets', 'equation_editor_enqueue_inline_format_assets' );
+
+add_action( 'enqueue_block_editor_assets', 'glyphwell_enqueue_inline_format_assets' );

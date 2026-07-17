@@ -2,7 +2,7 @@
 /**
  * Block registration.
  *
- * @package EquationEditor
+ * @package Glyphwell
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,8 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Registers the equation block when its built metadata is available.
  */
-function equation_editor_register_blocks(): void {
-	$block_path = EQUATION_EDITOR_PLUGIN_DIR . 'build/blocks/equation';
+function glyphwell_register_blocks(): void {
+	$block_path = GLYPHWELL_PLUGIN_DIR . 'build/blocks/equation';
 
 	if ( ! file_exists( $block_path . '/block.json' ) ) {
 		return;
@@ -33,7 +33,8 @@ function equation_editor_register_blocks(): void {
 		: array_filter( (array) ( $block_type->editor_script ?? array() ) ); // WP 6.0 fallback.
 
 	foreach ( $handles as $handle ) {
-		wp_set_script_translations( $handle, 'equation-editor', EQUATION_EDITOR_PLUGIN_DIR . 'languages' );
+		wp_set_script_translations( $handle, 'glyphwell', GLYPHWELL_PLUGIN_DIR . 'languages' );
 	}
 }
-add_action( 'init', 'equation_editor_register_blocks' );
+
+add_action( 'init', 'glyphwell_register_blocks' );

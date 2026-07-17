@@ -1,11 +1,11 @@
 @use "../../components/editor";
 
-.wp-block-equation-editor-equation {
+.wp-block-glyphwell-equation {
 
 	$gray-color: #8c8f94;
 	$spacing: 16px;
 
-	.equation-editor-block__preview-wrapper {
+	.glyphwell-block__preview-wrapper {
 
 		display: flex;
 		flex-direction: column;
@@ -14,7 +14,7 @@
 		border-radius: 6px;
 		padding: $spacing;
 
-		.equation-editor-block__preview {
+		.glyphwell-block__preview {
 
 			display: flex;
 			align-items: center;
@@ -22,7 +22,7 @@
 			text-align: initial;
 			width: 100%;
 
-			.equation-editor-block__preview-math {
+			.glyphwell-block__preview-math {
 
 				display: block;
 				max-width: 100%;
@@ -30,7 +30,7 @@
 
 			}
 
-			.equation-editor-block__empty-message {
+			.glyphwell-block__empty-message {
 				color: $gray-color;
 				margin: 0;
 			}
@@ -49,13 +49,13 @@
 
 		}
 
-		.equation-editor-block__preview-actions {
+		.glyphwell-block__preview-actions {
 			text-align: center;
 		}
 
 	}
 
-	&.equation-editor-block {
+	&.glyphwell-block {
 		margin-block: 1em;
 	}
 

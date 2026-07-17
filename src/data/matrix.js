@@ -36,7 +36,7 @@ export const buildMatrixLatex = ( rows, cols ) => {
 /**
  * Border (delimiter) options for the matrix at the caret. Each maps to a
  * MathLive matrix environment applied via the `setEnvironment` command, which
- * retags the existing matrix in place without re-inserting it.
+ * re-tags the existing matrix in place without re-inserting it.
  *
  * `latex` is a KaTeX-renderable preview glyph; `environment` is the value
  * passed to `setEnvironment`.
@@ -48,37 +48,37 @@ export const BORDER_OPTIONS = [
 		id: 'no-border',
 		latex: '\\ddots',
 		environment: 'matrix',
-		ariaLabel: __( 'No border', 'equation-editor' ),
+		ariaLabel: __( 'No border', 'glyphwell' ),
 	},
 	{
 		id: 'parentheses',
 		latex: '\\left(\\ddots\\right)',
 		environment: 'pmatrix',
-		ariaLabel: __( 'Parentheses border', 'equation-editor' ),
+		ariaLabel: __( 'Parentheses border', 'glyphwell' ),
 	},
 	{
 		id: 'brackets',
 		latex: '\\left[\\ddots\\right]',
 		environment: 'bmatrix',
-		ariaLabel: __( 'Square bracket border', 'equation-editor' ),
+		ariaLabel: __( 'Square bracket border', 'glyphwell' ),
 	},
 	{
 		id: 'braces',
 		latex: '\\left\\lbrace\\ddots\\right\\rbrace',
 		environment: 'Bmatrix',
-		ariaLabel: __( 'Curly brace border', 'equation-editor' ),
+		ariaLabel: __( 'Curly brace border', 'glyphwell' ),
 	},
 	{
 		id: 'bar',
 		latex: '\\left\\vert\\ddots\\right\\vert',
 		environment: 'vmatrix',
-		ariaLabel: __( 'Single bar border', 'equation-editor' ),
+		ariaLabel: __( 'Single bar border', 'glyphwell' ),
 	},
 	{
 		id: 'double-bar',
 		latex: '\\left\\Vert\\ddots\\right\\Vert',
 		environment: 'Vmatrix',
-		ariaLabel: __( 'Double bar border', 'equation-editor' ),
+		ariaLabel: __( 'Double bar border', 'glyphwell' ),
 	},
 ];
 
@@ -92,40 +92,40 @@ export const BORDER_OPTIONS = [
 export const MATRIX_ACTIONS = [
 	{
 		id: 'add-row-above',
-		label: __( 'Add Row above', 'equation-editor' ),
+		label: __( 'Add Row above', 'glyphwell' ),
 		command: 'addRowBefore',
-		ariaLabel: __( 'Add row above', 'equation-editor' ),
+		ariaLabel: __( 'Add row above', 'glyphwell' ),
 	},
 	{
 		id: 'add-row-below',
-		label: __( 'Add Row below', 'equation-editor' ),
+		label: __( 'Add Row below', 'glyphwell' ),
 		command: 'addRowAfter',
-		ariaLabel: __( 'Add row below', 'equation-editor' ),
+		ariaLabel: __( 'Add row below', 'glyphwell' ),
 	},
 	{
 		id: 'add-column-before',
-		label: __( 'Add Column left', 'equation-editor' ),
+		label: __( 'Add Column left', 'glyphwell' ),
 		command: 'addColumnBefore',
-		ariaLabel: __( 'Add column to the left', 'equation-editor' ),
+		ariaLabel: __( 'Add column to the left', 'glyphwell' ),
 	},
 	{
 		id: 'add-column-after',
-		label: __( 'Add Column right', 'equation-editor' ),
+		label: __( 'Add Column right', 'glyphwell' ),
 		command: 'addColumnAfter',
-		ariaLabel: __( 'Add column to the right', 'equation-editor' ),
+		ariaLabel: __( 'Add column to the right', 'glyphwell' ),
 	},
 	{
 		id: 'delete-row',
-		label: __( 'Delete row', 'equation-editor' ),
+		label: __( 'Delete row', 'glyphwell' ),
 		command: 'removeRow',
-		ariaLabel: __( 'Delete current row', 'equation-editor' ),
+		ariaLabel: __( 'Delete current row', 'glyphwell' ),
 		destructive: true,
 	},
 	{
 		id: 'delete-column',
-		label: __( 'Delete column', 'equation-editor' ),
+		label: __( 'Delete column', 'glyphwell' ),
 		command: 'removeColumn',
-		ariaLabel: __( 'Delete current column', 'equation-editor' ),
+		ariaLabel: __( 'Delete current column', 'glyphwell' ),
 		destructive: true,
 	},
 ];

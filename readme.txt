@@ -1,4 +1,4 @@
-=== Equation Editor ===
+=== Glyphwell - Visual Equation Editor ===
 Contributors: eslin87
 Tags: equation, math, latex, mathml, katex
 Requires at least: 6.0
@@ -12,7 +12,7 @@ Author beautiful math in the WordPress block editor with a WYSIWYG editor, symbo
 
 == Description ==
 
-Equation Editor brings professional math authoring straight into the WordPress block editor — no shortcodes, no external services, no fuss.
+Glyphwell brings professional math authoring straight into the WordPress block editor — no shortcodes, no external services, no fuss.
 
 Compose display equations with the standalone Equation block, or drop inline equations right into your Paragraphs, Headings, Lists, and Table cells. A MathLive-powered WYSIWYG field lets you type and click your way to polished math, while a tabbed symbol palette puts Greek letters, operators, relations, sets, arrows, and more just a tap away. Need a matrix? The built-in matrix builder lets you set the size, choose your brackets, and add or remove rows and columns visually.
 
@@ -35,13 +35,13 @@ Features:
 * Front-end assets load only on pages that contain equations.
 * Translation-ready with a bundled .pot template.
 
-Equation Editor does not add equation numbering, labels, cross-references, custom macros, tracking, or external service calls.
+Glyphwell does not add equation numbering, labels, cross-references, custom macros, tracking, or external service calls.
 
 == Installation ==
 
-1. Upload the plugin folder to `/wp-content/plugins/equation-editor/`.
+1. Upload the plugin folder to `/wp-content/plugins/glyphwell/`.
 2. If installing from source, run `npm install` and `npm run build`.
-3. Activate Equation Editor from the Plugins screen in WordPress.
+3. Activate Glyphwell from the Plugins screen in WordPress.
 4. Insert the Equation block or use the Equation toolbar button in supported rich text fields.
 
 == Frequently Asked Questions ==
@@ -60,7 +60,7 @@ LaTeX is stored as the editable source. Generated MathML is stored alongside it 
 
 = How are equations rendered on the front end? =
 
-Equation Editor renders every equation from its stored LaTeX using the locally bundled KaTeX engine. The front-end assets load only on pages that contain equations.
+Glyphwell renders every equation from its stored LaTeX using the locally bundled KaTeX engine. The front-end assets load only on pages that contain equations.
 
 == Screenshots ==
 

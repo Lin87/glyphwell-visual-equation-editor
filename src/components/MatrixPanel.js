@@ -51,11 +51,11 @@ function SizeCell( { row, col, active, onActivate, onSelect } ) {
 			type="button"
 			aria-label={ sprintf(
 				/* translators: 1: number of rows, 2: number of columns. */
-				__( 'Insert %1$d by %2$d matrix', 'equation-editor' ),
+				__( 'Insert %1$d by %2$d matrix', 'glyphwell' ),
 				row,
 				col
 			) }
-			className={ `equation-editor-matrix-size-cell${
+			className={ `glyphwell-matrix-size-cell${
 				active ? ' is-active' : ''
 			}` }
 			onClick={ () => onSelect( { rows: row, cols: col } ) }
@@ -100,17 +100,17 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 	const sizeLabel =
 		hovered.rows > 0
 			? `${ hovered.rows } × ${ hovered.cols }`
-			: __( 'Pick a size', 'equation-editor' );
+			: __( 'Pick a size', 'glyphwell' );
 
 	return (
-		<div className="equation-editor-matrix-panel">
-			<div className="equation-editor-matrix-section">
-				<div className="equation-editor-matrix-section__heading">
-					{ __( 'Insert matrix', 'equation-editor' ) }
+		<div className="glyphwell-matrix-panel">
+			<div className="glyphwell-matrix-section">
+				<div className="glyphwell-matrix-section__heading">
+					{ __( 'Insert matrix', 'glyphwell' ) }
 				</div>
 
 				<div
-					className="equation-editor-matrix-size-grid"
+					className="glyphwell-matrix-size-grid"
 					onMouseLeave={ () => setHovered( { rows: 0, cols: 0 } ) }
 					style={ {
 						gridTemplateColumns: `repeat(${ MATRIX_MAX_SIZE }, 1fr)`,
@@ -138,24 +138,24 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 
 				<div
 					aria-hidden="true"
-					className="equation-editor-matrix-size-label"
+					className="glyphwell-matrix-size-label"
 				>
 					{ sizeLabel }
 				</div>
 			</div>
 
-			<div className="equation-editor-matrix-section">
-				<div className="equation-editor-matrix-section__heading">
-					{ __( 'Borders', 'equation-editor' ) }
+			<div className="glyphwell-matrix-section">
+				<div className="glyphwell-matrix-section__heading">
+					{ __( 'Borders', 'glyphwell' ) }
 				</div>
 
-				<div className="equation-editor-matrix-borders">
+				<div className="glyphwell-matrix-borders">
 					{ borderGlyphs.map( ( option ) => (
 						<button
 							key={ option.id }
 							type="button"
 							aria-label={ option.ariaLabel }
-							className="equation-editor-matrix-border-button"
+							className="glyphwell-matrix-border-button"
 							onClick={ () =>
 								onRunCommand( [
 									'setEnvironment',
@@ -177,18 +177,18 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 				</div>
 			</div>
 
-			<div className="equation-editor-matrix-section full-width">
-				<div className="equation-editor-matrix-section__heading">
-					{ __( 'Rows & columns', 'equation-editor' ) }
+			<div className="glyphwell-matrix-section full-width">
+				<div className="glyphwell-matrix-section__heading">
+					{ __( 'Rows & columns', 'glyphwell' ) }
 				</div>
 
-				<div className="equation-editor-matrix-actions">
+				<div className="glyphwell-matrix-actions">
 					{ MATRIX_ACTIONS.map( ( action ) => (
 						<button
 							key={ action.id }
 							type="button"
 							aria-label={ action.ariaLabel }
-							className={ `equation-editor-matrix-action-button${
+							className={ `glyphwell-matrix-action-button${
 								action.destructive ? ' is-destructive' : ''
 							}` }
 							onClick={ () => onRunCommand( action.command ) }
@@ -199,10 +199,10 @@ export default function MatrixPanel( { onInsertLatex, onRunCommand } ) {
 				</div>
 			</div>
 
-			<p className="equation-editor-matrix-hint full-width">
+			<p className="glyphwell-matrix-hint full-width">
 				{ __(
 					'Place the cursor inside a matrix to change its borders or add and remove rows and columns.',
-					'equation-editor'
+					'glyphwell'
 				) }
 			</p>
 		</div>
