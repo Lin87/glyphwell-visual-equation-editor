@@ -1,3 +1,0 @@
-import './frontend.scss';
-
-export {};

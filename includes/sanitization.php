@@ -2,7 +2,7 @@
 /**
  * Sanitization helpers.
  *
- * @package EquationEditor
+ * @package Glyphwell
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return array<string,array<string,bool>>
  */
-function equation_editor_allowed_mathml_tags(): array {
+function glyphwell_allowed_mathml_tags(): array {
 	$common_attributes = array(
 		'class'        => true,
 		'displaystyle' => true,
@@ -117,8 +117,8 @@ function equation_editor_allowed_mathml_tags(): array {
  * @param string $mathml MathML markup.
  * @return string Sanitized MathML markup.
  */
-function equation_editor_sanitize_mathml( string $mathml ): string {
-	return wp_kses( $mathml, equation_editor_allowed_mathml_tags() );
+function glyphwell_sanitize_mathml( string $mathml ): string {
+	return wp_kses( $mathml, glyphwell_allowed_mathml_tags() );
 }
 
 /**
@@ -128,19 +128,23 @@ function equation_editor_sanitize_mathml( string $mathml ): string {
  * @param string                           $context KSES context.
  * @return array<string,array<string,bool>> Filtered allowed tags.
  */
-function equation_editor_extend_allowed_post_tags( array $tags, string $context ): array {
+function glyphwell_extend_allowed_post_tags( array $tags, string $context ): array {
 	if ( 'post' !== $context ) {
 		return $tags;
 	}
 
-	foreach ( equation_editor_allowed_mathml_tags() as $tag_name => $attributes ) {
+	foreach ( glyphwell_allowed_mathml_tags() as $tag_name => $attributes ) {
+		// Merge with any attributes WordPress already allows for the tag so we
+		// extend, rather than overwrite, the existing rules.
 		$tags[ $tag_name ] = isset( $tags[ $tag_name ] )
 			? array_merge( $tags[ $tag_name ], $attributes )
 			: $attributes;
 	}
 
-	$tags['math']['data-equation-editor-latex'] = true;
+	// Allow the LaTeX source attribute the KaTeX renderer reads from.
+	$tags['math'][ GLYPHWELL_LATEX_ATTR ] = true;
 
 	return $tags;
 }
-add_filter( 'wp_kses_allowed_html', 'equation_editor_extend_allowed_post_tags', 10, 2 );
+
+add_filter( 'wp_kses_allowed_html', 'glyphwell_extend_allowed_post_tags', 10, 2 );

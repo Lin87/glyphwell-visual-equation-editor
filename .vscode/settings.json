@@ -1,7 +1,29 @@
 {
     "cSpell.words": [
+        "bmatrix",
+        "Caligraphic",
+        "colorbox",
+        "glyphwell",
+        "insertable",
         "katex",
-        "mathfield",
-        "mathlive"
+        "largeop",
+        "Mathfield",
+        "mathlive",
+        "MATHML",
+        "movablelimits",
+        "pmatrix",
+        "renderable",
+        "textcolor",
+        "vmatrix"
+    ],
+    "cSpell.ignorePaths": [
+        "package-lock.json",
+        "node_modules",
+        "vscode-extension",
+        ".git/{info,lfs,logs,refs,objects}/**",
+        ".git/{index,*refs,*HEAD}",
+        ".vscode",
+        ".vscode-insiders",
+        "src/data/symbols.js"
     ]
 }

@@ -1,0 +1,297 @@
+.glyphwell-popover {
+
+	.components-popover__content {
+		max-height: min(650px, calc(100vh - 80px));
+		overflow-y: auto;
+
+		.glyphwell-popover__content {
+			padding: 16px;
+
+			.glyphwell-popover__field {
+
+				.glyphwell-math-field-container {
+					display: flex;
+					justify-content: flex-start;
+					width: 100%;
+				}
+
+				.glyphwell-math-field {
+					--caret-color: hsl(var(--hue, 212), 40%, 49%);
+					--composition-background-color: #fff1c2;
+					--composition-text-color: #000;
+					--contains-highlight-background-color: hsl(var(--hue, 212), 40%, 95%);
+					--highlight-text: hsla(var(--hue, 212), 40%, 50%, 0.1);
+					--latex-color: hsl(var(--hue, 212), 80%, 40%);
+					--placeholder-color: hsl(var(--hue, 212), 40%, 49%);
+					--selection-background-color: hsl(var(--hue, 212), 70%, 85%);
+					--selection-color: #000;
+					--smart-fence-color: currentcolor;
+					--smart-fence-opacity: 0.5;
+					--text-highlight-background-color: hsla(var(--hue, 212), 40%, 50%, 0.1);
+
+					display: inline-block;
+					box-sizing: border-box;
+					color-scheme: light;
+					font-size: 1.35rem;
+					width: 100%;
+
+					&::part(virtual-keyboard-toggle) {
+						display: none;
+					}
+
+					&::part(menu-toggle) {
+						display: none;
+					}
+				}
+			}
+
+			.glyphwell-symbol-palette {
+				margin-block-start: 14px;
+				margin-block-end: 14px;
+				text-align: initial;
+
+				.glyphwell-symbol-tabs {
+					border-block-end: 1px solid #dcdcde;
+					display: flex;
+					flex-wrap: nowrap;
+					gap: 8px;
+					padding-inline-start: 0;
+
+					.glyphwell-symbol-tab {
+						appearance: none;
+						background: transparent;
+						border: 0;
+						border-block-end: 2px solid transparent;
+						color: #50575e;
+						cursor: pointer;
+						font: inherit;
+						font-size: 13px;
+						font-weight: 500;
+						letter-spacing: 0.06em;
+						margin-block-end: -1px;
+						padding: 8px 16px;
+						position: relative;
+						text-transform: uppercase;
+						transition: border-color 0.15s ease, color 0.15s ease;
+						white-space: nowrap;
+
+						&[aria-selected="true"] {
+							border-block-end-color: #3858e9;
+							color: #3858e9;
+							font-weight: 600;
+						}
+
+						&:hover {
+							color: #1e1e1e;
+						}
+
+						&:focus-visible {
+							outline: 2px solid #3858e9;
+							outline-offset: 2px;
+						}
+					}
+				}
+			}
+
+			.glyphwell-symbol-panel {
+				padding-block-start: 12px;
+
+				.glyphwell-matrix-panel {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					gap: 16px;
+					padding: 0 16px;
+
+					.glyphwell-matrix-section__heading {
+						color: #50575e;
+						font-size: 11px;
+						font-weight: 600;
+						letter-spacing: 0.06em;
+						margin-block-end: 8px;
+						text-transform: uppercase;
+					}
+
+					.glyphwell-matrix-size-grid {
+						display: grid;
+						gap: 3px;
+						inline-size: fit-content;
+
+						.glyphwell-matrix-size-cell {
+							appearance: none;
+							background: #fff;
+							border: 1px solid #c3c4c7;
+							block-size: 22px;
+							cursor: pointer;
+							inline-size: 22px;
+							padding: 0;
+							transition: background-color 0.1s ease,
+								border-color 0.1s ease;
+
+							&.is-active {
+								background: hsl(230, 82%, 92%);
+								border-color: #3858e9;
+							}
+
+							&:focus-visible {
+								outline: 2px solid #3858e9;
+								outline-offset: 1px;
+							}
+						}
+					}
+
+					.glyphwell-matrix-size-label {
+						color: #1e1e1e;
+						font-size: 13px;
+						margin-block-start: 8px;
+					}
+
+					.glyphwell-matrix-borders {
+						display: flex;
+						flex-wrap: wrap;
+						gap: 4px;
+
+						.glyphwell-matrix-border-button {
+							align-items: center;
+							background-color: transparent;
+							border: 1px solid transparent;
+							color: #000;
+							cursor: pointer;
+							display: flex;
+							block-size: 44px;
+							inline-size: 44px;
+							justify-content: center;
+
+							.katex {
+								font-size: 18px;
+								line-height: 1;
+								pointer-events: none;
+							}
+
+							&:hover {
+								border-color: #dbdbdb;
+							}
+
+							&:active {
+								background-color: #dbdbdb;
+							}
+
+							&:focus-visible {
+								outline: 1px solid #3858e9;
+								outline-offset: 0;
+							}
+						}
+					}
+
+					.glyphwell-matrix-actions {
+						display: flex;
+						flex-wrap: wrap;
+						gap: 6px;
+
+						.glyphwell-matrix-action-button {
+							appearance: none;
+							background: #f6f7f7;
+							border: 1px solid #dcdcde;
+							border-radius: 2px;
+							color: #1e1e1e;
+							cursor: pointer;
+							font: inherit;
+							font-size: 12px;
+							padding: 6px 10px;
+
+							&:hover {
+								background: #f0f0f1;
+								border-color: #c3c4c7;
+							}
+
+							&:focus-visible {
+								outline: 2px solid #3858e9;
+								outline-offset: 1px;
+							}
+
+							&.is-destructive {
+								border-color: #f0b8b8;
+								color: #b32d2e;
+
+								&:hover {
+									background: #f7e6e6;
+									border-color: #d63638;
+								}
+							}
+						}
+					}
+
+					.glyphwell-matrix-hint {
+						color: #757575;
+						font-size: 12px;
+						margin: 0;
+					}
+
+					.full-width {
+						flex: 1 1 100%;
+					}
+				}
+
+				.glyphwell-symbol-grid {
+					display: grid;
+					gap: 0px;
+					grid-template-columns: repeat(auto-fill, 50px);
+					justify-content: center;
+
+					.glyphwell-symbol-button {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex: 0 0 50px;
+						height: 50px;
+						font-family: "Cambria Math", Cambria, Georgia, serif;
+						color: #000;
+						background-color: transparent;
+						border: 1px solid transparent;
+						cursor: pointer;
+
+						.katex {
+							font-size: 22px;
+							line-height: 1;
+							// Clicks land on the button, never on inner KaTeX spans.
+							pointer-events: none;
+						}
+
+						&:focus-visible {
+							outline: 1px solid #3858e9;
+							outline-offset: 0;
+						}
+
+						&:hover {
+							border-color: #dbdbdb;
+						}
+
+						&:active {
+							background-color: #dbdbdb;
+						}
+					}
+				}
+			}
+
+			.glyphwell-popover__latex {
+				margin-block-start: 16px;
+
+				textarea {
+					font-family: Consolas, Monaco, monospace;
+				}
+
+				&.glyphwell-popover__latex--hidden {
+					display: none;
+				}
+			}
+
+			.glyphwell-popover__actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				justify-content: flex-end;
+				margin-block-start: 16px;
+			}
+		}
+	}
+}

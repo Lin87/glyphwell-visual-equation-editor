@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "equation-editor/equation",
+	"name": "glyphwell/equation",
 	"version": "0.1.0",
 	"title": "Equation",
 	"category": "text",
-	"icon": "editor-code",
-	"description": "Create a standalone mathematical equation.",
+	"description": "Create and display a mathematical equation.",
+	"textdomain": "glyphwell",
 	"attributes": {
 		"latex": {
 			"type": "string",
@@ -26,6 +26,5 @@
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"render": "file:./render.php"
+	"style": "file:./style-index.css"
 }

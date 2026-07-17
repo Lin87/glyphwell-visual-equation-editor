@@ -14,9 +14,9 @@ module.exports = {
 			process.cwd(),
 			'src/formats/inline-equation/index.js'
 		),
-		'frontend/katex-fallback': path.resolve(
+		'frontend/katex': path.resolve(
 			process.cwd(),
-			'src/frontend/katex-fallback.js'
+			'src/frontend/katex.js'
 		),
 	},
 	module: {
