@@ -6,7 +6,7 @@
  * Author URI: https://profiles.wordpress.org/eslin87/
  * Text Domain:  glyphwell
  * Domain Path: /languages
- * Version: 0.1.0
+ * Version: 1.0.0
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GLYPHWELL_VERSION', '0.1.0' );
+define( 'GLYPHWELL_VERSION', '1.0.0' );
 define( 'GLYPHWELL_PLUGIN_FILE', __FILE__ );
 define( 'GLYPHWELL_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GLYPHWELL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

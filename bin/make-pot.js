@@ -78,7 +78,7 @@ for ( const key of [ 'title', 'description' ] ) {
 }
 
 const headers = {
-	'Project-Id-Version': 'Glyphwell - Visual Equation Editor 0.1.0',
+	'Project-Id-Version': 'Glyphwell - Visual Equation Editor 1.0.0',
 	'Report-Msgid-Bugs-To': 'https://profiles.wordpress.org/eslin87/',
 	'MIME-Version': '1.0',
 	'Content-Type': 'text/plain; charset=UTF-8',
