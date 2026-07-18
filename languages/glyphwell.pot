@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Glyphwell - Visual Equation Editor 0.1.0\n"
+"Project-Id-Version: Glyphwell - Visual Equation Editor 1.0.0\n"
 "Report-Msgid-Bugs-To: https://profiles.wordpress.org/eslin87/\n"
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"

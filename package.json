@@ -1,6 +1,6 @@
 {
 	"name": "glyphwell",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "A WordPress equation editor block and inline equation formatter.",
 	"author": "Ethan Lin",
 	"license": "GPL-2.0-or-later",
