@@ -145,11 +145,11 @@ Recommended inline markup:
 
 ```html
 <math
-	class="glyphwell-inline"
-	data-glyphwell-latex="x^2 + y^2 = z^2"
-	display="inline"
+  class="glyphwell-inline"
+  data-glyphwell-latex="x^2 + y^2 = z^2"
+  display="inline"
 >
-	<!-- generated MathML children -->
+  <!-- generated MathML children -->
 </math>
 ```
 
@@ -197,12 +197,12 @@ Recommended KaTeX options:
 
 ```js
 {
-	displayMode: true or false,
-	throwOnError: false,
-	output: 'htmlAndMathml',
-	trust: false,
-	maxSize: 20,
-	maxExpand: 1000
+  displayMode: true or false,
+  throwOnError: false,
+  output: 'htmlAndMathml',
+  trust: false,
+  maxSize: 20,
+  maxExpand: 1000
 }
 ```
 
@@ -265,18 +265,18 @@ Recommended shape:
 
 ```js
 export const SYMBOL_GROUPS = [
-	{
-		id: 'basic',
-		label: 'Basic',
-		symbols: [
-			{
-				id: 'subscript',
-				visual: 'x□',
-				latex: 'x_{#0}',
-				ariaLabel: 'Insert subscript',
-			},
-		],
-	},
+  {
+    id: 'basic',
+    label: 'Basic',
+    symbols: [
+      {
+        id: 'subscript',
+        visual: 'x□',
+        latex: 'x_{#0}',
+        ariaLabel: 'Insert subscript',
+      },
+    ],
+  },
 ];
 ```
 

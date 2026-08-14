@@ -2,7 +2,7 @@
 Contributors: eslin87
 Tags: equation, math, latex, mathml, katex
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.0
 Stable tag: 1.0.0
 License: GPL-2.0-or-later
@@ -40,9 +40,8 @@ Glyphwell does not add equation numbering, labels, cross-references, custom macr
 == Installation ==
 
 1. Upload the plugin folder to `/wp-content/plugins/glyphwell/`.
-2. If installing from source, run `npm install` and `npm run build`.
-3. Activate Glyphwell from the Plugins screen in WordPress.
-4. Insert the Equation block or use the Equation toolbar button in supported rich text fields.
+2. Activate Glyphwell from the Plugins screen in WordPress.
+3. Insert the Equation block or use the Equation toolbar button in supported rich text fields.
 
 == Frequently Asked Questions ==
 
