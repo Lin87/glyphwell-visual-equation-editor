@@ -6,7 +6,6 @@
 	"license": "GPL-2.0-or-later",
 	"private": true,
 	"files": [
-		"assets/screenshots/",
 		"build/",
 		"glyphwell.php",
 		"includes/",
