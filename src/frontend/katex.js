@@ -7,21 +7,7 @@ import {
 	LATEX_DATA_ATTRIBUTE,
 	MATHML_CLASS,
 } from '../constants';
-
-/**
- * KaTeX render options shared by every render target.
- *
- * `htmlAndMathml` keeps an accessible MathML tree alongside the visual HTML,
- * while `trust: false` plus the size/expansion caps guard against malicious or
- * runaway input rendered from saved post content.
- */
-const KATEX_OPTIONS = {
-	throwOnError: false,
-	output: 'htmlAndMathml',
-	trust: false,
-	maxSize: 20,
-	maxExpand: 1000,
-};
+import { KATEX_OPTIONS } from '../utils/katex-options';
 
 /**
  * Renders the LaTeX carried by an element into the DOM using KaTeX.

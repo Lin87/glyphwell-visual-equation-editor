@@ -1,7 +1,7 @@
 import 'mathlive/fonts.css';
 
 import { RichTextToolbarButton } from '@wordpress/block-editor';
-import { useCallback, useMemo, useState } from '@wordpress/element';
+import { useCallback, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { math } from '@wordpress/icons';
 import {
@@ -106,15 +106,6 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 		closePopover();
 	}, [ closePopover, onChange, popoverState, value ] );
 
-	const initialValues = useMemo( () => {
-		const object = popoverState?.object;
-
-		return {
-			latex: object?.attributes?.latex || '',
-			mathML: object?.innerHTML || '',
-		};
-	}, [ popoverState ] );
-
 	return (
 		<>
 			<RichTextToolbarButton
@@ -128,8 +119,8 @@ function InlineEquationEdit( { contentRef, value, onChange } ) {
 			{ popoverState && (
 				<EquationPopover
 					anchor={ anchor }
-					initialLatex={ initialValues.latex }
-					initialMathML={ initialValues.mathML }
+					displayMode={ false }
+					initialLatex={ popoverState.object?.attributes?.latex || '' }
 					isEditing={ isEditing }
 					onApply={ applyEquation }
 					onClose={ closePopover }

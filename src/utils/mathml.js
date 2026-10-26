@@ -1,3 +1,39 @@
+import katex from 'katex';
+
+import { KATEX_OPTIONS } from './katex-options';
+
+/**
+ * Generates MathML for a LaTeX equation with KaTeX, using the same options as
+ * the rendered equation so the stored MathML matches it as closely as possible.
+ *
+ * @param {string}  latex       LaTeX source of the equation.
+ * @param {boolean} displayMode True for a display (block) equation, false for inline.
+ * @return {string} A serialized `<math>` element, or an empty string when the
+ *                  LaTeX cannot be rendered.
+ */
+export const latexToMathML = ( latex, displayMode ) => {
+	if ( ! latex || typeof window === 'undefined' ) {
+		return '';
+	}
+
+	let markup;
+
+	try {
+		markup = katex.renderToString( latex, {
+			...KATEX_OPTIONS,
+			displayMode,
+			output: 'mathml',
+		} );
+	} catch {
+		return '';
+	}
+
+	const template = window.document.createElement( 'template' );
+	template.innerHTML = markup;
+
+	return template.content.querySelector( 'math' )?.outerHTML || '';
+};
+
 /**
  * Extracts the inner markup of a `<math>` element from a MathML string.
  *

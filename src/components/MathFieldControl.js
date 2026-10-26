@@ -96,20 +96,6 @@ const createMathfieldElement = ( ownerDocument ) => {
 };
 
 /**
- * Safely reads the MathML representation of the field's current value.
- *
- * @param {HTMLElement} mathfield The `<math-field>` element.
- * @return {string} The MathML markup, or an empty string on failure.
- */
-const getMathML = ( mathfield ) => {
-	try {
-		return mathfield.getValue?.( 'math-ml' ) || '';
-	} catch {
-		return '';
-	}
-};
-
-/**
  * Serializes all rules of a stylesheet into a single CSS string.
  *
  * @param {CSSStyleSheet} styleSheet The stylesheet to serialize.
@@ -208,21 +194,17 @@ const forceLightTheme = ( mathfield ) => {
  * callbacks, syncs external `latex` changes into the field, and exposes a
  * `focus()` / `insertLatex()` imperative handle via the forwarded ref.
  *
- * @param {Object}   props                Component props.
- * @param {string}   [props.className]    Extra class added to the field element.
- * @param {string}   [props.latex]        Controlled LaTeX value.
- * @param {Function} props.onLatexChange  Called with the LaTeX on every edit.
- * @param {Function} props.onMathMLChange Called with the MathML on every edit.
- * @param {Object}   ref                  Forwarded ref exposing the imperative handle.
+ * @param {Object}   props               Component props.
+ * @param {string}   [props.className]   Extra class added to the field element.
+ * @param {string}   [props.latex]       Controlled LaTeX value.
+ * @param {Function} props.onLatexChange Called with the LaTeX on every edit.
+ * @param {Object}   ref                 Forwarded ref exposing the imperative handle.
  * @return {Element} The container element hosting the math field.
  */
-function MathFieldControl(
-	{ className = '', latex = '', onLatexChange, onMathMLChange },
-	ref
-) {
-	// Latest callbacks, read through a ref so the mount effect need not depend
-	// on them (and thus re-create the field) when the parent re-renders.
-	const callbacksRef = useRef( { onLatexChange, onMathMLChange } );
+function MathFieldControl( { className = '', latex = '', onLatexChange }, ref ) {
+	// Latest callback, read through a ref so the mount effect need not depend
+	// on it (and thus re-create the field) when the parent re-renders.
+	const callbacksRef = useRef( { onLatexChange } );
 	const containerRef = useRef( null );
 	const initialLatexRef = useRef( latex || '' );
 	// Last value we pushed to / read from the field, used to skip redundant
@@ -231,10 +213,10 @@ function MathFieldControl(
 	const mathfieldRef = useRef( null );
 
 	useEffect( () => {
-		callbacksRef.current = { onLatexChange, onMathMLChange };
-	}, [ onLatexChange, onMathMLChange ] );
+		callbacksRef.current = { onLatexChange };
+	}, [ onLatexChange ] );
 
-	// Reads the field's current value and forwards it to the change callbacks.
+	// Reads the field's current value and forwards it to the change callback.
 	const emitCurrentValue = useCallback( ( mathfield ) => {
 		const nextLatex = mathfield.value || '';
 		const callbacks = callbacksRef.current;
@@ -243,10 +225,6 @@ function MathFieldControl(
 
 		if ( typeof callbacks.onLatexChange === 'function' ) {
 			callbacks.onLatexChange( nextLatex );
-		}
-
-		if ( typeof callbacks.onMathMLChange === 'function' ) {
-			callbacks.onMathMLChange( getMathML( mathfield ) );
 		}
 	}, [] );
 
@@ -294,10 +272,6 @@ function MathFieldControl(
 		);
 		forceLightTheme( mathfield );
 
-		if ( typeof callbacksRef.current.onMathMLChange === 'function' ) {
-			callbacksRef.current.onMathMLChange( getMathML( mathfield ) );
-		}
-
 		const handleInput = () => {
 			emitCurrentValue( mathfield );
 		};
@@ -335,10 +309,6 @@ function MathFieldControl(
 
 		mathfield.value = nextLatex;
 		lastLatexRef.current = nextLatex;
-
-		if ( typeof callbacksRef.current.onMathMLChange === 'function' ) {
-			callbacksRef.current.onMathMLChange( getMathML( mathfield ) );
-		}
 	}, [ latex ] );
 
 	useImperativeHandle(
@@ -380,7 +350,7 @@ function MathFieldControl(
 				// Some commands (notably `setEnvironment`) mutate the field
 				// without firing an `input` event, so the mount effect's listener
 				// would not re-emit. Emit explicitly to keep the controlled
-				// `latex`/MathML (and thus the block preview) in sync; commands
+				// `latex` (and thus the block preview) in sync; commands
 				// that do fire `input` just re-emit the same value harmlessly.
 				emitCurrentValue( mathfield );
 				mathfield.focus();
