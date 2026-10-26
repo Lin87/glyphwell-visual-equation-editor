@@ -45,7 +45,7 @@ Do not load MathLive, KaTeX, fonts, CSS, or JavaScript from a CDN.
 Use a common WordPress plugin structure:
 
 ```text
-glyphwell/
+glyphwell-visual-equation-editor/
 ├── glyphwell.php
 ├── readme.txt
 ├── package.json
@@ -110,6 +110,9 @@ Recommended block attributes:
 {
   "latex": {
     "type": "string",
+    "source": "attribute",
+    "selector": "math",
+    "attribute": "data-glyphwell-latex",
     "default": ""
   },
   "mathML": {
@@ -118,10 +121,15 @@ Recommended block attributes:
   },
   "textAlign": {
     "type": "string",
+    "enum": ["left", "center", "right"],
     "default": "center"
   }
 }
 ```
+
+`latex` is sourced from the saved `data-glyphwell-latex` HTML attribute rather
+than the block comment, because WordPress runs KSES over comment attributes for
+users without `unfiltered_html`, which would mangle LaTeX such as `<` and `&`.
 
 ### Inline equation formatting
 
@@ -145,11 +153,11 @@ Recommended inline markup:
 
 ```html
 <math
-	class="glyphwell-inline"
-	data-glyphwell-latex="x^2 + y^2 = z^2"
-	display="inline"
+  class="glyphwell-inline"
+  data-glyphwell-latex="x^2 + y^2 = z^2"
+  display="inline"
 >
-	<!-- generated MathML children -->
+  <!-- generated MathML children -->
 </math>
 ```
 
@@ -161,7 +169,12 @@ MathML is always generated output.
 
 The editor must update both `latex` and `mathML` whenever the equation changes.
 
-Use MathLive to generate MathML where possible.
+Generate MathML with KaTeX (`output: 'mathml'`), not MathLive, using
+`latexToMathML()` in `src/utils/mathml.js`. The saved page HTML is also consumed
+outside WordPress, where KaTeX is not available, so the stored MathML must
+match the KaTeX rendering as closely as possible. MathLive is used only for
+editing. Store the MathML as a snapshot taken when the equation is applied;
+never regenerate it in `save()`, or KaTeX upgrades would invalidate saved blocks.
 
 Do not add custom macro support in the first release.
 
@@ -177,7 +190,7 @@ saved LaTeX, so any styling captured in the LaTeX (e.g. `\textcolor`,
   equation markup (detected by class plus the `data-glyphwell-latex`
   attribute); do not load them on pages without equations.
 - Render standalone block equations and inline equations from the
-  `data-glyphwell-latex` attribute.
+  `data-glyphwell-latex` attribute (read in JS as `dataset.glyphwellLatex`).
 - The editor preview renders the same LaTeX with the same KaTeX options so it
   matches the frontend exactly.
 - Use targeted rendering only. Do not use KaTeX auto-render across the full page.
@@ -190,19 +203,21 @@ Render targets:
 .glyphwell-inline[data-glyphwell-latex]
 ```
 
-The saved markup still includes a serialized MathML representation for
-backwards compatibility, but KaTeX renders over it from the LaTeX.
+The saved markup also includes KaTeX-generated MathML so the equation still
+displays where KaTeX is not available (for example, when the page HTML is used
+outside WordPress); on the site, KaTeX renders over it from the LaTeX.
 
-Recommended KaTeX options:
+The editor preview, the stored MathML, and the frontend renderer share one set
+of options, `KATEX_OPTIONS` in `src/utils/katex-options.js`:
 
 ```js
 {
-	displayMode: true or false,
-	throwOnError: false,
-	output: 'htmlAndMathml',
-	trust: false,
-	maxSize: 20,
-	maxExpand: 1000
+  displayMode: true or false,
+  throwOnError: false,
+  output: 'htmlAndMathml',
+  trust: false,
+  maxSize: 20,
+  maxExpand: 1000
 }
 ```
 
@@ -225,6 +240,15 @@ Required escaping and sanitization:
 - Add a KSES allowlist for the plugin’s inline equation attributes.
 - Do not allow event handler attributes.
 - Do not allow `script`, `style`, `href`, `src`, or external resource attributes in MathML.
+- Allow the size, spacing, color, and line attributes KaTeX emits in MathML
+  (`width`, `height`, `depth`, `lspace`, `rspace`, `voffset`, `maxsize`,
+  `minsize`, `mathsize`, `linethickness`, `columnspacing`, `rowspacing`,
+  `columnlines`, `rowlines`, `notation`, `linebreak`, `mathcolor`,
+  `mathbackground`) only with validated values: lengths capped at KaTeX's
+  `maxSize` of 20em, plain colors, and known keywords
+  (`glyphwell_is_safe_mathml_attribute_value()`). Anything else is dropped.
+- Sanitize equation `<math>` markup again at render time through the
+  `render_block` filter, so stored MathML is never output raw.
 - Use KaTeX with `trust: false`.
 
 Create sanitization helpers in:
@@ -238,8 +262,14 @@ Required helper functions:
 ```php
 glyphwell_allowed_mathml_tags()
 glyphwell_sanitize_mathml( string $mathml ): string
+glyphwell_is_safe_mathml_attribute_value( string $name, string $value ): bool
+glyphwell_sanitize_equation_markup( string $content ): string
 glyphwell_extend_allowed_post_tags( array $tags, string $context ): array
 ```
+
+`glyphwell_filter_rendered_block()` hooks `glyphwell_sanitize_equation_markup()`
+onto `render_block`, which covers both the standalone block and inline
+equations inside any rich-text block.
 
 ## Symbol palette requirements
 
@@ -265,18 +295,18 @@ Recommended shape:
 
 ```js
 export const SYMBOL_GROUPS = [
-	{
-		id: 'basic',
-		label: 'Basic',
-		symbols: [
-			{
-				id: 'subscript',
-				visual: 'x□',
-				latex: 'x_{#0}',
-				ariaLabel: 'Insert subscript',
-			},
-		],
-	},
+  {
+    id: 'basic',
+    label: 'Basic',
+    symbols: [
+      {
+        id: 'subscript',
+        visual: 'x□',
+        latex: 'x_{#0}',
+        ariaLabel: 'Insert subscript',
+      },
+    ],
+  },
 ];
 ```
 

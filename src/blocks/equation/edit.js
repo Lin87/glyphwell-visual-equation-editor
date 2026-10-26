@@ -19,20 +19,7 @@ import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
 import EquationPopover from '../../components/EquationPopover';
-
-/**
- * KaTeX render options for the editor preview. Kept in sync with the frontend
- * renderer (src/frontend/katex.js) so the preview matches the
- * published output exactly.
- */
-const KATEX_OPTIONS = {
-	throwOnError: false,
-	output: 'htmlAndMathml',
-	trust: false,
-	maxSize: 20,
-	maxExpand: 1000,
-	displayMode: true,
-};
+import { KATEX_OPTIONS } from '../../utils/katex-options';
 
 const ALIGNMENTS = [
 	{
@@ -73,7 +60,10 @@ function EmptyMessage( { children } ) {
 function EquationPreview( { latex } ) {
 	const markup = useMemo( () => {
 		try {
-			return katex.renderToString( latex, KATEX_OPTIONS );
+			return katex.renderToString( latex, {
+				...KATEX_OPTIONS,
+				displayMode: true,
+			} );
 		} catch {
 			return '';
 		}
@@ -111,7 +101,7 @@ function EquationPreview( { latex } ) {
  * @return {Element} The block edit UI.
  */
 export default function Edit( { attributes, clientId, setAttributes } ) {
-	const { latex = '', mathML = '', textAlign = 'center' } = attributes;
+	const { latex = '', textAlign = 'center' } = attributes;
 	const [ isPopoverOpen, setIsPopoverOpen ] = useState( false );
 	const blockRef = useRef( null );
 	const hasAutoOpenedRef = useRef( false );
@@ -207,7 +197,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							</EmptyMessage>
 						) }
 					</div>
-					<div class="glyphwell-block__preview-actions">
+					<div className="glyphwell-block__preview-actions">
 						<Button
 							className="glyphwell-block__edit-button"
 							icon={ math }
@@ -226,7 +216,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					<EquationPopover
 						anchor={ blockRef.current }
 						initialLatex={ latex }
-						initialMathML={ mathML }
 						isEditing={ hasEquation }
 						onApply={ applyEquation }
 						onClose={ closePopover }

@@ -7,21 +7,7 @@ import {
 	LATEX_DATA_ATTRIBUTE,
 	MATHML_CLASS,
 } from '../constants';
-
-/**
- * KaTeX render options shared by every render target.
- *
- * `htmlAndMathml` keeps an accessible MathML tree alongside the visual HTML,
- * while `trust: false` plus the size/expansion caps guard against malicious or
- * runaway input rendered from saved post content.
- */
-const KATEX_OPTIONS = {
-	throwOnError: false,
-	output: 'htmlAndMathml',
-	trust: false,
-	maxSize: 20,
-	maxExpand: 1000,
-};
+import { KATEX_OPTIONS } from '../utils/katex-options';
 
 /**
  * Renders the LaTeX carried by an element into the DOM using KaTeX.
@@ -31,8 +17,7 @@ const KATEX_OPTIONS = {
  * @return {void}
  */
 const renderEquationWithKatex = ( element, displayMode ) => {
-	const latex =
-		element.dataset.latex || element.dataset.equationEditorLatex || '';
+	const latex = element.dataset.glyphwellLatex || '';
 
 	if ( ! latex ) {
 		return;
@@ -47,7 +32,7 @@ const renderEquationWithKatex = ( element, displayMode ) => {
 
 	if ( renderTarget !== element ) {
 		renderTarget.className = element.getAttribute( 'class' ) || '';
-		renderTarget.dataset.equationEditorLatex = latex;
+		renderTarget.dataset.glyphwellLatex = latex;
 	}
 
 	katex.render( latex, renderTarget, {

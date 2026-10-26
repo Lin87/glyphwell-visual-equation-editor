@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Glyphwell - Visual Equation Editor 1.0.0\n"
+"Project-Id-Version: Glyphwell - Visual Equation Editor 1.0.1\n"
 "Report-Msgid-Bugs-To: https://profiles.wordpress.org/eslin87/\n"
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,19 +39,19 @@ msgstr ""
 msgid "Add Row below"
 msgstr ""
 
-#: src/blocks/equation/edit.js:45
+#: src/blocks/equation/edit.js:32
 msgid "Align center"
 msgstr ""
 
-#: src/blocks/equation/edit.js:40
+#: src/blocks/equation/edit.js:27
 msgid "Align left"
 msgstr ""
 
-#: src/blocks/equation/edit.js:50
+#: src/blocks/equation/edit.js:37
 msgid "Align right"
 msgstr ""
 
-#: src/components/EquationPopover.js:129
+#: src/components/EquationPopover.js:128
 msgid "Apply"
 msgstr ""
 
@@ -67,7 +67,7 @@ msgstr ""
 msgid "Borders"
 msgstr ""
 
-#: src/components/EquationPopover.js:143
+#: src/components/EquationPopover.js:142
 msgid "Cancel"
 msgstr ""
 
@@ -99,30 +99,30 @@ msgstr ""
 msgid "Double bar border"
 msgstr ""
 
-#: src/blocks/equation/edit.js:219
+#: src/blocks/equation/edit.js:209
 msgid "Edit equation"
 msgstr ""
 
-#: src/blocks/equation/edit.js:203
+#: src/blocks/equation/edit.js:193
 msgid "Enter an equation to display it here."
 msgstr ""
 
-#: src/blocks/equation/edit.js:220
+#: src/blocks/equation/edit.js:210
 msgid "Enter equation"
 msgstr ""
 
 #: src/blocks/equation/block.json
-#: src/formats/inline-equation/index.js:123
-#: src/formats/inline-equation/index.js:125
-#: src/formats/inline-equation/index.js:144
+#: src/formats/inline-equation/index.js:114
+#: src/formats/inline-equation/index.js:116
+#: src/formats/inline-equation/index.js:135
 msgid "Equation"
 msgstr ""
 
-#: src/blocks/equation/edit.js:180
+#: src/blocks/equation/edit.js:170
 msgid "Equation alignment"
 msgstr ""
 
-#: src/components/MathFieldControl.js:267
+#: src/components/MathFieldControl.js:245
 msgid "Equation editor"
 msgstr ""
 
@@ -975,7 +975,7 @@ msgstr ""
 msgid "Insert zeta"
 msgstr ""
 
-#: src/components/EquationPopover.js:118
+#: src/components/EquationPopover.js:117
 msgid "LaTeX"
 msgstr ""
 
@@ -1007,7 +1007,7 @@ msgstr ""
 msgid "Relations & Sets"
 msgstr ""
 
-#: src/components/EquationPopover.js:138
+#: src/components/EquationPopover.js:137
 msgid "Remove"
 msgstr ""
 
@@ -1015,7 +1015,7 @@ msgstr ""
 msgid "Rows & columns"
 msgstr ""
 
-#: src/components/EquationPopover.js:106
+#: src/components/EquationPopover.js:105
 msgid "Show LaTeX"
 msgstr ""
 
@@ -1031,10 +1031,10 @@ msgstr ""
 msgid "Symbols"
 msgstr ""
 
-#: src/blocks/equation/edit.js:85
+#: src/blocks/equation/edit.js:75
 msgid "The equation preview could not be rendered."
 msgstr ""
 
-#: src/components/EquationPopover.js:128
+#: src/components/EquationPopover.js:127
 msgid "Update"
 msgstr ""

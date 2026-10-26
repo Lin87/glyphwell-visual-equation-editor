@@ -7,6 +7,7 @@ import {
 import { useCallback, useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
+import { latexToMathML } from '../utils/mathml';
 import MathFieldControl from './MathFieldControl';
 import SymbolPalette from './SymbolPalette';
 
@@ -18,8 +19,8 @@ import SymbolPalette from './SymbolPalette';
  *
  * @param {Object}      props               Component props.
  * @param {HTMLElement} props.anchor        Element the popover is positioned against.
+ * @param {boolean}     [props.displayMode] True for a display (block) equation, false for inline.
  * @param {string}      props.initialLatex  LaTeX to seed the field with.
- * @param {string}      props.initialMathML MathML to seed the field with.
  * @param {boolean}     props.isEditing     True when editing an existing equation.
  * @param {Function}    props.onApply       Called with { latex, mathML } to apply.
  * @param {Function}    props.onClose       Called to dismiss without changes.
@@ -28,15 +29,14 @@ import SymbolPalette from './SymbolPalette';
  */
 export default function EquationPopover( {
 	anchor,
+	displayMode = true,
 	initialLatex = '',
-	initialMathML = '',
 	isEditing = false,
 	onApply,
 	onClose,
 	onRemove,
 } ) {
 	const [ latex, setLatex ] = useState( initialLatex );
-	const [ mathML, setMathML ] = useState( initialMathML );
 	const [ showLatex, setShowLatex ] = useState( false );
 	const mathfieldRef = useRef( null );
 
@@ -71,9 +71,9 @@ export default function EquationPopover( {
 
 		onApply( {
 			latex,
-			mathML,
+			mathML: latexToMathML( latex, displayMode ),
 		} );
-	}, [ isEditing, latex, mathML, onApply, onClose, onRemove ] );
+	}, [ displayMode, isEditing, latex, onApply, onClose, onRemove ] );
 
 	return (
 		<Popover
@@ -91,7 +91,6 @@ export default function EquationPopover( {
 						ref={ mathfieldRef }
 						latex={ latex }
 						onLatexChange={ setLatex }
-						onMathMLChange={ setMathML }
 					/>
 				</div>
 
