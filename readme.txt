@@ -70,6 +70,8 @@ Glyphwell renders every equation from its stored LaTeX using the locally bundled
 
 = 1.0.1 =
 * Fixed: Equations on published pages now render with the bundled KaTeX engine as intended, instead of falling back to the browser's built-in math display.
+* Fixed: Equations containing symbols such as <, >, or & (for example matrices) no longer get altered or show as invalid when Contributors or Authors save and reopen a post. Affected equations are repaired automatically the next time they are opened.
+* Fixed: Removed a browser console warning in the block editor.
 * Security: Equation markup is now cleaned again each time a page is displayed, not only when a post is saved.
 * Security: Removed MathML sizing and spacing settings that could be misused to stretch or overlap other content on the page.
 * Security: Equation alignment now accepts only left, center, or right.

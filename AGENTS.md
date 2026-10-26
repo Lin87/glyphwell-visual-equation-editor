@@ -110,6 +110,9 @@ Recommended block attributes:
 {
   "latex": {
     "type": "string",
+    "source": "attribute",
+    "selector": "math",
+    "attribute": "data-glyphwell-latex",
     "default": ""
   },
   "mathML": {
@@ -123,6 +126,10 @@ Recommended block attributes:
   }
 }
 ```
+
+`latex` is sourced from the saved `data-glyphwell-latex` HTML attribute rather
+than the block comment, because WordPress runs KSES over comment attributes for
+users without `unfiltered_html`, which would mangle LaTeX such as `<` and `&`.
 
 ### Inline equation formatting
 

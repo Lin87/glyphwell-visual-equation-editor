@@ -10,6 +10,9 @@
 	"attributes": {
 		"latex": {
 			"type": "string",
+			"source": "attribute",
+			"selector": "math",
+			"attribute": "data-glyphwell-latex",
 			"default": ""
 		},
 		"mathML": {

@@ -207,7 +207,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							</EmptyMessage>
 						) }
 					</div>
-					<div class="glyphwell-block__preview-actions">
+					<div className="glyphwell-block__preview-actions">
 						<Button
 							className="glyphwell-block__edit-button"
 							icon={ math }
