@@ -31,8 +31,7 @@ const KATEX_OPTIONS = {
  * @return {void}
  */
 const renderEquationWithKatex = ( element, displayMode ) => {
-	const latex =
-		element.dataset.latex || element.dataset.equationEditorLatex || '';
+	const latex = element.dataset.glyphwellLatex || '';
 
 	if ( ! latex ) {
 		return;
@@ -47,7 +46,7 @@ const renderEquationWithKatex = ( element, displayMode ) => {
 
 	if ( renderTarget !== element ) {
 		renderTarget.className = element.getAttribute( 'class' ) || '';
-		renderTarget.dataset.equationEditorLatex = latex;
+		renderTarget.dataset.glyphwellLatex = latex;
 	}
 
 	katex.render( latex, renderTarget, {

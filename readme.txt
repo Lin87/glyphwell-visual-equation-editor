@@ -4,7 +4,7 @@ Tags: equation, math, latex, mathml, katex
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,13 @@ Glyphwell renders every equation from its stored LaTeX using the locally bundled
 2. Inline equation popover with WYSIWYG editing.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed: Equations on published pages now render with the bundled KaTeX engine as intended, instead of falling back to the browser's built-in math display.
+* Security: Equation markup is now cleaned again each time a page is displayed, not only when a post is saved.
+* Security: Removed MathML sizing and spacing settings that could be misused to stretch or overlap other content on the page.
+* Security: Equation alignment now accepts only left, center, or right.
+* Updated: Bundled KaTeX 0.19.1 (includes a security fix) and MathLive 0.111.1.
 
 = 1.0.0 =
 Official release.

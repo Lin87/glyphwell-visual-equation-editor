@@ -118,6 +118,7 @@ Recommended block attributes:
   },
   "textAlign": {
     "type": "string",
+    "enum": ["left", "center", "right"],
     "default": "center"
   }
 }
@@ -177,7 +178,7 @@ saved LaTeX, so any styling captured in the LaTeX (e.g. `\textcolor`,
   equation markup (detected by class plus the `data-glyphwell-latex`
   attribute); do not load them on pages without equations.
 - Render standalone block equations and inline equations from the
-  `data-glyphwell-latex` attribute.
+  `data-glyphwell-latex` attribute (read in JS as `dataset.glyphwellLatex`).
 - The editor preview renders the same LaTeX with the same KaTeX options so it
   matches the frontend exactly.
 - Use targeted rendering only. Do not use KaTeX auto-render across the full page.
@@ -225,6 +226,11 @@ Required escaping and sanitization:
 - Add a KSES allowlist for the plugin’s inline equation attributes.
 - Do not allow event handler attributes.
 - Do not allow `script`, `style`, `href`, `src`, or external resource attributes in MathML.
+- Do not allow free-form dimension or spacing attributes in MathML (`width`,
+  `height`, `depth`, `lspace`, `rspace`, `maxsize`, `minsize`,
+  `linethickness`, `columnspacing`, `rowspacing`); KaTeX handles layout.
+- Sanitize equation `<math>` markup again at render time through the
+  `render_block` filter, so stored MathML is never output raw.
 - Use KaTeX with `trust: false`.
 
 Create sanitization helpers in:
@@ -238,8 +244,13 @@ Required helper functions:
 ```php
 glyphwell_allowed_mathml_tags()
 glyphwell_sanitize_mathml( string $mathml ): string
+glyphwell_sanitize_equation_markup( string $content ): string
 glyphwell_extend_allowed_post_tags( array $tags, string $context ): array
 ```
+
+`glyphwell_filter_rendered_block()` hooks `glyphwell_sanitize_equation_markup()`
+onto `render_block`, which covers both the standalone block and inline
+equations inside any rich-text block.
 
 ## Symbol palette requirements
 
